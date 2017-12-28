@@ -1,0 +1,23 @@
+{
+  "header": {
+    "appsButtonText": "Скачать приложение",
+    "logoTitleText": "Главная"
+  },
+  "sign": {
+    "caption": "Вы можете войти при помощи вашего E-mail или ID",
+    "in": {
+      "emailPlaceholder": "Ваш E-mail или ID",
+      "passPlaceholder": "Ваш пароль",
+      "submitText": "Войти",
+      "switchLinkText": "ЗАРЕГИСТРИРОВАТЬСЯ"
+    },
+    "up": {
+      "namePlaceholder": "Ваше имя",
+      "emailPlaceholder": "Ваш E-mail или ID",
+      "passPlaceholder": "Ваш пароль",
+      "confirmPassPlaceholder": "Повторите пароль",
+      "submitText": "Регистрация",
+      "switchLinkText": "ВОЙТИ"
+    }
+  }
+}
