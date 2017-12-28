@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="18px" viewBox="0 0 14 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>map_marker</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Dashboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.5">
+        <g id="Dashboard-with-filter" transform="translate(-210.000000, -436.000000)" fill-rule="nonzero" fill="#BDC0CF">
+            <g id="Snippet/task-in-process_520" transform="translate(190.000000, 324.000000)">
+                <g id="Snippet/task">
+                    <g id="Snippet/City_Task_Defoult" transform="translate(20.000000, 112.000000)">
+                        <path d="M6.6,0 C2.92433083,0 0,2.7914067 0,6.3 C0,11.7 6.6,18 6.6,18 C6.6,18 13.2,11.6085942 13.2,6.3 C13.2,2.7914067 10.2756701,0 6.6,0 Z M6.69999998,7.39999995 C5.63718787,7.39999995 4.8,6.56281284 4.8,5.49999998 C4.8,4.43718787 5.63718787,3.6 6.69999998,3.6 C7.76281284,3.6 8.59999995,4.43718787 8.59999995,5.49999998 C8.59999995,6.56281284 7.76281284,7.39999995 6.69999998,7.39999995 Z" id="map_marker"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

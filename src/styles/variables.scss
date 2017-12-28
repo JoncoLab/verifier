@@ -1,0 +1,58 @@
+$line: 10px;
+$line: 0.2s;
+
+// Colors
+
+$fontMain: #9CA2BC;
+$headerBg: linear-gradient(174deg, #424653 0%, #282A31 100%);
+
+// Fonts
+
+$stratosLight: "Stratos-Light-Web";
+$stratosLightItalic: "Stratos-Light Italic-Web";
+$stratosRegular: "Stratos-Regular-Web";
+$stratosMedium: "Stratos-Medium-Web";
+$stratosBold: "Stratos-Bold-Web";
+$stratosBlack: "Stratos-Black-Web";
+
+@font-face {
+  font-family: "Stratos-Light-Web";
+  src: url("../fonts/Stratos-Light-Web.woff2") format("woff2"),url("../fonts/Stratos-Light-Web.woff") format("woff"),url("../fonts/Stratos-Light-Web.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: "Stratos-Light Italic-Web";
+  src: url("../fonts/Stratos-Light Italic-Web.woff2") format("woff2"),url("../fonts/Stratos-Light Italic-Web.woff") format("woff"),url("../fonts/Stratos-Light Italic-Web.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: "Stratos-Regular-Web";
+  src: url("../fonts/Stratos-Regular-Web.woff2") format("woff2"),url("../fonts/Stratos-Regular-Web.woff") format("woff"),url("../fonts/Stratos-Regular-Web.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: "Stratos-Medium-Web";
+  src: url("../fonts/Stratos-Medium-Web.woff2") format("woff2"),url("../fonts/Stratos-Medium-Web.woff") format("woff"),url("../fonts/Stratos-Medium-Web.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal
+}
+
+@font-face {
+  font-family: "Stratos-Bold-Web";
+  src: url("../fonts/Stratos-Bold-Web.woff2") format("woff2"),url("../fonts/Stratos-Bold-Web.woff") format("woff"),url("../fonts/Stratos-Bold-Web.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal
+}
+
+@font-face {
+  font-family: "Stratos-Black-Web";
+  src: url("../fonts/Stratos-Black-Web.woff2") format("woff2"),url("../fonts/Stratos-Black-Web.woff") format("woff"),url("../fonts/Stratos-Black-Web.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="510px" height="321px" viewBox="0 0 510 321" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>logo_decor_left</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-7.7%" y="-6.9%" width="115.4%" height="127.8%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="20" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="10" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.290196078   0 0 0 0 0.290196078   0 0 0 0 0.290196078  0 0 0 0.24 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <linearGradient x1="50%" y1="1.86543367%" x2="50%" y2="97.0702013%" id="linearGradient-2">
+            <stop stop-color="#CDD0E7" offset="0%"></stop>
+            <stop stop-color="#AAAECD" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Download-App" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.0289243659">
+        <g id="Dashboard-V.2" transform="translate(-213.000000, -364.000000)" fill="url(#linearGradient-2)">
+            <g id="Group-Google" transform="translate(190.000000, 364.000000)">
+                <g id="Colors/color_4" filter="url(#filter-1)">
+                    <path d="M511.371512,196.276241 L178.751888,-112.849909 C216.288918,-144.708464 260.39127,-176.810941 311.140865,-209.15734 C442.652125,-292.989068 553.373195,-336.918773 643.333333,-341 L539.306318,359.769231 L106.076923,-42.3089396 C116.275994,-53.886297 127.370337,-65.4993502 139.348248,-77.1480993 L501.359687,260.683472 L511.371512,196.276241 Z M760.128205,-328.081528 L624.240996,570 L59.3589744,40.6749818 C66.1992506,27.6114943 74.1756485,14.4996684 83.288168,1.35158851 L592.812222,478.984592 L714.8776,-341 C730.759756,-338.238662 745.847215,-333.948617 760.128205,-328.081528 Z M853.564103,-250.233447 L716.195377,614.124956 C700.474106,616.165127 683.977155,617.018181 666.692308,616.624464 L810.168753,-294.282051 C825.932778,-281.987337 840.401966,-267.312423 853.564103,-250.233447 Z M44.9634493,102.820513 L596.615385,616.717949 C526.401403,601.233505 445.892736,569.041847 355.071776,520.142976 C106.684608,386.395794 3.33864315,247.292283 44.9634493,102.820513 Z M946.015863,119.823682 C955.129833,384.265313 900.940347,542.084414 783.487179,593.358974 L896.860652,-177.487179 C925.356015,-102.522057 941.765707,-3.46442937 946.015863,119.823682 Z" id="logo_decor_left"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

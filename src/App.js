@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import './App.css';
+import './styles/App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-
+          <div id="background">
+            <img src="./img/decor.svg"/>
+          </div>
       </div>
     );
   }
