@@ -24,63 +24,34 @@ body{
   #root {
     .App {
       .navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        padding: $line 12%;
+        padding: $line * 1.6 $line * 6;
         width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         background: {
           image: $headerBg;
         }
+        border-radius: 0;
 
-        .navbar-left {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-
-          .download-app {
-            padding: $line * 1.1 $line * 6;
-            margin: 0 $line * 2 0 0;
-            border: {
-              style: none;
-              radius: $line * .4;
-            }
-            outline: 0;
-            background: {
-              color: $grey;
-            }
-            color: $white;
-            text: {
-              transform: uppercase;
-              align: center;
-            }
-            font: {
-              size: $line * 1.6;
-              family: $stratosMedium;
-            }
-            transition: {
-              duration: $time;
-              timing-function: linear;
-            }
-            cursor: pointer;
-
-            &:hover {
-              background: rgba(189, 192, 207, 0.69);
-              color: #fff;
-              box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            }
-          }
-
-          .lang {
-            span {
-              padding: 0 $line / 2;
-              color: $fontMain;
+        .header-row {
+          .navbar-left {
+            margin: $line * .8 0 0 0;
+            .download-app {
+              padding: 10px 40px;
+              border: {
+                style: none;
+                radius: $line * .4;
+              }
+              outline: 0;
+              background: {
+                color: $grey;
+              }
+              color: $white;
+              text: {
+                transform: uppercase;
+                align: center;
+              }
               font: {
-                family: $stratosRegular;
-                size: $line * 1.4;
+                size: 16px;
+                family: $stratosMedium;
               }
               transition: {
                 duration: $time;
@@ -88,42 +59,72 @@ body{
               }
               cursor: pointer;
 
-              &:hover, &:active {
-                color: $blue;
+              &:hover {
+                background: rgba(189, 192, 207, 0.69);
+                color: #fff;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+              }
+            }
+
+            .lang {
+              margin: 0 0 0 $line;
+
+              span {
+                padding: 0 $line / 2 0 0;
+                color: $fontMain;
+                font: {
+                  family: $stratosRegular;
+                  size: $line * 1.4;
+                }
+                transition: {
+                  duration: $time;
+                  timing-function: linear;
+                }
+                cursor: pointer;
+
+                &:hover {
+                  color: $blue;
+                }
               }
             }
           }
-        }
 
-        .logo {
-          flex-grow: 1;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        .navbar-right {
-          display: flex;
-          align-items: center;
-          justify-content: space-around;
-          transition: {
-            duration: $time;
-            timing-function: linear;
-          }
-          cursor: pointer;
-
-          &:hover {
-            opacity: 0.8;
+          .navbar-center {
+            text-align: center;
           }
 
-          span {
-            padding: 0 $line * .5 0 0;
-            font: {
-              family: $stratosMedium;
+          .navbar-right {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            transition: {
+              duration: $time;
+              timing-function: linear;
             }
-            color: $white;
-            text: {
-              transform: uppercase;
+            cursor: pointer;
+
+            &:hover {
+              opacity: 0.8;
+            }
+
+            span {
+              font: {
+                family: $stratosMedium;
+              }
+              color: $white;
+              text: {
+                transform: uppercase;
+              }
+            }
+
+            .profile-photo {
+              img {
+                width: 100%;
+                //box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+              }
+              border: {
+                radius: 50%;
+              }
             }
           }
         }
