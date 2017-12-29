@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { I18n } from "react-i18next";
+import { I18n, Trans } from "react-i18next";
 
 
 export class Sign extends Component {
@@ -21,7 +21,7 @@ export class Sign extends Component {
         return (
             <I18n ns="translations">
                 {
-                    (t) => (
+                    (t, {i18n}) => (
                         <section className="sign">
                             {
                                 this.state.type === "in" ?
@@ -99,7 +99,8 @@ export class Sign extends Component {
                             </div>
                             <button
                                 className="switch-link"
-                                onClick={this.switcher}>
+                                onClick={this.switcher}
+                            >
                                 {
                                     t(this.state.type === "in" ?
                                         "sign.in.switchLinkText" :
