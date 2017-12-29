@@ -32,7 +32,7 @@ export class Sign extends Component {
                                                 src="img/icon_login.svg"
                                                 alt="Sign form icon"
                                             />
-                                            <h2 className="form-caption">{t("sign.caption")}</h2>
+                                            <h2 className="form-caption">{t("yaEbu")}</h2>
                                             <input
                                                 type="email"
                                                 name="sign-in-email"
