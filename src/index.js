@@ -14,7 +14,7 @@ i18n
     .use(LanguageDetector)
     .use(reactI18nextModule)
     .init({
-        allbackLng: 'ru',
+        callbackLng: 'ru',
         ns: ['translations'],
         defaultNS: 'translations',
         debug: true,
