@@ -50,7 +50,7 @@ export class Sign extends Component {
                                                 name="sign-in-submit"
                                                 id="sign-in-submit"
                                             />
-                                            <label htmlFor="sign-in-submit">{t("sign.in.submitText")}</label>
+                                            <label htmlFor="sign-in-submit"><span>☺</span> {t("sign.in.submitText")}</label>
                                         </form>
                                     ) :
                                     (
@@ -94,8 +94,8 @@ export class Sign extends Component {
                                     )
                             }
                             <div className="sign-in-with-socials">
-                                <button className="fb"/>
-                                <button className="tw"/>
+                                <button className="fb"><img src="../img/facebook.png"/></button>
+                                <button className="tw"><img src="../img/twitter.png"/></button>
                             </div>
                             <button
                                 className="switch-link"

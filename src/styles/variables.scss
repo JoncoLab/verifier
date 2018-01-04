@@ -5,18 +5,26 @@ $time: 0.2s;
 
 $blue: #337ab7;
 $grey: #BDC0CF;
+$fontBlack: #282A31;
 $white: #fff;
 $fontMain: #9CA2BC;
 $headerBg: linear-gradient(174deg, #424653 0%, #282A31 100%);
+$btnBg: linear-gradient(-174deg, #424653 0%, #282A31 100%);
 
 // Fonts
 
+$ico: "Ico";
 $stratosLight: "Stratos-Light-Web";
 $stratosLightItalic: "Stratos-Light Italic-Web";
 $stratosRegular: "Stratos-Regular-Web";
 $stratosMedium: "Stratos-Medium-Web";
 $stratosBold: "Stratos-Bold-Web";
 $stratosBlack: "Stratos-Black-Web";
+
+@font-face {
+  font-family: "Ico";
+  src: url("../fonts/ico.woff") format("woff"),url("../fonts/ico.ttf") format("truetype");
+}
 
 @font-face {
   font-family: "Stratos-Light-Web";
