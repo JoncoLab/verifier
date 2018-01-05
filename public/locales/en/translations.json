@@ -5,6 +5,10 @@
   },
   "sign": {
     "caption": "You can enter with your E-mail or ID",
+    "errors": {
+      "noSuchUser": "No user with such login details found!",
+      "passwordsDoNotMatch": "Passwords do not match!"
+    },
     "in": {
       "emailPlaceholder": "Your E-mail or ID",
       "passPlaceholder": "Your password",
@@ -12,10 +16,15 @@
       "switchLinkText": "REGISTER"
     },
     "up": {
-      "namePlaceholder": "Your name",
+      "firstNamePlaceholder": "Your first name",
+      "secondNamePlaceholder": "Your second name",
+      "companyNamePlaceholder": "Company name",
+      "birthDatePlaceholder": "Your date of birth",
+      "phonePlaceholder": "Your phone number",
       "emailPlaceholder": "Your email",
       "passPlaceholder": "Your password",
       "confirmPassPlaceholder": "Retype password",
+      "photoPlaceholder": "Upload photo",
       "submitText": "Create new account",
       "switchLinkText": "LOGIN CABINET"
     }

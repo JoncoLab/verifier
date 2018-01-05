@@ -20,8 +20,8 @@ class App extends Component {
                     (t, { i18n }) => (
                         <div className="App">
                             <Header/>
-                            <Main/>
-                            {/*<Sign/>*/}
+                            {/*<Main/>*/}
+                            <Sign/>
                             <div id="background">
                                 <img alt="background" src="./img/decor.svg"/>
                             </div>

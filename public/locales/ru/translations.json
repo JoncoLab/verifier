@@ -5,6 +5,10 @@
   },
   "sign": {
     "caption": "Вы можете войти при помощи вашего E-mail или ID",
+    "errors": {
+      "noSuchUser": "Пользователя с такими даными не найдено!",
+      "passwordsDoNotMatch": "Пароли не совпадают!"
+    },
     "in": {
       "emailPlaceholder": "Ваш E-mail или ID",
       "passPlaceholder": "Ваш пароль",
@@ -12,10 +16,15 @@
       "switchLinkText": "ЗАРЕГИСТРИРОВАТЬСЯ"
     },
     "up": {
-      "namePlaceholder": "Ваше имя",
+      "firstNamePlaceholder": "Ваше имя",
+      "secondNamePlaceholder": "Ваша фамилия",
+      "companyNamePlaceholder": "Название компании",
+      "birthDatePlaceholder": "Ваша дата рождения",
+      "phonePlaceholder": "Ваш мобильный",
       "emailPlaceholder": "Ваш E-mail или ID",
       "passPlaceholder": "Ваш пароль",
       "confirmPassPlaceholder": "Повторите пароль",
+      "photoPlaceholder": "Загрузите фотографию",
       "submitText": "Регистрация",
       "switchLinkText": "ВОЙТИ"
     }
