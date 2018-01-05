@@ -27,6 +27,33 @@ export class Sign extends Component {
             error: err
         });
     }
+    sendRequest(url, formData) {
+        let settings = {
+            url: url,
+            data: formData,
+            contentType: false,
+            processData: false,
+            method: "POST",
+            async: true,
+            crossDomain: true,
+            mimeType: "multipart/form-data",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        };
+
+        $.ajax(settings)
+            .then((data, text, xhr) => {
+                if (xhr.status === 200) {
+                    let token = data.token;
+                    this.proceedToCabinet(token);
+                } else {
+                    alert("An error " + xhr.status + " occurred - " + text);
+                }
+            }, (xhr, text, err) => {
+                alert(text.toUpperCase() + " " + xhr.status + " - " + err);
+            });
+    }
     switcher() {
         this.setState({
             type: this.state.type === "in" ? "up" : "in"
@@ -34,30 +61,35 @@ export class Sign extends Component {
         this.showError(null);
     }
     signInUser() {
-        // Easy
-        let fields = {
-            email: Sign.getVal("sign-in-email"),
-            password: Sign.getVal("sign-in-password")
-        };
-        this.showError("noSuchUser");
+        let fields = new FormData();
+        fields.append("email", Sign.getVal("sign-in-email"));
+        fields.append("password", Sign.getVal("sign-in-password"));
+        this.sendRequest("/", fields);
     }
     signUpUser() {
         // Difficult
-        let fields = {
-            firstName: Sign.getVal("first-name"),
-            secondName: Sign.getVal("second-name"),
-            companyName: Sign.getVal("company-name"),
-            birthDate: Sign.getVal("birth-date"),
-            phone: Sign.getVal("phone"),
-            email: Sign.getVal("sign-up-email"),
-            password: Sign.getVal("sign-up-password"),
-            passwordConfirm: Sign.getVal("sign-up-password-confirm"),
-            photo: Sign.getVal("photo")
-        };
-        if (fields.password !== fields.passwordConfirm) {
+        let pass = Sign.getVal("sign-up-password"),
+            conf = Sign.getVal("sign-up-password-confirm"),
+            photo = Sign.getVal("photo"),
+            companyName = Sign.getVal("company-name");
+
+        if (pass !== conf) {
             this.showError("passwordsDoNotMatch");
         } else {
-            alert("Temporary success");
+            let fields = new FormData();
+            fields.append("firstName", Sign.getVal("first-name"));
+            fields.append("lastName", Sign.getVal("second-name"));
+            if (companyName.trim() !== "")
+                fields.append("companyName", companyName);
+            fields.append("birthDate", Sign.getVal("birth-date"));
+            fields.append("phone", Sign.getVal("phone"));
+            fields.append("email", Sign.getVal("sign-up-email"));
+            if (photo.trim() !== "")
+                fields.append("photo", photo);
+            fields.append("password", pass);
+            fields.append("type", "customer");
+
+            this.sendRequest("/", fields);
         }
     }
     handleSign(e) {
@@ -66,6 +98,10 @@ export class Sign extends Component {
         this.state.type === "in" ?
             this.signInUser() :
             this.signUpUser();
+    }
+    proceedToCabinet(token) {
+        // proceedToCabinet
+        alert("Successfully proceeded to cabinet (imaginary)! Token (imaginary) is - ");
     }
     render() {
         return (
@@ -76,7 +112,7 @@ export class Sign extends Component {
                             {
                                 this.state.type === "in" ?
                                     (
-                                        <form id="sign-in-form" onSubmit={this.handleSign}>
+                                        <form name="sign-in-form" id="sign-in-form" onSubmit={this.handleSign}>
                                             <img
                                                 className="sign-form-icon"
                                                 src="img/icon_login.svg"
@@ -113,7 +149,7 @@ export class Sign extends Component {
                                         </form>
                                     ) :
                                     (
-                                        <form id="sign-up-form" onSubmit={this.handleSign}>
+                                        <form name="sign-up-form" id="sign-up-form" onSubmit={this.handleSign}>
                                             <img
                                                 className="sign-form-icon"
                                                 src="img/icon_login.svg"

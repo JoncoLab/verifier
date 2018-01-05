@@ -7,7 +7,8 @@
     "caption": "You can enter with your E-mail or ID",
     "errors": {
       "noSuchUser": "No user with such login details found!",
-      "passwordsDoNotMatch": "Passwords do not match!"
+      "passwordsDoNotMatch": "Passwords do not match!",
+      "servError": "Some server error occurred!"
     },
     "in": {
       "emailPlaceholder": "Your E-mail or ID",

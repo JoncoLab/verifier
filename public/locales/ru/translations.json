@@ -7,7 +7,8 @@
     "caption": "Вы можете войти при помощи вашего E-mail или ID",
     "errors": {
       "noSuchUser": "Пользователя с такими даными не найдено!",
-      "passwordsDoNotMatch": "Пароли не совпадают!"
+      "passwordsDoNotMatch": "Пароли не совпадают!",
+      "servError": "Возникла серверная ошибка!"
     },
     "in": {
       "emailPlaceholder": "Ваш E-mail или ID",
