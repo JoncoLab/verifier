@@ -1,13 +1,13 @@
-import  React from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import i18n from "i18next";
 import {reactI18nextModule} from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import Backend from "i18next-xhr-backend";
+import store from './store/store';
 
 i18n
     .use(Backend)

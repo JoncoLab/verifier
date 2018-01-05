@@ -1,10 +1,19 @@
-import {combineReducers} from "redux";
-import ProfileReducer from "./reducer";
-import activeProfile from "./activeProfile";
+import {createStore} from 'redux';
+import reducers from './reducer';
 
-const allReducers = combineReducers({
-    profile: ProfileReducer,
-    activeProfile: activeProfile
-});
+let store = createStore(reducers);
 
-export default allReducers;
+
+// Redux Test
+
+//import {openMain} from "./actions";
+
+// console.log(store.getState());
+//
+// let unsubscribe = store.subscribe(() => {
+//     console.log(store.getState());
+// });
+//
+// store.dispatch(openMain(true));
+//
+// unsubscribe();

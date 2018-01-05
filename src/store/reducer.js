@@ -1,19 +1,24 @@
-import {MAIN_EVENT, openMain} from "./actions";
+import {combineReducers} from 'redux';
+import {MAIN_EVENT, TEST} from "./actions";
 
-const initialState = {
-    mainMood: openMain.mood
+let initialState = {
+    menuMood: false
 };
 
-function mainApp(state = initialState, action) {
-
+function showMeTheFuckingMenu(state = initialState, action) {
     switch (action.type) {
 
         case MAIN_EVENT:
-            return Object.assign({}, state, {
-                mood: true
-            });
-
+            return {
+                menuMood: action.menuMood
+            };
         default:
             return state;
     }
 }
+
+let reducers = combineReducers({
+    showMeTheFuckingMenu
+});
+
+export default reducers;
