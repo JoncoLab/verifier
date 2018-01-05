@@ -2,9 +2,6 @@ import React, {Component} from 'react';
 import { I18n, Trans } from 'react-i18next';
 
 class Header extends Component {
-    handleEvent() {
-        this.props.activeProfile = true
-    }
     render() {
         return (
             <I18n ns="translations">

@@ -1,6 +1,8 @@
-export const profileOpen = (profile) => {
+export const MAIN_EVENT = 'MAIN_EVENT';
+
+export function openMain () {
     return {
-        type: "ELEMENT_SELECTED",
-        payload: profile
+        type: MAIN_EVENT,
+        mood: false
     }
-};
+}

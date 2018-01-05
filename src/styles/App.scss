@@ -40,9 +40,14 @@ body{
       align-items: center;
       justify-content: flex-start;
 
+      * {
+        box-sizing: border-box;
+      }
+
       .navbar {
-        padding: $line * 1.6 $line * 6;
+        padding: 0 $line * 6;
         width: 100%;
+        min-height: $line * 8;
         background: {
           image: $headerBg;
         }
@@ -223,7 +228,7 @@ body{
       }
 
       .sign {
-        min-height: 88%;
+        min-height: 100%;
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -251,6 +256,7 @@ body{
         #sign-up-form {
           position: relative;
           width: 35%;
+          min-height: auto;
           background: #F4F5FF;
           box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.35);
           border-radius: 4px;
@@ -351,7 +357,19 @@ body{
         }
 
         #sign-up-form {
-          margin-top: $line * 6;
+          padding: $line * 25 $line * 7 $line * 25 $line * 7;
+          margin-top: $line * 3;
+          height: 100%;
+
+          label:first-of-type, label:nth-of-type(2) {
+            width: 100%;
+            color: #8c8e9c;
+            font: {
+              size: $line * 1.4;
+              family: $stratosRegular;
+              weight: normal;
+            }
+          }
         }
 
         .sign-in-with-socials {
