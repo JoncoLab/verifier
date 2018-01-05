@@ -16,7 +16,7 @@ export class Sign extends Component {
         this.handleSign = this.handleSign.bind(this);
         this.signInUser = this.signInUser.bind(this);
         this.signUpUser = this.signUpUser.bind(this);
-        this.showError = this.showError.bind(this)
+        this.showError = this.showError.bind(this);
     }
     static getVal(id) {
         let element = document.getElementById(id);
