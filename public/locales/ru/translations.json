@@ -45,5 +45,16 @@
       "event": "Необходимо верифицировать себя на конференции, а также сделать фото на фоне ролл-ап проекта Verfifer."
     },
     "verificationState": "ПОИСК ВЕРИФИКАТОРА"
+  },
+  "profile": {
+    "backToMain": "< К МОИМ ЗАЯВКАМ",
+    "changePassBtn": "ИЗМЕНИТЬ ПАРОЛЬ",
+    "exitProfile": "ВЫХОД",
+    "newPassLabel": "Новый Пароль *",
+    "newPassSubmit": "ОТПРАВИТЬ",
+    "tasksCreated": "ЗАЯВОК СОЗДАНО",
+    "tasksWaitingForVerifier": "ЗАЯВОК В ОЖИДАНИИ ВЕРИФИКАТОРА",
+    "tasksInProcess": "ЗАЯВОК В РАБОТЕ",
+    "tasksDone": "ЗАЯВОК ВЫПОЛНЕНО"
   }
 }

@@ -1,8 +1,8 @@
 export const MAIN_EVENT = 'MAIN_EVENT';
 
-export function openMain (menuMood) {
+export function openMain(profileState) {
     return {
         type: MAIN_EVENT,
-        menuMood
+        profileState
     }
 }
