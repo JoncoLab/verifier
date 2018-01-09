@@ -45,8 +45,7 @@ export class Sign extends Component {
         $.ajax(settings)
             .then((data, text, xhr) => {
                 if (xhr.status === 200) {
-                    let token = data.token;
-                    this.proceedToCabinet(token);
+                    this.proceedToCabinet(data);
                 } else {
                     alert("An error " + xhr.status + " occurred - " + text);
                 }
