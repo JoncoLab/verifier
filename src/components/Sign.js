@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { I18n, Trans } from "react-i18next";
+import { I18n } from "react-i18next";
 import * as $ from "jquery";
 
 
@@ -18,8 +18,26 @@ export class Sign extends Component {
         this.signUpUser = this.signUpUser.bind(this);
         this.showError = this.showError.bind(this);
     }
+    static loadPhoto() {
+        let input = document.getElementById("photo"),
+            preview = document.getElementById("profile-photo"),
+            defaultImage = "img/icon_login.svg";
+        if (input.files.length > 0) {
+            let reader = new FileReader(),
+                image = input.files[0];
+            reader.readAsText(image);
+            reader.onloadend = () => {
+                preview.src = reader.result;
+                input.decoded = reader.result;
+            }
+        } else {
+            preview.src = defaultImage;
+            input.decoded = defaultImage;
+        }
+    }
     static getVal(id) {
         let element = document.getElementById(id);
+        if (element.decoded !== undefined) alert(element.decoded);
         return element.value;
     }
     showError(err) {
@@ -27,30 +45,24 @@ export class Sign extends Component {
             error: err
         });
     }
-    sendRequest(url, formData) {
-        let settings = {
-            url: url,
-            data: formData,
-            contentType: false,
-            processData: false,
-            method: "POST",
-            async: true,
-            crossDomain: true,
-            mimeType: "multipart/form-data",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            }
-        };
-
+    sendRequest(settings) {
         $.ajax(settings)
-            .then((data, text, xhr) => {
-                if (xhr.status === 200) {
-                    this.proceedToCabinet(data);
+            .then((response) => {
+                if (response.status === 200) {
+                    Sign.proceedToCabinet();
                 } else {
-                    alert("An error " + xhr.status + " occurred - " + text);
+                    alert("An error " + response.status + " occurred - " + response.statusText);
                 }
-            }, (xhr, text, err) => {
-                alert(text.toUpperCase() + " " + xhr.status + " - " + err);
+            }, (response) => {
+                /**
+                 * @property responseJSON
+                 */
+                let error = response.responseJSON;
+                if (error === undefined) {
+                    alert("Error " + response.status + " - " + response.statusText);
+                } else {
+                    alert("Error " + error.code + " in method \"" + error.method + "\"" + " - " + error.error);
+                }
             });
     }
     switcher() {
@@ -60,35 +72,58 @@ export class Sign extends Component {
         this.showError(null);
     }
     signInUser() {
-        let fields = new FormData();
-        fields.append("email", Sign.getVal("sign-in-email"));
-        fields.append("password", Sign.getVal("sign-in-password"));
-        this.sendRequest("/", fields);
+        let fields = JSON.stringify({
+                email: Sign.getVal("sign-in-email"),
+                password: Sign.getVal("sign-in-password")
+            }),
+            settings = {
+                async: true,
+                crossDomain: true,
+                url: "http://185.4.75.58:8181/verifier/api/v1/user/customer/login",
+                method: "POST",
+                processData: false,
+                data: fields,
+                headers: {
+                    "Content-Type": "application/json"
+                }
+        };
+
+        this.sendRequest(settings);
     }
     signUpUser() {
-        // Difficult
         let pass = Sign.getVal("sign-up-password"),
             conf = Sign.getVal("sign-up-password-confirm"),
-            photo = Sign.getVal("photo"),
-            companyName = Sign.getVal("company-name");
+            url = "http://185.4.75.58:8181/verifier/api/v1/user/customer/registration";
 
         if (pass !== conf) {
             this.showError("passwordsDoNotMatch");
         } else {
             let fields = new FormData();
+            fields.append("photo", Sign.getVal("photo"));
+            fields.append("email", Sign.getVal("sign-up-email"));
+            fields.append("password", pass);
+            fields.append("phone", Sign.getVal("phone"));
             fields.append("firstName", Sign.getVal("first-name"));
             fields.append("lastName", Sign.getVal("second-name"));
-            if (companyName.trim() !== "")
-                fields.append("companyName", companyName);
             fields.append("birthDate", Sign.getVal("birth-date"));
-            fields.append("phone", Sign.getVal("phone"));
-            fields.append("email", Sign.getVal("sign-up-email"));
-            if (photo.trim() !== "")
-                fields.append("photo", photo);
-            fields.append("password", pass);
-            fields.append("type", "customer");
+            fields.append("type", "USER");
+            fields.append("companyName", Sign.getVal("company-name"));
 
-            this.sendRequest("/", fields);
+            let settings = {
+                url: url,
+                data: fields,
+                processData: false,
+                method: "POST",
+                async: true,
+                crossDomain: true,
+                contentType: false,
+                mimeType: "multipart/form-data",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            };
+
+            this.sendRequest(settings);
         }
     }
     handleSign(e) {
@@ -98,15 +133,15 @@ export class Sign extends Component {
             this.signInUser() :
             this.signUpUser();
     }
-    proceedToCabinet(token) {
+    static proceedToCabinet() {
         // proceedToCabinet
-        alert("Successfully proceeded to cabinet (imaginary)! Token (imaginary) is - ");
+        alert("Successfully proceeded to cabinet (imaginary)!");
     }
     render() {
         return (
             <I18n ns="translations">
                 {
-                    (t, {i18n}) => (
+                    (t) => (
                         <section className="sign">
                             {
                                 this.state.type === "in" ?
@@ -114,7 +149,7 @@ export class Sign extends Component {
                                         <form name="sign-in-form" id="sign-in-form" onSubmit={this.handleSign}>
                                             <img
                                                 className="sign-form-icon"
-                                                src="img/icon_login.svg"
+                                                src={"img/icon_login.svg"}
                                                 alt="Sign form icon"
                                             />
                                             <h2 className="form-caption">{t("sign.caption")}</h2>
@@ -148,10 +183,11 @@ export class Sign extends Component {
                                         </form>
                                     ) :
                                     (
-                                        <form name="sign-up-form" id="sign-up-form" onSubmit={this.handleSign}>
+                                        <form name="sign-up-form" id="sign-up-form" onSubmit={this.handleSign} encType="multipart/form-data">
                                             <img
                                                 className="sign-form-icon"
-                                                src="img/icon_login.svg"
+                                                id="profile-photo"
+                                                src={"img/icon_login.svg"}
                                                 alt="Sign form icon"
                                             />
                                             <p className="err">
@@ -230,7 +266,9 @@ export class Sign extends Component {
                                                     type="file"
                                                     name="photo"
                                                     id="photo"
+                                                    accept="image/*"
                                                     title={t("sign.up.photoPlaceholder")}
+                                                    onChange={Sign.loadPhoto}
                                                 />
                                             </label>
                                             <input
