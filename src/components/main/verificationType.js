@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component} from 'react';
 import classSet from "react-classset";
 
 export class VerificationType extends Component {

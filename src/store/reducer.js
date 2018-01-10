@@ -1,24 +1,20 @@
-import {combineReducers} from 'redux';
-import {MAIN_EVENT, TEST} from "./actions";
+import {MAIN_EVENT} from "./actions";
 
 let initialState = {
-    menuMood: false
+    profileState: false
 };
 
-function showMeTheFuckingMenu(state = initialState, action) {
+function showProfile(state = initialState, action) {
     switch (action.type) {
 
         case MAIN_EVENT:
             return {
-                menuMood: action.menuMood
+                profileState: true
             };
+
         default:
             return state;
     }
 }
 
-let reducers = combineReducers({
-    showMeTheFuckingMenu
-});
-
-export default reducers;
+export default showProfile;

@@ -11,6 +11,7 @@
     "jquery": "^3.2.1",
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.1.2",
+    "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-bootstrap": "^0.31.5",
     "react-classset": "0.0.2",
@@ -33,7 +34,9 @@
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
   "main": "build/index.html",
-  "devDependencies": {},
+  "devDependencies": {
+    "react-prop-types": "^0.4.0"
+  },
   "author": "JoncoLab",
   "license": "ISC"
 }

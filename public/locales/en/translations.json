@@ -45,5 +45,16 @@
       "event": "You have to verify yourself at the meetup and take a photo near the Verifier roll-up."
     },
     "verificationState": "WAITING FOR VERIFIER"
+  },
+  "profile": {
+    "backToMain": "< TO MY TASKS",
+    "changePassBtn": "CHANGE PASSWORD",
+    "exitProfile": "EXIT",
+    "newPassLabel": "New Password *",
+    "newPassSubmit": "SUBMIT",
+    "tasksCreated": "TASKS CREATED",
+    "tasksWaitingForVerifier": "TASKS WAITING FOR VERIFIER",
+    "tasksInProcess": "TASKS IN PROCESS",
+    "tasksDone": "TASKS DONE"
   }
 }

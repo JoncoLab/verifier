@@ -417,136 +417,140 @@ body{
       main {
         padding-top: $line * 8;
         width: 75%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
 
-        .new-task {
-          align-self: flex-end;
-          background: {
-            color: $blue;
-            image: linear-gradient(68deg, #6B68DB 0%, #3C75CE 95%);
-          }
-          border: none;
-          outline: none;
-          border-radius: 4px;
-          box-shadow: 0 10px 30px 0 rgba(156,162,188,0.75);
-          font: {
-            family: $stratosMedium;
-            size: $line * 1.6;
-          }
-          color: $white;
-          text-transform: uppercase;
-          padding: 19px 61px;
-          transition: {
-            duration: $time;
-            timing-function: linear;
-          }
-        }
-
-        .main-container {
-          margin-top: $line * 2;
+        .create-task-container {
           width: 100%;
           display: flex;
-          justify-content: space-between;
-          align-content: space-between;
-          flex-wrap: wrap;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-around;
 
-          .verification-type {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-content: space-between;
-            flex-basis: 48.5%;
-            min-height: $line * 15;
-            border-radius: $line;
-            margin-bottom: $line * 2;
-            padding: $line * 1.5 $line * 1.5 $line;
+          .new-task {
+            align-self: flex-end;
             background: {
-              size: 35%;
-              color: white;
-              image: url("../img/card_decor_gr.svg");
-              repeat: no-repeat;
-              position-x: 105%;
+              color: $blue;
+              image: linear-gradient(68deg, #6B68DB 0%, #3C75CE 95%);
             }
-            box-shadow: 0 $line $line * 3 0 rgba(156,162,188,0.55);
-            color: #9CA2BC;
+            border: none;
+            outline: none;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px 0 rgba(156,162,188,0.75);
+            font: {
+              family: $stratosMedium;
+              size: $line * 1.6;
+            }
+            color: $white;
+            text-transform: uppercase;
+            padding: 19px 61px;
             transition: {
               duration: $time;
               timing-function: linear;
             }
-            cursor: pointer;
+          }
 
-            &:hover {
-              box-shadow: 0 5px 20px 0 rgba(156,162,188,0.35);
-            }
+          .main-container {
+            margin-top: $line * 2;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-content: space-between;
+            flex-wrap: wrap;
 
-            .verification-name {
-              flex-basis: 70%;
-              margin: 0;
-              padding: 0;
-              color: $fontBlack;
-              font: {
-                size: $line * 2.4;
-                family: $stratosMedium;
+            .verification-type {
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: space-between;
+              align-content: space-between;
+              flex-basis: 48.5%;
+              min-height: $line * 15;
+              border-radius: $line;
+              margin-bottom: $line * 2;
+              padding: $line * 1.5 $line * 1.5 $line;
+              background: {
+                size: 35%;
+                color: white;
+                image: url("../img/card_decor_gr.svg");
+                repeat: no-repeat;
+                position-x: 105%;
               }
-            }
-
-            .verification-state {
-              align-self: center;
-              color: $white;
-              background: $grey;
-              text-transform: uppercase;
-              font: {
-                family: $stratosBold;
-                size: $line * 1.1;
+              box-shadow: 0 $line $line * 3 0 rgba(156,162,188,0.55);
+              color: #9CA2BC;
+              transition: {
+                duration: $time;
+                timing-function: linear;
               }
-              padding: 3px 10px 2px;
-              border-radius: 4px;
-            }
+              cursor: pointer;
 
-            .verification-desc {
-              flex-basis: 100%;
-              max-height: 45px;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              margin: 5px 0;
-              font: {
-                family: $stratosRegular;
-                size: $line * 1.4;
+              &:hover {
+                box-shadow: 0 5px 20px 0 rgba(156,162,188,0.35);
               }
-              color: $fontMain;
-            }
 
-            .verification-city {
-              font: {
-                family: $stratosRegular;
-                size: $line * 1.4;
-              }
-              color: #BDC0CF;
-
-              span {
+              .verification-name {
+                flex-basis: 70%;
+                margin: 0;
+                padding: 0;
+                color: $fontBlack;
                 font: {
-                  family: $ico;
-                  size: $line * 1.6;
-                  weight: bold;
+                  size: $line * 2.4;
+                  family: $stratosMedium;
                 }
               }
-            }
 
-            .verification-details {
-              display: none;
-              position: fixed;
-              z-index: 1;
-              background: {
-                color: black;
+              .verification-state {
+                align-self: center;
+                color: $white;
+                background: $grey;
+                text-transform: uppercase;
+                font: {
+                  family: $stratosBold;
+                  size: $line * 1.1;
+                }
+                padding: 3px 10px 2px;
+                border-radius: 4px;
               }
-            }
 
-            &.active {
+              .verification-desc {
+                flex-basis: 100%;
+                max-height: 45px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin: 5px 0;
+                font: {
+                  family: $stratosRegular;
+                  size: $line * 1.4;
+                }
+                color: $fontMain;
+              }
+
+              .verification-city {
+                font: {
+                  family: $stratosRegular;
+                  size: $line * 1.4;
+                }
+                color: #BDC0CF;
+
+                span {
+                  font: {
+                    family: $ico;
+                    size: $line * 1.6;
+                    weight: bold;
+                  }
+                }
+              }
+
               .verification-details {
-                display: inline-block;
+                display: none;
+                position: fixed;
+                z-index: 1;
+                background: {
+                  color: black;
+                }
+              }
+
+              &.active {
+                .verification-details {
+                  display: inline-block;
+                }
               }
             }
           }

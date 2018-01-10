@@ -1,12 +1,13 @@
+import showProfile from './reducer';
+import {combineReducers} from 'redux';
 import {createStore} from 'redux';
-import reducers from './reducer';
-
-let store = createStore(reducers);
-
-
-// Redux Test
-
 //import {openMain} from "./actions";
+
+let globalReducer = combineReducers({
+    showProfile
+});
+
+let store = createStore(globalReducer);
 
 // console.log(store.getState());
 //
@@ -17,3 +18,5 @@ let store = createStore(reducers);
 // store.dispatch(openMain(true));
 //
 // unsubscribe();
+
+export default store;
