@@ -18,28 +18,6 @@ export class Sign extends Component {
         this.signUpUser = this.signUpUser.bind(this);
         this.showError = this.showError.bind(this);
     }
-    static loadPhoto() {
-        let input = document.getElementById("photo"),
-            preview = document.getElementById("profile-photo"),
-            defaultImage = "img/icon_login.svg";
-        if (input.files.length > 0) {
-            let reader = new FileReader(),
-                image = input.files[0];
-            reader.readAsText(image);
-            reader.onloadend = () => {
-                preview.src = reader.result;
-                input.decoded = reader.result;
-            }
-        } else {
-            preview.src = defaultImage;
-            input.decoded = defaultImage;
-        }
-    }
-    static getVal(id) {
-        let element = document.getElementById(id);
-        if (element.decoded !== undefined) alert(element.decoded);
-        return element.value;
-    }
     showError(err) {
         this.setState({
             error: err
@@ -48,10 +26,18 @@ export class Sign extends Component {
     sendRequest(settings) {
         $.ajax(settings)
             .then((response) => {
-                if (response.status === 200) {
-                    Sign.proceedToCabinet();
+                /**
+                 * @property token
+                 */
+                let status = response.statusCode,
+                    text = response.message,
+                    token = response.data === undefined ?
+                        "" :
+                        response.data.token;
+                if (status === 200) {
+                    Sign.proceedToCabinet(token);
                 } else {
-                    alert("An error " + response.status + " occurred - " + response.statusText);
+                    alert("An error " + status + " occurred - " + text);
                 }
             }, (response) => {
                 /**
@@ -93,6 +79,13 @@ export class Sign extends Component {
     signUpUser() {
         let pass = Sign.getVal("sign-up-password"),
             conf = Sign.getVal("sign-up-password-confirm"),
+            intDate = () => {
+                let strDate = Sign.getVal("birth-date"),
+                    Y = strDate.substring(0, 4),
+                    M = strDate.substring(5, 7),
+                    D = strDate.substr(-2, 2);
+                return parseInt(D + M + Y);
+            },
             url = "http://185.4.75.58:8181/verifier/api/v1/user/customer/registration";
 
         if (pass !== conf) {
@@ -105,7 +98,7 @@ export class Sign extends Component {
             fields.append("phone", Sign.getVal("phone"));
             fields.append("firstName", Sign.getVal("first-name"));
             fields.append("lastName", Sign.getVal("second-name"));
-            fields.append("birthDate", Sign.getVal("birth-date"));
+            fields.append("birthDate", intDate());
             fields.append("type", "USER");
             fields.append("companyName", Sign.getVal("company-name"));
 
@@ -117,10 +110,7 @@ export class Sign extends Component {
                 async: true,
                 crossDomain: true,
                 contentType: false,
-                mimeType: "multipart/form-data",
-                headers: {
-                    "Content-Type": "application/json"
-                }
+                mimeType: "multipart/form-data"
             };
 
             this.sendRequest(settings);
@@ -133,9 +123,27 @@ export class Sign extends Component {
             this.signInUser() :
             this.signUpUser();
     }
-    static proceedToCabinet() {
+    static loadPhoto() {
+        let input = document.getElementById("photo");
+        if (input.files.length > 0) {
+            let reader = new FileReader(),
+                image = input.files[0];
+            reader.readAsDataURL(image);
+            reader.onloadend = () => {
+                input.decoded = reader.result;
+            }
+        } else {
+            input.decoded = "";
+        }
+    }
+    static getVal(id) {
+        let element = document.getElementById(id);
+        if (element.decoded !== undefined) alert(element.decoded);
+        return element.value;
+    }
+    static proceedToCabinet(token) {
         // proceedToCabinet
-        alert("Successfully proceeded to cabinet (imaginary)!");
+        alert("Successfully proceeded to cabinet (imaginary)! Our token is \"" + token + "\"");
     }
     render() {
         return (
@@ -186,7 +194,6 @@ export class Sign extends Component {
                                         <form name="sign-up-form" id="sign-up-form" onSubmit={this.handleSign} encType="multipart/form-data">
                                             <img
                                                 className="sign-form-icon"
-                                                id="profile-photo"
                                                 src={"img/icon_login.svg"}
                                                 alt="Sign form icon"
                                             />
