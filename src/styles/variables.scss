@@ -67,3 +67,33 @@ $stratosBlack: "Stratos-Black-Web";
   font-weight: 900;
   font-style: normal;
 }
+
+// Mixins
+
+@mixin mainBlueBtn() {
+  background: {
+    color: #3C75CE;
+    image: linear-gradient(68deg, #6B68DB 0%, #3C75CE 95%);
+  }
+  border: 0 none;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px 0 rgba(156,162,188,0.75);
+  color: #fff;
+  text-transform: uppercase;
+  font: {
+    family: $stratosMedium;
+    size: $line * 1.6;
+  }
+  padding: $line $line * 4;
+  margin: 0 $line 0 0;
+  transition: {
+    duration: $time;
+    timing-function: linear;
+  }
+
+  &:hover {
+    background: #3C75CE;
+    color: #fff;
+    box-shadow: 0 5px 10px 0 rgba(156,162,188,0.75);
+  }
+}

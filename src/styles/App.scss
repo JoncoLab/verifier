@@ -252,8 +252,7 @@ body{
           background-size: auto;
         }
 
-        #sign-in-form,
-        #sign-up-form {
+        #sign-in-form {
           position: relative;
           width: 35%;
           min-height: auto;
@@ -291,8 +290,7 @@ body{
             color: $fontBlack;
           }
 
-          #sign-in-submit,
-          #sign-up-submit {
+          #sign-in-submit {
             display: none;
 
             + label {
@@ -357,9 +355,115 @@ body{
         }
 
         #sign-up-form {
-          padding: $line * 25 $line * 7 $line * 25 $line * 7;
+          position: relative;
+          box-sizing: border-box;
+          max-width: 33%;
+          background: #F4F5FF;
+          box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.35);
+          border-radius: 4px;
+          margin-bottom: $line * 4;
+          align-self: center;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          align-content: space-between;
+          flex-direction: column;
+          padding: 70px 70px 90px 70px;
           margin-top: $line * 3;
-          height: 100%;
+          height: $line * 60;
+          max-height: 200%;
+
+          .sign-up-name {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin: 0 0 $line 0;
+            padding: $line * 2 0 $line * 1.2 0;
+
+            input {
+              background: {
+                color: transparent;
+              }
+              width: 48%;
+              line-height: 24px;
+              border: none;
+              outline: none;
+              border-bottom: 1px solid rgba(0,0,0,0.42);
+              transition: $time linear;
+
+              &::placeholder {
+                color: #8c8e9c;
+              }
+
+              &:focus {
+                border-bottom: 1px solid rgba(0, 0, 0, 0.9);
+              }
+            }
+          }
+
+          * {
+            box-sizing: border-box;
+          }
+
+          input {
+            margin: 0 0 $line 0;
+            background: {
+              color: transparent;
+            }
+            width: 100%;
+            line-height: 24px;
+            padding: 6px 0;
+            border: none;
+            outline: none;
+            border-bottom: 1px solid rgba(0,0,0,0.42);
+            transition: $time linear;
+
+            &::placeholder {
+              color: #8c8e9c;
+            }
+
+            &:focus {
+              border-bottom: 1px solid rgba(0, 0, 0, 0.9);
+            }
+          }
+
+          #sign-up-submit {
+            display: none;
+
+            + label {
+              position: absolute;
+              bottom: $line * -2.5;
+              padding: $line * 1.5 $line * 8.5;
+              margin-bottom: 0;
+              font: {
+                family: inherit;
+                weight: normal;
+                size: $line * 1.6;
+              }
+              line-height: 1.42857143;
+              text: {
+                align: center;
+                transform: uppercase;
+              }
+              white-space: nowrap;
+              touch-action: manipulation;
+              cursor: pointer;
+              background: {
+                image: $btnBg;
+              }
+              color: $white;
+              border: 1px solid transparent;
+              border-radius: 4px;
+
+              span {
+                font: {
+                  size: inherit;
+                  family: $ico;
+                }
+              }
+            }
+          }
 
           label:first-of-type, label:nth-of-type(2) {
             width: 100%;
@@ -369,6 +473,17 @@ body{
               family: $stratosRegular;
               weight: normal;
             }
+          }
+
+          @media screen and (max-width: 470px){
+            width: 90%;
+            padding: $line * 4 $line * 2;
+          }
+
+          @media screen and (max-width: 1024px) {
+            width: 90%;
+            min-height: 120%;
+            padding: $line * 8 $line * 2 $line * 10 $line * 2;
           }
         }
 
@@ -415,8 +530,12 @@ body{
       }
 
       main {
-        padding-top: $line * 8;
+        padding: $line * 7 0 0 0;
         width: 75%;
+        min-height: 80%;
+        height: 80%;
+        max-height: inherit;
+        border: 1px solid black;
 
         .create-task-container {
           width: 100%;
@@ -551,6 +670,139 @@ body{
                 .verification-details {
                   display: inline-block;
                 }
+              }
+            }
+          }
+        }
+
+        .profile {
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: flex-start;
+          width: 100%;
+          height: 100%;
+          min-height: 100%;
+          max-height: inherit;
+          border: 1px solid red;
+
+          .profile-top {
+            width: 100%;
+            height: $line * 12;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+
+            .user-info {
+              height: 70%;
+              flex-basis: 70%;
+              display: flex;
+              flex-wrap: wrap;
+              flex-direction: column;
+              justify-content: center;
+              align-items: flex-start;
+              align-content: flex-start;
+
+              .profile-photo {
+                flex-basis: 100%;
+                width: $line * 6.5;
+              }
+
+              #profile-id, #profile-name {
+                box-sizing: border-box;
+                background: {
+                  color: transparent;
+                }
+                border: none;
+                outline: none;
+                width: 40%;
+                padding: 0 $line * 1.5;
+              }
+
+              #profile-name {
+                font: {
+                  family: $stratosBlack;
+                  size: $line * 3.5;
+                }
+                color: #000;
+                letter-spacing: $line * .1;
+                line-height: $line * 3;
+                text-transform: uppercase;
+                max-height: 60%;
+
+                &::placeholder {
+                  color: #000;
+                }
+              }
+
+              #profile-id {
+                font: {
+                  family: $stratosMedium;
+                  size: $line * 1.6;
+                }
+                color: $grey;
+                max-height: 40%;
+              }
+            }
+
+            .back-to-main {
+              padding: $line * 2 $line * 6;
+              background: #BDC0CF;
+              border: 0 none;
+              border-radius: 4px;
+              box-shadow: 0 5px 20px rgba(0, 0, 0, 0.29);
+              color: #fff;
+              text-transform: uppercase;
+              font: {
+                family: $stratosMedium;
+                size: $line * 1.6;
+              }
+              padding: $line * 2 $line * 6;
+              transition: {
+                duration: $time;
+                timing-function: linear;
+              }
+
+              &:hover, &:focus {
+                background: {
+                  color: rgba(189, 192, 207, 0.69);
+                }
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+              }
+            }
+
+            .profile-change-pass-btn {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              max-width: 100%;
+              padding: $line * 1.5 0;
+
+              .change-password-btn, .exit-profile-btn {
+                @include mainBlueBtn;
+              }
+            }
+          }
+
+          .change-password {
+            display: none;
+          }
+
+          .profile-bottom {
+            
+            * {
+              border: 1px solid red;
+            }
+
+            .task-info{
+              .task-index {
+
+              }
+
+              .task-caption {
+
               }
             }
           }

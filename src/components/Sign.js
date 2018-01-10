@@ -197,20 +197,22 @@ export class Sign extends Component {
                                                         t("sign.errors." + this.state.error)
                                                 }
                                             </p>
-                                            <input
-                                                type="text"
-                                                name="first-name"
-                                                id="first-name"
-                                                placeholder={t("sign.up.firstNamePlaceholder")}
-                                                required
-                                            />
-                                            <input
-                                                type="text"
-                                                name="second-name"
-                                                id="second-name"
-                                                placeholder={t("sign.up.secondNamePlaceholder")}
-                                                required
-                                            />
+                                            <div className="sign-up-name">
+                                                <input
+                                                    type="text"
+                                                    name="first-name"
+                                                    id="first-name"
+                                                    placeholder={t("sign.up.firstNamePlaceholder")}
+                                                    required
+                                                />
+                                                <input
+                                                    type="text"
+                                                    name="second-name"
+                                                    id="second-name"
+                                                    placeholder={t("sign.up.secondNamePlaceholder")}
+                                                    required
+                                                />
+                                            </div>
                                             <input
                                                 type="text"
                                                 name="company-name"

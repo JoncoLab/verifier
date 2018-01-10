@@ -35,27 +35,31 @@ class Profile extends Component {
                         <section className="profile">
                             <div className="profile-top">
                                 <div className="user-info">
-                                    <img alt="User photo" className="profile-photo"/>
+                                    <img alt="User photo" src="../../img/user-login.svg" className="profile-photo"/>
                                     <input
                                         type="text"
                                         id="profile-name"
+                                        placeholder="Vasya Lol"
                                         value={this.props.value}/>
                                     <input
                                         type="text"
+                                        id="profile-id"
                                         value="ID: 0123456789"
                                         readOnly={true}
                                         disabled={true}/>
+                                </div>
+                                <button
+                                    className="back-to-main"
+                                    onClick={this.props.backToMainOnClick}
+                                >{t("profile.backToMain")}
+                                </button>
+                                <div className="profile-change-pass-btn">
                                     <button
-                                        className="back-to-main"
-                                        onClick={this.props.backToMainOnClick}
-                                    >{t("profile.backToMain")}
-                                    </button>
-                                    <button
-                                        className="change-password"
+                                        className="change-password-btn"
                                         onClick={this.changePassActive}
                                     >{t("profile.changePassBtn")}
                                     </button>
-                                    <button className="exit-profile">{t("profile.exitProfile")}</button>
+                                    <button className="exit-profile-btn">{t("profile.exitProfile")}</button>
                                 </div>
                             </div>
                             <form className={changePass}>
