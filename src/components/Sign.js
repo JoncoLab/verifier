@@ -26,29 +26,23 @@ export class Sign extends Component {
     sendRequest(settings) {
         $.ajax(settings)
             .then((response) => {
-                /**
-                 * @property token
-                 */
-                let status = response.statusCode,
-                    text = response.message,
-                    token = response.data === undefined ?
-                        "" :
-                        response.data.token;
-                if (status === 200) {
-                    Sign.proceedToCabinet(token);
-                } else {
-                    alert("An error " + status + " occurred - " + text);
-                }
+                if (typeof response === "object")
+                    /**
+                     * @property token Token returned by server
+                     */
+                    Sign.proceedToCabinet(response.data.token);
+                else
+                    alert(response);
             }, (response) => {
-                /**
-                 * @property responseJSON
-                 */
-                let error = response.responseJSON;
-                if (error === undefined) {
-                    alert("Error " + response.status + " - " + response.statusText);
-                } else {
-                    alert("Error " + error.code + " in method \"" + error.method + "\"" + " - " + error.error);
-                }
+                alert(
+                    typeof response === "object" ?
+                        (
+                            "Code: " + JSON.parse(response.responseText).code + ";\r\nMessage: " +
+                            JSON.parse(response.responseText).error + "; \r\nMethod: " +
+                            JSON.parse(response.responseText).method + ";"
+                        ) :
+                        response
+                );
             });
     }
     switcher() {
@@ -84,7 +78,7 @@ export class Sign extends Component {
                     Y = strDate.substring(0, 4),
                     M = strDate.substring(5, 7),
                     D = strDate.substr(-2, 2);
-                return parseInt(D + M + Y);
+                return parseInt(D + M + Y, 10);
             },
             url = "http://185.4.75.58:8181/verifier/api/v1/user/customer/registration";
 
@@ -142,8 +136,24 @@ export class Sign extends Component {
         return element.value;
     }
     static proceedToCabinet(token) {
-        // proceedToCabinet
-        alert("Successfully proceeded to cabinet (imaginary)! Our token is \"" + token + "\"");
+        let userData;
+        alert("Successfully proceeded to cabinet (imaginary)!");
+        $.ajax({
+            url: "http://185.4.75.58:8181/verifier/api/v1/user/customer/0",
+            success: (data) => {
+                userData = {
+                    birthDate: data.birthDate
+                };
+                alert(userData.birthDate);
+            },
+            error: (response) => {
+                alert(JSON.stringify(response));
+            },
+            method: "GET",
+            headers: {
+                "Token": token
+            }
+        });
     }
     render() {
         return (
@@ -225,7 +235,6 @@ export class Sign extends Component {
                                                 name="company-name"
                                                 id="company-name"
                                                 placeholder={t("sign.up.companyNamePlaceholder")}
-                                                required
                                             />
                                             <label>
                                                 {
@@ -290,8 +299,8 @@ export class Sign extends Component {
                                     )
                             }
                             <div className="sign-in-with-socials">
-                                <button className="fb"><img src="../img/facebook.png"/></button>
-                                <button className="tw"><img src="../img/twitter.png"/></button>
+                                <button className="fb"><img src="../img/facebook.png" alt={"FB"}/></button>
+                                <button className="tw"><img src="../img/twitter.png" alt={"TW"}/></button>
                             </div>
                             <button
                                 className="switch-link"
