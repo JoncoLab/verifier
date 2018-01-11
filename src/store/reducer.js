@@ -1,9 +1,9 @@
 import {RENDER_ACTION, RenderFilters} from "./actions";
 import {combineReducers} from 'redux';
 
-const {SHOW_SIGN} = RenderFilters;
+const {RENDER_SIGN} = RenderFilters;
 
-function renderAppReducer(state = SHOW_SIGN, action) {
+function renderAppReducer(state = RENDER_SIGN, action) {
     if(typeof state === 'undefined') return state;
 
     switch (action.type) {

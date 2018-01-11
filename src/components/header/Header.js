@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
-import { I18n, Trans } from 'react-i18next';
-import {openMain} from "../../store/actions";
+import { I18n } from 'react-i18next';
+import {RenderFilters, setRenderFilter} from "../../store/actions";
+import {connect} from 'react-redux';
 
 class Header extends Component {
     render() {
+        console.log(this.props.renderAppFilter);
+
         return (
                 <I18n ns="translations">
                     {
@@ -22,8 +25,11 @@ class Header extends Component {
                                             <img title={t("header.logoTitleText")} alt="logo" src="../../img/logo.png"/>
                                         </a>
                                     </div>
-                                    <div className="navbar-right" //onClick={() => {
-                                        //if(this.props.profileProps === false) this.props.onHeaderClick()}}
+                                    <div className="navbar-right" onClick={() => {
+                                        if(this.props.renderAppFilter !== 'RENDER_CABINET' && this.props.renderAppFilter !== 'RENDER_SIGN') {
+                                            this.props.onHeaderClick()
+                                        }
+                                    }}
                                         >
                                         <span>FirstName</span>
                                         <span>LastName</span>
@@ -40,4 +46,18 @@ class Header extends Component {
     }
 }
 
-export default Header;
+const mapStateToProps = (state) => {
+    return {
+        renderAppFilter: state.renderAppReducer
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return ({
+        onHeaderClick: () => {
+            dispatch(setRenderFilter(RenderFilters.RENDER_CABINET))
+        }
+    })
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

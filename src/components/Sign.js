@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import { I18n } from "react-i18next";
 import * as $ from "jquery";
+import {RenderFilters, setRenderFilter} from "../store/actions";
+import {connect} from 'react-redux';
 
 
 class Sign extends Component {
@@ -137,22 +139,6 @@ class Sign extends Component {
     }
     static proceedToCabinet(token) {
         alert("Successfully proceeded to cabinet (imaginary)!");
-        $.ajax({
-            url: "http://185.4.75.58:8181/verifier/api/v1/user/customer/0",
-            method: "GET",
-            async: true,
-            crossDomain: true,
-            contentType: false,
-            headers: {
-                "Token": token
-            }
-        })
-            .then(
-            (response) => {
-                alert(response);
-            }, (response) => {
-                alert(JSON.stringify(response));
-            });
     }
     render() {
         return (
@@ -195,6 +181,9 @@ class Sign extends Component {
                                                 type="submit"
                                                 name="sign-in-submit"
                                                 id="sign-in-submit"
+                                                onClick={() => {
+                                                    if(this.props.renderAppFilter === 'RENDER_SIGN') this.props.signInEvent()
+                                                }}
                                             />
                                             <label htmlFor="sign-in-submit"><span>☺</span> {t("sign.in.submitText")}</label>
                                         </form>
@@ -292,6 +281,9 @@ class Sign extends Component {
                                                 type="submit"
                                                 name="sign-up-submit"
                                                 id="sign-up-submit"
+                                                onClick={() => {
+                                                    if(this.props.renderAppFilter === 'RENDER_SIGN') this.props.signInEvent()
+                                                }}
                                             />
                                             <label htmlFor="sign-up-submit">{t("sign.up.submitText")}</label>
                                         </form>
@@ -320,4 +312,18 @@ class Sign extends Component {
     }
 }
 
-export default Sign
+const mapStateToProps = (state) => {
+    return {
+        renderAppFilter: state.renderAppReducer
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return ({
+        signInEvent: () => {
+            dispatch(setRenderFilter(RenderFilters.RENDER_DASHBOARD))
+        }
+    })
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sign)

@@ -3,14 +3,17 @@ import {createStore} from 'redux';
 
 let store = createStore(globalReducer);
 
-console.log(store.getState());
+// Storage Test
+//import {setRenderFilter, RenderFilters} from "./actions";
 
-let unsubscribe = store.subscribe(() => {
-    console.log(store.getState());
-});
-
-console.log('asdf');
-
-unsubscribe();
+// console.log(store.getState());
+//
+// let unsubscribe = store.subscribe(() => {
+//     console.log(store.getState());
+// });
+//
+// store.dispatch(setRenderFilter(RenderFilters.RENDER_CABINET));
+//
+// unsubscribe();
 
 export default store;

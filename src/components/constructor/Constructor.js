@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { I18n } from "react-i18next";
+import {RenderFilters, setRenderFilter} from "../../store/actions";
+import {connect} from 'react-redux';
 
-export default class Constructor extends Component {
+class Constructor extends Component {
     render() {
         return (
             <I18n ns="translations">
@@ -10,7 +12,11 @@ export default class Constructor extends Component {
                         <main>
                             <section className="top">
                                 <h2 className="caption">{t()}</h2>
-                                <button className="back-to-dash-button">{t()}</button>
+                                <button className="back-to-dash-button"
+                                        onClick={() => {
+                                            if(this.props.renderAppFilter === 'RENDER_CONSTRUCTOR') this.props.fromConstToDash()
+                                        }}
+                                >TAKE ME TO THE DASHBOARD!</button>
                             </section>
                             <section className="constructor-custom">
                                 <form id="add-field-form">
@@ -114,3 +120,19 @@ class Field extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        renderAppFilter: state.renderAppReducer
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return ({
+        fromConstToDash: () => {
+            dispatch(setRenderFilter(RenderFilters.RENDER_DASHBOARD))
+        }
+    })
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Constructor)

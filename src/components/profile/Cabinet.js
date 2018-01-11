@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
-import { I18n, Trans } from 'react-i18next';
+import { I18n } from 'react-i18next';
 import classSet from 'react-classset';
 import {TaskInfo} from "../main/TaskInfo";
-import {openMain} from "../../store/actions";
+import {RenderFilters, setRenderFilter} from "../../store/actions";
+import {connect} from 'react-redux';
+import * as $ from "jquery";
 
 class Cabinet extends Component {
     constructor(props) {
@@ -13,6 +15,25 @@ class Cabinet extends Component {
         };
 
         this.changePassActive = this.changePassActive.bind(this);
+    }
+
+    static getUserData(token) {
+        $.ajax({
+            url: "http://185.4.75.58:8181/verifier/api/v1/user/customer/0",
+            method: "GET",
+            async: true,
+            crossDomain: true,
+            contentType: false,
+            headers: {
+                "Token": token
+            }
+        })
+            .then(
+                (response) => {
+                    alert(response);
+                }, (response) => {
+                    alert(JSON.stringify(response));
+                });
     }
 
     changePassActive() {
@@ -51,7 +72,9 @@ class Cabinet extends Component {
                                 </div>
                                 <button
                                     className="back-to-main"
-                                    //onClick={this.props.backToMainOnClick}
+                                    onClick={() => {
+                                        if(this.props.renderAppFilter === 'RENDER_CABINET') this.props.fromCabinetToDashboard()
+                                    }}
                                 >{t("profile.backToMain")}
                                 </button>
                                 <div className="profile-change-pass-btn">
@@ -60,7 +83,9 @@ class Cabinet extends Component {
                                         onClick={this.changePassActive}
                                     >{t("profile.changePassBtn")}
                                     </button>
-                                    <button className="exit-profile-btn">{t("profile.exitProfile")}</button>
+                                    <button className="exit-profile-btn" onClick={() => {
+                                        if(this.props.renderAppFilter !== 'RENDER_SIGN') this.props.exitCabinetEvent()
+                                    }}>{t("profile.exitProfile")}</button>
                                 </div>
                             </div>
                             <form className={changePass}>
@@ -90,4 +115,22 @@ class Cabinet extends Component {
     }
 }
 
-export default Cabinet;
+const mapStateToProps = (state) => {
+    return {
+        renderAppFilter: state.renderAppReducer
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fromCabinetToDashboard: () => {
+            dispatch(setRenderFilter(RenderFilters.RENDER_DASHBOARD))
+        },
+
+        exitCabinetEvent: () => {
+          dispatch(setRenderFilter(RenderFilters.RENDER_SIGN))
+        }
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cabinet);

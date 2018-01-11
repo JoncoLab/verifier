@@ -7,6 +7,8 @@ import i18n from "i18next";
 import {reactI18nextModule} from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import Backend from "i18next-xhr-backend";
+import {Provider} from 'react-redux';
+import store from './store/store';
 
 i18n
     .use(Backend)
@@ -26,5 +28,9 @@ i18n
     });
 
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+    <Provider store={store}>
+        <App/>
+    </Provider>,
+    document.getElementById('root'));
 registerServiceWorker();
