@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './styles/App.css';
-import Header from "./components/header/header";
+import Header from "./components/header/Header";
 import Dashboard from "./components/main/Dashboard";
 import Cabinet from "./components/profile/Cabinet";
 import Sign from "./components/Sign";
