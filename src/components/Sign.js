@@ -149,7 +149,8 @@ class Sign extends Component {
                             {
                                 this.state.type === "in" ?
                                     (
-                                        <form name="sign-in-form" id="sign-in-form" onSubmit={this.handleSign}>
+                                        <form name="sign-in-form" id="sign-in-form"
+                                              onSubmit={this.handleSign}>
                                             <img
                                                 className="sign-form-icon"
                                                 src={"img/icon_login.svg"}
@@ -281,9 +282,6 @@ class Sign extends Component {
                                                 type="submit"
                                                 name="sign-up-submit"
                                                 id="sign-up-submit"
-                                                onClick={() => {
-                                                    if(this.props.renderAppFilter === 'RENDER_SIGN') this.props.signInEvent()
-                                                }}
                                             />
                                             <label htmlFor="sign-up-submit">{t("sign.up.submitText")}</label>
                                         </form>
@@ -314,7 +312,7 @@ class Sign extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        renderAppFilter: state.renderAppReducer
+        renderAppFilter: state.renderAppReducer,
     }
 };
 

@@ -2,11 +2,14 @@ import React, {Component} from 'react';
 import { I18n } from 'react-i18next';
 import {RenderFilters, setRenderFilter} from "../../store/actions";
 import {connect} from 'react-redux';
+import classSet from 'react-classset';
 
 class Header extends Component {
     render() {
-        console.log(this.props.renderAppFilter);
-
+        const downloadBtnStyle = classSet({
+            'download-app': true,
+            'hide': this.props.renderAppFilter === 'RENDER_SIGN'
+        });
         return (
                 <I18n ns="translations">
                     {
@@ -14,7 +17,8 @@ class Header extends Component {
                             <header className="navbar">
                                 <div className="header-row">
                                     <div className="navbar-left">
-                                        <button className="download-app">{t("header.appsButtonText")}</button>
+                                        <button className={downloadBtnStyle}
+                                        >{t("header.appsButtonText")}</button>
                                         <span className="lang">
                         <span id="ru" onClick={() => i18n.changeLanguage('ru')}>RU</span>
                         <span id="en" onClick={() => i18n.changeLanguage('en')}>EN</span>
