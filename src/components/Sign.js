@@ -3,7 +3,7 @@ import { I18n } from "react-i18next";
 import * as $ from "jquery";
 
 
-export class Sign extends Component {
+class Sign extends Component {
     constructor(props) {
         super(props);
 
@@ -319,3 +319,5 @@ export class Sign extends Component {
         );
     }
 }
+
+export default Sign

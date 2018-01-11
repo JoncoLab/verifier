@@ -1,17 +1,9 @@
 import React, {Component} from 'react';
 import { I18n, Trans } from 'react-i18next';
-import {connect} from 'react-redux';
 import {openMain} from "../../store/actions";
 
 class Header extends Component {
-    constructor(props) {
-        super(props);
-
-
-    }
-
     render() {
-        console.log(this.props.profileProps);
         return (
                 <I18n ns="translations">
                     {
@@ -26,11 +18,13 @@ class Header extends Component {
                     </span>
                                     </div>
                                     <div className="navbar-center">
-                                        <a onClick={this.props.onHeaderClick}>
+                                        <a>
                                             <img title={t("header.logoTitleText")} alt="logo" src="../../img/logo.png"/>
                                         </a>
                                     </div>
-                                    <div className="navbar-right">
+                                    <div className="navbar-right" //onClick={() => {
+                                        //if(this.props.profileProps === false) this.props.onHeaderClick()}}
+                                        >
                                         <span>FirstName</span>
                                         <span>LastName</span>
                                         <div className="profile-photo">
@@ -46,16 +40,4 @@ class Header extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        profileProps: state.showProfile.profileState
-    }
-};
-
-const mapDispatchToProps = (dispatch) => ({
-    onHeaderClick() {
-        dispatch(openMain(true))
-    },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default Header;

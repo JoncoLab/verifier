@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './styles/App.css';
 import Header from "./components/header/header";
-import Main from "./components/main/main";
-import {Sign} from "./components/Sign";
+import Dashboard from "./components/main/Dashboard";
+import Cabinet from "./components/profile/Cabinet";
+import Sign from "./components/Sign";
 import { I18n } from "react-i18next";
 import {Provider} from 'react-redux';
 import store from './store/store';
@@ -16,7 +17,7 @@ class App extends Component {
                         (t, { i18n }) => (
                             <div className="App">
                                 <Header/>
-                                <Main/>
+                                <Sign/>
                                 <div id="background">
                                     <img alt="background" src="./img/decor.svg"/>
                                 </div>

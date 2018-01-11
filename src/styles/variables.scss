@@ -76,6 +76,7 @@ $stratosBlack: "Stratos-Black-Web";
     image: linear-gradient(68deg, #6B68DB 0%, #3C75CE 95%);
   }
   border: 0 none;
+  outline: none;
   border-radius: 4px;
   box-shadow: 0 10px 30px 0 rgba(156,162,188,0.75);
   color: #fff;
@@ -90,6 +91,8 @@ $stratosBlack: "Stratos-Black-Web";
     duration: $time;
     timing-function: linear;
   }
+  cursor: pointer;
+  white-space: nowrap;
 
   &:hover {
     background: #3C75CE;

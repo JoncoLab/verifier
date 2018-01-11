@@ -1,6 +1,6 @@
 export default function (state = null, action) {
-    if (action.type = "ELEMENT_SELECTED") {
-        return action.payload;
+    if (action.type = "RENDER_ACTION") {
+        return action.filter;
     } else {
         return state;
     }

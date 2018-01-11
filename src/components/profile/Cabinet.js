@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import { I18n, Trans } from 'react-i18next';
 import classSet from 'react-classset';
-import {TaskInfo} from "./taskInfo";
-import {connect} from 'react-redux';
+import {TaskInfo} from "../main/TaskInfo";
 import {openMain} from "../../store/actions";
 
-class Profile extends Component {
+class Cabinet extends Component {
     constructor(props) {
         super(props);
 
@@ -18,7 +17,7 @@ class Profile extends Component {
 
     changePassActive() {
         this.setState({
-            changePassActive: true
+            changePassActive: !this.state.changePassActive
         })
     }
 
@@ -36,21 +35,23 @@ class Profile extends Component {
                             <div className="profile-top">
                                 <div className="user-info">
                                     <img alt="User photo" src="../../img/user-login.svg" className="profile-photo"/>
-                                    <input
-                                        type="text"
-                                        id="profile-name"
-                                        placeholder="Vasya Lol"
-                                        value={this.props.value}/>
-                                    <input
-                                        type="text"
-                                        id="profile-id"
-                                        value="ID: 0123456789"
-                                        readOnly={true}
-                                        disabled={true}/>
+                                    <div className="user-data">
+                                        <input
+                                            type="text"
+                                            id="profile-name"
+                                            placeholder="Vasya Lol"
+                                            value={this.props.value}/>
+                                        <input
+                                            type="text"
+                                            id="profile-id"
+                                            value="ID: 0123456789"
+                                            readOnly={true}
+                                            disabled={true}/>
+                                    </div>
                                 </div>
                                 <button
                                     className="back-to-main"
-                                    onClick={this.props.backToMainOnClick}
+                                    //onClick={this.props.backToMainOnClick}
                                 >{t("profile.backToMain")}
                                 </button>
                                 <div className="profile-change-pass-btn">
@@ -65,7 +66,7 @@ class Profile extends Component {
                             <form className={changePass}>
                                 <label htmlFor="change-pass-input">{t("profile.newPassLabel")}</label>
                                 <input type="password" name="change-password" id="change-pass-input" required={true}/>
-                                <input type="submit" id="change-pass-submit" value={t("profile.newPassSubmit")} required={true}/>
+                                <button type="submit" id="change-pass-submit">{t("profile.newPassSubmit")}</button>
                             </form>
                             <div className="profile-bottom">
                                 <TaskInfo
@@ -89,16 +90,4 @@ class Profile extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        profileProps: state.showProfile.profileState
-    };
-};
-
-const mapDispatchToProps = (dispatch, state) => ({
-    backToMainOnClick() {
-        if(state.showProfile.profileState) dispatch(openMain(false))
-    },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default Cabinet;

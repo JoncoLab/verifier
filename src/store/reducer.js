@@ -1,20 +1,21 @@
-import {MAIN_EVENT} from "./actions";
+import {RENDER_ACTION, RenderFilters} from "./actions";
+import {combineReducers} from 'redux';
 
-let initialState = {
-    profileState: false
-};
+const {SHOW_SIGN} = RenderFilters;
 
-function showProfile(state = initialState, action) {
+function renderAppReducer(state = SHOW_SIGN, action) {
+    if(typeof state === 'undefined') return state;
+
     switch (action.type) {
-
-        case MAIN_EVENT:
-            return {
-                profileState: true
-            };
-
+        case RENDER_ACTION:
+            return action.filter;
         default:
-            return state;
+            return state
     }
 }
 
-export default showProfile;
+const globalReducer = combineReducers({
+    renderAppReducer
+});
+
+export default globalReducer;

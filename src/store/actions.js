@@ -1,8 +1,14 @@
-export const MAIN_EVENT = 'MAIN_EVENT';
+export const RENDER_ACTION = 'RENDER_ACTION';
 
-export function openMain(profileState) {
+export const RenderFilters = {
+    SHOW_SIGN: 'SHOW_SIGN',
+    SHOW_DASHBOARD: 'SHOW_DASHBOARD',
+    SHOW_CABINET: 'SHOW_CABINET'
+};
+
+export function setRenderFilter(filter) {
     return {
-        type: MAIN_EVENT,
-        profileState
+        type: RENDER_ACTION,
+        filter
     }
 }

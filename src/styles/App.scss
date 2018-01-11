@@ -73,11 +73,6 @@ body{
             margin: $line * .8 0 0 0;
             white-space: nowrap;
 
-            @media screen and (max-width: 470px){
-              width: 95%;
-              margin-bottom: $line * 2;
-            }
-
             .download-app {
               padding: 10px 40px;
               border: {
@@ -178,57 +173,62 @@ body{
           }
         }
 
-        @media screen and (max-width: 470px){
-          padding: $line;
+        @media screen and (max-width: 700px){
+          height: $line * 20;
+          padding: 0 $line;
+          margin: 0;
 
           .header-row {
-            width: 95%;
+            width: 100%;
+            height: 100%;
             justify-content: space-between;
+            align-content: center;
 
             .navbar-left {
-              flex-basis: 80%;
-              align-self: center;
+              flex-basis: 70%;
             }
 
             .navbar-center {
               flex-basis: 20%;
-              align-self: flex-start;
             }
 
             .navbar-right {
-              align-self: flex-end;
               flex-basis: 80%;
             }
           }
         }
 
-        @media screen and (max-width: 1024px){
-          padding: $line;
-
-          .header-row {
-            width: 95%;
-            justify-content: space-between;
-
-            .navbar-left {
-              flex-basis: 80%;
-              align-self: center;
-            }
-
-            .navbar-center {
-              flex-basis: 20%;
-              align-self: flex-start;
-            }
-
-            .navbar-right {
-              align-self: flex-end;
-              flex-basis: 80%;
-            }
-          }
-        }
+        //@media screen and (min-width: 470px) and (max-width: 1024px){
+        //  padding: $line * 2;
+        //  height: $line * 2;
+        //
+        //  .header-row {
+        //    width: 95%;
+        //    height: 100%;
+        //    justify-content: space-between;
+        //    align-content: center;
+        //
+        //    .navbar-left {
+        //      flex-basis: 100%;
+        //      align-self: center;
+        //    }
+        //
+        //    .navbar-center {
+        //      flex-basis: 20%;
+        //      align-self: flex-start;
+        //    }
+        //
+        //    .navbar-right {
+        //      align-self: flex-end;
+        //      flex-basis: 80%;
+        //    }
+        //  }
+        //}
       }
 
       .sign {
         min-height: 100%;
+        height: auto;
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -248,7 +248,7 @@ body{
           background-size: auto;
         }
 
-        @media screen and (max-width: 1024px) {
+        @media screen and (min-width: 470px) and (max-width: 1024px) {
           background-size: auto;
         }
 
@@ -260,7 +260,7 @@ body{
           box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.35);
           border-radius: 4px;
           padding: 70px 70px 90px 70px;
-          margin-bottom: $line * 4;
+          margin: $line * 4 0;
           display: flex;
           justify-content: space-around;
           align-items: center;
@@ -271,7 +271,7 @@ body{
           color: #555;
           object-fit: contain;
 
-          @media screen and (max-width: 470px){
+          @media screen and (max-width: 700px){
             width: 90%;
             padding: $line * 4 $line * 2;
           }
@@ -350,14 +350,10 @@ body{
           }
         }
 
-        #sign-in-form {
-          margin-top: $line * 4;
-        }
-
         #sign-up-form {
           position: relative;
           box-sizing: border-box;
-          max-width: 33%;
+          width: 33%;
           background: #F4F5FF;
           box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.35);
           border-radius: 4px;
@@ -475,15 +471,10 @@ body{
             }
           }
 
-          @media screen and (max-width: 470px){
+          @media screen and (max-width: 470px) {
             width: 90%;
-            padding: $line * 4 $line * 2;
-          }
-
-          @media screen and (max-width: 1024px) {
-            width: 90%;
-            min-height: 120%;
-            padding: $line * 8 $line * 2 $line * 10 $line * 2;
+            height: auto;
+            padding: $line * 2 $line * 2 $line * 6 $line * 2;
           }
         }
 
@@ -530,12 +521,11 @@ body{
       }
 
       main {
-        padding: $line * 7 0 0 0;
+        padding: $line * 5 0 0 0;
         width: 75%;
         min-height: 80%;
-        height: 80%;
+        height: 100%;
         max-height: inherit;
-        border: 1px solid black;
 
         .create-task-container {
           width: 100%;
@@ -564,6 +554,13 @@ body{
             transition: {
               duration: $time;
               timing-function: linear;
+            }
+            cursor: pointer;
+
+            &:hover {
+              background: #3C75CE;
+              color: #fff;
+              box-shadow: 0 5px 10px 0 rgba(156,162,188,0.75);
             }
           }
 
@@ -613,6 +610,7 @@ body{
                   size: $line * 2.4;
                   family: $stratosMedium;
                 }
+                white-space: nowrap;
               }
 
               .verification-state {
@@ -630,8 +628,6 @@ body{
 
               .verification-desc {
                 flex-basis: 100%;
-                max-height: 45px;
-                overflow: hidden;
                 text-overflow: ellipsis;
                 margin: 5px 0;
                 font: {
@@ -665,11 +661,19 @@ body{
                   color: black;
                 }
               }
+            }
+          }
 
-              &.active {
-                .verification-details {
-                  display: inline-block;
-                }
+          @media screen and (max-width: 470px) {
+            .new-task {
+              width: 100%;
+            }
+
+            .main-container {
+              flex-direction: column;
+
+              .verification-type {
+                width: 100%;
               }
             }
           }
@@ -679,13 +683,12 @@ body{
           box-sizing: border-box;
           display: flex;
           flex-direction: column;
-          justify-content: space-between;
+          justify-content: space-around;
           align-items: flex-start;
           width: 100%;
           height: 100%;
           min-height: 100%;
           max-height: inherit;
-          border: 1px solid red;
 
           .profile-top {
             width: 100%;
@@ -699,51 +702,56 @@ body{
               height: 70%;
               flex-basis: 70%;
               display: flex;
-              flex-wrap: wrap;
-              flex-direction: column;
-              justify-content: center;
-              align-items: flex-start;
-              align-content: flex-start;
+              flex-wrap: nowrap;
+              justify-content: flex-start;
+              align-items: center;
 
               .profile-photo {
-                flex-basis: 100%;
                 width: $line * 6.5;
+                height: $line * 6.5;
               }
 
-              #profile-id, #profile-name {
-                box-sizing: border-box;
-                background: {
-                  color: transparent;
-                }
-                border: none;
-                outline: none;
-                width: 40%;
+              .user-data {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: space-between;
                 padding: 0 $line * 1.5;
-              }
 
-              #profile-name {
-                font: {
-                  family: $stratosBlack;
-                  size: $line * 3.5;
+                #profile-id, #profile-name {
+                  box-sizing: border-box;
+                  background: {
+                    color: transparent;
+                  }
+                  border: none;
+                  outline: none;
+                  width: 100%;
                 }
-                color: #000;
-                letter-spacing: $line * .1;
-                line-height: $line * 3;
-                text-transform: uppercase;
-                max-height: 60%;
 
-                &::placeholder {
+                #profile-name {
+                  font: {
+                    family: $stratosBlack;
+                    size: $line * 3.5;
+                  }
                   color: #000;
-                }
-              }
+                  letter-spacing: $line * .1;
+                  line-height: $line * 3;
+                  text-transform: uppercase;
+                  max-height: 60%;
 
-              #profile-id {
-                font: {
-                  family: $stratosMedium;
-                  size: $line * 1.6;
+                  &::placeholder {
+                    color: #000;
+                  }
                 }
-                color: $grey;
-                max-height: 40%;
+
+                #profile-id {
+                  font: {
+                    family: $stratosMedium;
+                    size: $line * 1.6;
+                  }
+                  color: $grey;
+                  max-height: 40%;
+                }
               }
             }
 
@@ -760,6 +768,8 @@ body{
                 size: $line * 1.6;
               }
               padding: $line * 2 $line * 6;
+              outline: none;
+              cursor: pointer;
               transition: {
                 duration: $time;
                 timing-function: linear;
@@ -788,24 +798,195 @@ body{
 
           .change-password {
             display: none;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            width: $line * 34;
+            height: $line * 12;
+            overflow: hidden;
+            transition: {
+              duration: $time * 2;
+              timing-function: linear;
+            }
+
+            #change-pass-input {
+              border: none;
+              outline: none;
+              border-bottom: 1px solid #D8D8D8;
+              width: 100%;
+              padding: $line * .6 $line * 1.2;
+              margin: 0 0 $line * 2 0;
+              background: {
+                color: transparent;
+              }
+              color: #555;
+              transition: {
+                duration: $time;
+                timing-function: linear;
+              }
+
+              &:hover, &:focus {
+                border: {
+                  color: #4986ed;
+                }
+              }
+
+              + label {
+                font: {
+                  family: $stratosBold;
+                  size: $line * 1.6;
+                  weight: bold;
+                }
+                color: #9CA2BC;
+              }
+            }
+
+            #change-pass-submit {
+              @include mainBlueBtn;
+            }
+
+            &.active {
+              display: flex;
+            }
           }
 
           .profile-bottom {
-            
-            * {
-              border: 1px solid red;
-            }
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            align-content: space-between;
+            width: 100%;
+            height: $line * 25;
 
             .task-info{
-              .task-index {
+              position: relative;
+              height: $line * 25;
+              width: 23%;
+              font: {
+                family: $stratosBold;
+                size: $line * 4.8;
+              }
+              color: white;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              align-content: flex-end;
+              flex-wrap: wrap;
+              border: {
+                radius: $line;
+              }
+              background: {
+                image: linear-gradient(-174deg, #424653 0%, #282A31 100%);
+              }
+              box-shadow: 0 10px 30px 0 rgba(156,162,188,0.65);
+              text-transform: uppercase;
+              overflow: hidden;
 
+              .task-index {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                align-self: center;
+                width: $line * 12;
+                height: $line * 12;
+                border: {
+                  radius: $line * 20;
+                  width: $line;
+                  style: solid;
+                  color: #595E6E;
+                }
               }
 
               .task-caption {
+                padding: $line * 1.5 0 0 0;
+                align-self: flex-end;
+                flex-basis: 100%;
+                text-align: center;
+                font: {
+                  family: $stratosRegular;
+                  size: $line * 1.6;
+                  weight: normal;
+                }
+                color: $grey;
+                white-space: nowrap;
+              }
 
+              .task-bg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: $line * 44;
+                height: $line * 32.5;
+                border: {
+                  radius: $line * 20;
+                }
               }
             }
           }
+
+          @media screen and (max-width: 700px) {
+            align-items: center;
+
+            .profile-top {
+              height: auto;
+
+              .user-info {
+                flex-basis: 100%;
+
+                .user-data {
+                  flex-grow: 1;
+                }
+              }
+
+              .back-to-main, .profile-change-pass-btn {
+                width: 100%;
+              }
+            }
+
+            .profile-change-pass-btn {
+              width: 100%;
+            }
+
+            .profile-bottom {
+              flex-direction: column;
+
+              .task-info {
+                height: $line * 4;
+                width: 100%;
+                font: {
+                  size: $line * 1.8;
+                }
+                justify-content: space-between;
+                align-content: center;
+                flex-wrap: nowrap;
+
+                .task-index {
+                  width: 15%;
+                  height: auto;
+                  border: none;
+                }
+
+                .task-caption {
+                  padding: 0 0 0 0;
+                  align-self: center;
+                  flex-basis: 80%;
+                }
+                img {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+
+        @media screen and (max-width: 470px){
+          width: 90%;
+          height: auto;
+        }
+
+        @media screen and (max-width: 1024px){
+          width: 90%;
+          height: auto;
         }
       }
 
