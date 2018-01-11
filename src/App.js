@@ -12,7 +12,7 @@ class App extends Component {
         switch (this.props.renderAppFilter) {
 
             case 'RENDER_SIGN':
-                return <Sign/>;
+                return <Constructor/>;
 
             case 'RENDER_DASHBOARD':
                 return <Dashboard/>;

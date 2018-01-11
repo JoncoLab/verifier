@@ -10,63 +10,65 @@ class Constructor extends Component {
                 {
                     (t) => (
                         <main>
-                            <section className="top">
-                                <h2 className="caption">{t()}</h2>
-                                <button className="back-to-dash-button"
-                                        onClick={() => {
-                                            if(this.props.renderAppFilter === 'RENDER_CONSTRUCTOR') this.props.fromConstToDash()
-                                        }}
-                                >TAKE ME TO THE DASHBOARD!</button>
-                            </section>
-                            <section className="constructor-custom">
-                                <form id="add-field-form">
-                                    <h3>{t()}</h3>
-                                    <label>
+                            <section className="constructor-box">
+                                <section className="top">
+                                    <h2 className="caption">{t()}</h2>
+                                    <button className="back-to-dash-button"
+                                            onClick={() => {
+                                                if(this.props.renderAppFilter === 'RENDER_CONSTRUCTOR') this.props.fromConstToDash()
+                                            }}
+                                    >TAKE ME TO THE DASHBOARD!</button>
+                                </section>
+                                <section className="constructor-custom">
+                                    <form id="add-field-form">
+                                        <h3>{t()}</h3>
+                                        <label>
+                                            {t()}
+                                            <input type="radio" name="type" value="text"/>
+                                            <input type="radio" name="type" value="photo"/>
+                                            <input type="radio" name="type" value="video"/>
+                                        </label>
+                                        <label htmlFor="add-field-submit">{t()}</label>
+                                        <input type="submit" id="add-field-submit"/>
+                                    </form>
+                                    <form id="custom-fields">
+                                        <Field type="caption"/>
+                                        <Field type="photo"/>
+                                        <Field type="text"/>
+                                        <Field type="video"/>
+                                    </form>
+                                </section>
+                                <h2 className="required-caption">{t()}</h2>
+                                <section className="constructor-required">
+                                    <input type="checkbox" id="ver"/>
+                                    <label htmlFor="ver">{t()}</label>
+                                    <div className="name-compose">
+                                        <input type="text"/>
+                                        <input type="text"/>
+                                        <input type="text"/>
+                                    </div>
+                                    <label className="date-compose">
                                         {t()}
-                                        <input type="radio" name="type" value="text"/>
-                                        <input type="radio" name="type" value="photo"/>
-                                        <input type="radio" name="type" value="video"/>
+                                        <input type="date"/>
+                                        {t()}
+                                        <input type="time"/>
+                                        {t()}
+                                        <input type="time"/>
                                     </label>
-                                    <label htmlFor="add-field-submit">{t()}</label>
-                                    <input type="submit" id="add-field-submit"/>
-                                </form>
-                                <form id="custom-fields">
-                                    <Field type="caption"/>
-                                    <Field type="photo"/>
-                                    <Field type="text"/>
-                                    <Field type="video"/>
-                                </form>
-                            </section>
-                            <h2 className="required-caption">{t()}</h2>
-                            <section className="constructor-required">
-                                <input type="checkbox" id="ver"/>
-                                <label htmlFor="ver">{t()}</label>
-                                <div className="name-compose">
-                                    <input type="text"/>
-                                    <input type="text"/>
-                                    <input type="text"/>
-                                </div>
-                                <label className="date-compose">
-                                    {t()}
-                                    <input type="date"/>
-                                    {t()}
-                                    <input type="time"/>
-                                    {t()}
-                                    <input type="time"/>
-                                </label>
-                                <label className="address">
-                                    {t()}
-                                    <input type="text"/>
-                                </label>
-                                <label className="bet">
-                                    {t()}
-                                    <input type="range"/>
-                                </label>
-                                <textarea/>
-                                <button className="preview-button">{t()}</button>
-                                <button className="save-button">{t()}</button>
-                                <label htmlFor="required-submit">{t()}</label>
-                                <input type="submit" id="required-submit" name="required-submit"/>
+                                    <label className="address">
+                                        {t()}
+                                        <input type="text"/>
+                                    </label>
+                                    <label className="bet">
+                                        {t()}
+                                        <input type="range"/>
+                                    </label>
+                                    <textarea/>
+                                    <button className="preview-button">{t()}</button>
+                                    <button className="save-button">{t()}</button>
+                                    <label htmlFor="required-submit">{t()}</label>
+                                    <input type="submit" id="required-submit" name="required-submit"/>
+                                </section>
                             </section>
                         </main>
                     )

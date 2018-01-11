@@ -1,6 +1,11 @@
-import globalReducer from './reducer';
 import {createStore} from 'redux';
-//import {setRenderFilter, RenderFilters, switchSign} from "./actions";
+import renderAppReducer from './reducer';
+import {combineReducers} from 'redux';
+//import {setRenderFilter, RenderFilters} from "./actions";
+
+let globalReducer = combineReducers({
+    renderAppReducer
+});
 
 let store = createStore(globalReducer);
 
@@ -11,7 +16,7 @@ let store = createStore(globalReducer);
 //     console.log(store.getState());
 // });
 //
-// store.dispatch(switchSign());
+// store.dispatch(setSignFilter(SignFilters.SIGN_UP_RENDER));
 //
 // unsubscribe();
 

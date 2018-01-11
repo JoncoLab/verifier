@@ -13,12 +13,3 @@ export function setRenderFilter(filter) {
         filter
     }
 }
-
-export const SIGN_ACTION = 'SIGN_ACTION';
-
-export function switchSign(active) {
-    return {
-        type: SIGN_ACTION,
-        active
-    }
-}
