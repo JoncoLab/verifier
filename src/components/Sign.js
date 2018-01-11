@@ -136,24 +136,23 @@ export class Sign extends Component {
         return element.value;
     }
     static proceedToCabinet(token) {
-        let userData;
         alert("Successfully proceeded to cabinet (imaginary)!");
         $.ajax({
             url: "http://185.4.75.58:8181/verifier/api/v1/user/customer/0",
-            success: (data) => {
-                userData = {
-                    birthDate: data.birthDate
-                };
-                alert(userData.birthDate);
-            },
-            error: (response) => {
-                alert(JSON.stringify(response));
-            },
             method: "GET",
+            async: true,
+            crossDomain: true,
+            contentType: false,
             headers: {
                 "Token": token
             }
-        });
+        })
+            .then(
+            (response) => {
+                alert(response);
+            }, (response) => {
+                alert(JSON.stringify(response));
+            });
     }
     render() {
         return (
