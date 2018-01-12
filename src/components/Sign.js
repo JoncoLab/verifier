@@ -9,6 +9,8 @@ class Sign extends Component {
     constructor(props) {
         super(props);
 
+        this.parseToken = props.parseToken;
+
         this.state = {
             type: "in",
             error: null
@@ -19,6 +21,8 @@ class Sign extends Component {
         this.signInUser = this.signInUser.bind(this);
         this.signUpUser = this.signUpUser.bind(this);
         this.showError = this.showError.bind(this);
+        this.sendRequest = this.sendRequest.bind(this);
+        this.proceedToDashboard = this.proceedToDashboard.bind(this);
     }
     showError(err) {
         this.setState({
@@ -28,11 +32,12 @@ class Sign extends Component {
     sendRequest(settings) {
         $.ajax(settings)
             .then((response) => {
-                if (typeof response === "object")
+                if (typeof response === "object" && response.code === 200)
                     /**
                      * @property token Token returned by server
                      */
-                    Sign.proceedToCabinet(response.data.token);
+                    // this.proceedToDashboard(response.data.token);
+                    this.proceedToDashboard(response.data.token);
                 else
                     alert(response);
             }, (response) => {
@@ -119,6 +124,11 @@ class Sign extends Component {
             this.signInUser() :
             this.signUpUser();
     }
+    proceedToDashboard(token) {
+        this.parseToken(token);
+        document.cookie = "token=" + token + ";";
+        this.props.signInEvent();
+    }
     static loadPhoto() {
         let input = document.getElementById("photo");
         if (input.files.length > 0) {
@@ -136,9 +146,6 @@ class Sign extends Component {
         let element = document.getElementById(id);
         if (element.decoded !== undefined) alert(element.decoded);
         return element.value;
-    }
-    static proceedToCabinet(token) {
-        alert("Successfully proceeded to cabinet (imaginary)!");
     }
     render() {
         return (
@@ -182,9 +189,6 @@ class Sign extends Component {
                                                 type="submit"
                                                 name="sign-in-submit"
                                                 id="sign-in-submit"
-                                                onClick={() => {
-                                                    if(this.props.renderAppFilter === 'RENDER_SIGN') this.props.signInEvent()
-                                                }}
                                             />
                                             <label htmlFor="sign-in-submit"><span>☺</span> {t("sign.in.submitText")}</label>
                                         </form>

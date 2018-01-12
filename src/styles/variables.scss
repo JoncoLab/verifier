@@ -1,8 +1,9 @@
 $line: 10px;
 $time: 0.2s;
 
-// Colors
+@import "../fonts/font-faces.scss";
 
+// Colors
 $blue: #337ab7;
 $grey: #BDC0CF;
 $fontBlack: #282A31;
@@ -11,65 +12,7 @@ $fontMain: #9CA2BC;
 $headerBg: linear-gradient(174deg, #424653 0%, #282A31 100%);
 $btnBg: linear-gradient(-174deg, #424653 0%, #282A31 100%);
 
-// Fonts
-
-$ico: "Ico";
-$stratosLight: "Stratos-Light-Web";
-$stratosLightItalic: "Stratos-Light Italic-Web";
-$stratosRegular: "Stratos-Regular-Web";
-$stratosMedium: "Stratos-Medium-Web";
-$stratosBold: "Stratos-Bold-Web";
-$stratosBlack: "Stratos-Black-Web";
-
-@font-face {
-  font-family: "Ico";
-  src: url("../fonts/ico.woff") format("woff"),url("../fonts/ico.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Stratos-Light-Web";
-  src: url("../fonts/Stratos-Light-Web.woff2") format("woff2"),url("../fonts/Stratos-Light-Web.woff") format("woff"),url("../fonts/Stratos-Light-Web.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal
-}
-
-@font-face {
-  font-family: "Stratos-Light Italic-Web";
-  src: url("../fonts/Stratos-Light Italic-Web.woff2") format("woff2"),url("../fonts/Stratos-Light Italic-Web.woff") format("woff"),url("../fonts/Stratos-Light Italic-Web.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal
-}
-
-@font-face {
-  font-family: "Stratos-Regular-Web";
-  src: url("../fonts/Stratos-Regular-Web.woff2") format("woff2"),url("../fonts/Stratos-Regular-Web.woff") format("woff"),url("../fonts/Stratos-Regular-Web.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal
-}
-
-@font-face {
-  font-family: "Stratos-Medium-Web";
-  src: url("../fonts/Stratos-Medium-Web.woff2") format("woff2"),url("../fonts/Stratos-Medium-Web.woff") format("woff"),url("../fonts/Stratos-Medium-Web.ttf") format("truetype");
-  font-weight: 500;
-  font-style: normal
-}
-
-@font-face {
-  font-family: "Stratos-Bold-Web";
-  src: url("../fonts/Stratos-Bold-Web.woff2") format("woff2"),url("../fonts/Stratos-Bold-Web.woff") format("woff"),url("../fonts/Stratos-Bold-Web.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal
-}
-
-@font-face {
-  font-family: "Stratos-Black-Web";
-  src: url("../fonts/Stratos-Black-Web.woff2") format("woff2"),url("../fonts/Stratos-Black-Web.woff") format("woff"),url("../fonts/Stratos-Black-Web.ttf") format("truetype");
-  font-weight: 900;
-  font-style: normal;
-}
-
 // Mixins
-
 @mixin mainBlueBtn() {
   background: {
     color: #3C75CE;
@@ -77,8 +20,8 @@ $stratosBlack: "Stratos-Black-Web";
   }
   border: 0 none;
   outline: none;
-  border-radius: 4px;
-  box-shadow: 0 10px 30px 0 rgba(156,162,188,0.75);
+  border-radius: $line / 2.5;
+  box-shadow: 0 $line $line * 3 0 rgba(156,162,188,0.75);
   color: #fff;
   text-transform: uppercase;
   font: {
@@ -95,8 +38,10 @@ $stratosBlack: "Stratos-Black-Web";
   white-space: nowrap;
 
   &:hover {
-    background: #3C75CE;
+    background: {
+      image: none;
+    }
     color: #fff;
-    box-shadow: 0 5px 10px 0 rgba(156,162,188,0.75);
+    box-shadow: 0 $line / 2 $line 0 rgba(156,162,188,0.75);
   }
 }

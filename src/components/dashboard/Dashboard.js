@@ -5,7 +5,6 @@ import {setRenderFilter, RenderFilters} from "../../store/actions";
 import {connect} from 'react-redux';
 
 class Dashboard extends Component {
-
     render() {
         return (
             <I18n>
@@ -14,10 +13,15 @@ class Dashboard extends Component {
                         <main>
                             <section className="create-task-container">
                                 <button className="new-task"
-                                        onClick={() => {
-                                            if(this.props.renderAppFilter !== 'RENDER_CONSTRUCTOR') this.props.fromDashToCont()
-                                        }}
-                                >{t("main.newTaskBtn")}</button>
+                                        onClick={
+                                            () => {
+                                                if (this.props.renderAppFilter !== 'RENDER_CONSTRUCTOR')
+                                                    this.props.fromDashToCont();
+                                            }
+                                        }
+                                >
+                                    {t("main.newTaskBtn")}
+                                </button>
                                 <div className="main-container">
                                     <VerificationType
                                         name={t("main.verificationTypes.selfie")}

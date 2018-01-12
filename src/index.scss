@@ -1,0 +1,39 @@
+@import "styles/variables.scss";
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  line-height: 1.4;
+  font: {
+    family: $stratosRegular;
+    size: $line * 1.4;
+  }
+  color: $fontMain;
+  background: {
+    image: url("img/decor.svg");
+    size: cover;
+    position: bottom;
+    attachment: fixed;
+    repeat: no-repeat;
+    blend-mode: multiply;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  #root, .App {
+    width: 100%;
+    height: 100%;
+  }
+}

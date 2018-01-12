@@ -1,5 +1,65 @@
+@font-face {
+  font-family: "Ico";
+  src: url("ico.woff") format("woff"), url("ico.ttf") format("truetype"); }
+
+@font-face {
+  font-family: "Stratos-Light-Web";
+  src: url("Stratos-Light-Web.woff2") format("woff2"), url("Stratos-Light-Web.woff") format("woff"), url("Stratos-Light-Web.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal; }
+
+@font-face {
+  font-family: "Stratos-Light Italic-Web";
+  src: url("Stratos-Light Italic-Web.woff2") format("woff2"), url("Stratos-Light Italic-Web.woff") format("woff"), url("Stratos-Light Italic-Web.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal; }
+
+@font-face {
+  font-family: "Stratos-Regular-Web";
+  src: url("Stratos-Regular-Web.woff2") format("woff2"), url("Stratos-Regular-Web.woff") format("woff"), url("Stratos-Regular-Web.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal; }
+
+@font-face {
+  font-family: "Stratos-Medium-Web";
+  src: url("Stratos-Medium-Web.woff2") format("woff2"), url("Stratos-Medium-Web.woff") format("woff"), url("Stratos-Medium-Web.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal; }
+
+@font-face {
+  font-family: "Stratos-Bold-Web";
+  src: url("Stratos-Bold-Web.woff2") format("woff2"), url("Stratos-Bold-Web.woff") format("woff"), url("Stratos-Bold-Web.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal; }
+
+@font-face {
+  font-family: "Stratos-Black-Web";
+  src: url("Stratos-Black-Web.woff2") format("woff2"), url("Stratos-Black-Web.woff") format("woff"), url("Stratos-Black-Web.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal; }
+
+html,
 body {
-  margin: 0;
   padding: 0;
-  font-family: sans-serif;
-}
+  margin: 0;
+  width: 100%;
+  height: 100%; }
+
+body {
+  line-height: 1.4;
+  font-family: "Stratos-Regular-Web", "Arial Black", "Arial", "sans-sarif";
+  font-size: 14px;
+  color: #9CA2BC;
+  background-image: url("img/decor.svg");
+  background-size: cover;
+  background-position: bottom;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply; }
+  body::-webkit-scrollbar {
+    display: none; }
+  body * {
+    box-sizing: border-box; }
+  body #root, body .App {
+    width: 100%;
+    height: 100%; }
