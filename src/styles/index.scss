@@ -1,4 +1,4 @@
-@import "styles/variables.scss";
+@import "variables";
 
 html,
 body {
@@ -16,7 +16,7 @@ body {
   }
   color: $fontMain;
   background: {
-    image: url("img/decor.svg");
+    image: url("../img/decor.svg");
     size: cover;
     position: bottom;
     attachment: fixed;

@@ -50,7 +50,7 @@ body {
   font-family: "Stratos-Regular-Web", "Arial Black", "Arial", "sans-sarif";
   font-size: 14px;
   color: #9CA2BC;
-  background-image: url("img/decor.svg");
+  background-image: url("../img/decor.svg");
   background-size: cover;
   background-position: bottom;
   background-attachment: fixed;
