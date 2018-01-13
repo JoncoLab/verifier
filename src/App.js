@@ -96,13 +96,7 @@ class App extends Component {
         return (
             <div className="App">
                 <Header/>
-                {
-                    this.props.renderTargetPage(
-                        this.state.active ?
-                            this.Continue :
-                            this.Start
-                    )
-                }
+                {this.Start()}
             </div>
         );
     }

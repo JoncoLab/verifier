@@ -76,6 +76,7 @@ class Sign extends Component {
         };
 
         this.sendRequest(settings);
+        this.props.signInEvent()
     }
     signUpUser() {
         let pass = Sign.getVal("sign-up-password"),
@@ -127,7 +128,6 @@ class Sign extends Component {
     proceedToDashboard(token) {
         this.parseToken(token);
         document.cookie = "token=" + token + ";";
-        this.props.signInEvent();
     }
     static loadPhoto() {
         let input = document.getElementById("photo");

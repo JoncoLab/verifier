@@ -1,47 +1,18 @@
-import {
-    InputTypes,
-    SELECT_TYPE,
-    ADD_INPUT,
-    REMOVE_INPUT,
-    SET_INDEX
-} from './constActionCreators';
+import {INPUT_TYPES, TypesList} from "./constActions";
 
-// Select type reducer
-const {INPUT_TYPE_TEXT} = InputTypes;
-
-function selectInputType(state = INPUT_TYPE_TEXT, action) {
-
-    switch(action.type) {
-
-        case SELECT_TYPE:
-            return {...state,
-                inputType: action.dataType
-            };
-
-        default:
-            return state;
-    }
-}
-
-// Create new input
-// New input initial states
-const newInputInitialStates = {
-    name: 'New input',
-    desc: 'Some input to experiment with',
-    idKey: '',
-    title: 'This input will help you to reach everything you ever did and will wish',
-    file: false,
-    element: []
+const initialState = {
+    filter: TypesList.TEXT_TYPE,
+    active: false
 };
 
-function createNewInput(state = newInputInitialStates, action) {
-
-    switch(action.type) {
-        case ADD_INPUT:
+export function typeSelect(state = initialState, action) {
+    switch (action.type) {
+        case INPUT_TYPES:
             return {...state,
-                element: [
-                    ...state.element
-                ]
+                filter: action.filter,
+                active: true
             };
+        default:
+            return state;
     }
 }
