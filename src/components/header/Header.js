@@ -25,7 +25,14 @@ class Header extends Component {
                     </span>
                                     </div>
                                     <div className="navbar-center">
-                                        <a>
+                                        <a
+                                            onClick={() => {
+                                                if(this.props.renderAppFilter !== 'RENDER_DASHBOARD'
+                                                    && this.props.renderAppFilter !== 'RENDER_SIGN') {
+                                                    this.props.onLogoClick()
+                                                }
+                                            }}
+                                        >
                                             <img title={t("header.logoTitleText")} alt="logo" src="../../img/logo.png"/>
                                         </a>
                                     </div>
@@ -60,6 +67,10 @@ const mapDispatchToProps = (dispatch) => {
     return ({
         onHeaderClick: () => {
             dispatch(setRenderFilter(RenderFilters.RENDER_CABINET))
+        },
+
+        onLogoClick: () => {
+            dispatch(setRenderFilter(RenderFilters.RENDER_DASHBOARD))
         }
     })
 };
