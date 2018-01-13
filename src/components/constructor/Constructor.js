@@ -28,6 +28,11 @@ class Constructor extends Component {
                 <form className="constructor">
                     <fieldset className="task-caption">
                         <h2>НАЗВАНИЕ ЗАЯВКИ</h2>
+                        <button
+                            onClick={() => {
+                                if(this.props.renderAppFilter === 'RENDER_CONSTRUCTOR') this.props.fromConstToDash()
+                            }}
+                        >Back to the dashboard</button>
                         <button className="task-title">? Help, pls!</button>
                         <input
                             type="text"
