@@ -37,6 +37,8 @@ class App extends Component {
                 case "/constructor":
                     targetPage = "RENDER_CONSTRUCTOR";
                     break;
+                case "/downloadApp":
+                    targetPage = "RENDER_DOWNLOAD_LINKS";
                 case "/sign":
                     targetPage = "RENDER_SIGN";
                     break;
