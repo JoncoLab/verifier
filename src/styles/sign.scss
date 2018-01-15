@@ -1,0 +1,293 @@
+@import "./variables.scss";
+
+.sign {
+  min-height: 100%;
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: {
+    image:
+            linear-gradient(225deg, rgba(60, 117, 206, 0.7) 0%, rgba(107, 104, 219, 0.7) 100%),
+            url("../img/234138.png");
+    position: center;
+    size: cover;
+    attachment: fixed;
+    repeat: no-repeat;
+  }
+
+  @media screen and (max-width: 470px) {
+    background-size: auto;
+  }
+
+  @media screen and (min-width: 470px) and (max-width: 1024px) {
+    background-size: auto;
+  }
+
+  #sign-in-form {
+    position: relative;
+    width: 35%;
+    min-height: auto;
+    background: #F4F5FF;
+    box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.35);
+    border-radius: 4px;
+    padding: 70px 70px 90px 70px;
+    margin: $line * 4 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    font: {
+      family: $stratosRegular;
+    }
+    color: #555;
+    object-fit: contain;
+
+    @media screen and (max-width: 700px){
+      width: 90%;
+      padding: $line * 4 $line * 2;
+    }
+
+    @media screen and (max-width: 1024px) {
+      width: 90%;
+      padding: $line * 8 $line * 2 $line * 10 $line * 2;
+    }
+
+    .form-caption {
+      font: {
+        size: $line * 1.6;
+        family: $stratosMedium;
+      }
+      color: $fontBlack;
+    }
+
+    #sign-in-submit {
+      display: none;
+
+      + label {
+        position: absolute;
+        bottom: $line * -2.5;
+        padding: $line * 1.5 $line * 8.5;
+        margin-bottom: 0;
+        font: {
+          family: inherit;
+          weight: normal;
+          size: $line * 1.6;
+        }
+        line-height: 1.42857143;
+        text: {
+          align: center;
+          transform: uppercase;
+        }
+        white-space: nowrap;
+        touch-action: manipulation;
+        cursor: pointer;
+        background: {
+          image: $btnBg;
+        }
+        color: $white;
+        border: 1px solid transparent;
+        border-radius: 4px;
+
+        span {
+          font: {
+            size: inherit;
+            family: $ico;
+          }
+        }
+      }
+    }
+
+    input {
+      margin: 0 0 $line 0;
+      background: {
+        color: transparent;
+      }
+      width: 100%;
+      line-height: 24px;
+      padding: 6px 0;
+      border: none;
+      outline: none;
+      border-bottom: 1px solid rgba(0,0,0,0.42);
+      transition: $time linear;
+
+      &::placeholder {
+        color: #8c8e9c;
+      }
+
+      &:focus {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.9);
+      }
+    }
+  }
+
+  #sign-up-form {
+    position: relative;
+    box-sizing: border-box;
+    width: 33%;
+    background: #F4F5FF;
+    box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.35);
+    border-radius: 4px;
+    margin-bottom: $line * 4;
+    align-self: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: space-between;
+    flex-direction: column;
+    padding: 70px 70px 90px 70px;
+    margin-top: $line * 3;
+    height: $line * 60;
+    max-height: 200%;
+
+    .sign-up-name {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin: 0 0 $line 0;
+      padding: $line * 2 0 $line * 1.2 0;
+
+      input {
+        background: {
+          color: transparent;
+        }
+        width: 48%;
+        line-height: 24px;
+        border: none;
+        outline: none;
+        border-bottom: 1px solid rgba(0,0,0,0.42);
+        transition: $time linear;
+
+        &::placeholder {
+          color: #8c8e9c;
+        }
+
+        &:focus {
+          border-bottom: 1px solid rgba(0, 0, 0, 0.9);
+        }
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    input {
+      margin: 0 0 $line 0;
+      background: {
+        color: transparent;
+      }
+      width: 100%;
+      line-height: 24px;
+      padding: 6px 0;
+      border: none;
+      outline: none;
+      border-bottom: 1px solid rgba(0,0,0,0.42);
+      transition: $time linear;
+
+      &::placeholder {
+        color: #8c8e9c;
+      }
+
+      &:focus {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.9);
+      }
+    }
+
+    #sign-up-submit {
+      display: none;
+
+      + label {
+        position: absolute;
+        bottom: $line * -2.5;
+        padding: $line * 1.5 $line * 8.5;
+        margin-bottom: 0;
+        font: {
+          family: inherit;
+          weight: normal;
+          size: $line * 1.6;
+        }
+        line-height: 1.42857143;
+        text: {
+          align: center;
+          transform: uppercase;
+        }
+        white-space: nowrap;
+        touch-action: manipulation;
+        cursor: pointer;
+        background: {
+          image: $btnBg;
+        }
+        color: $white;
+        border: 1px solid transparent;
+        border-radius: 4px;
+
+        span {
+          font: {
+            size: inherit;
+            family: $ico;
+          }
+        }
+      }
+    }
+
+    label:first-of-type, label:nth-of-type(2) {
+      width: 100%;
+      color: #8c8e9c;
+      font: {
+        size: $line * 1.4;
+        family: $stratosRegular;
+        weight: normal;
+      }
+    }
+
+    @media screen and (max-width: 470px) {
+      width: 90%;
+      height: $line * 120;
+      padding: $line * 2 $line * 2 $line * 6 $line * 2;
+    }
+  }
+
+  .sign-in-with-socials {
+
+    button {
+      border: none;
+      background: transparent;
+      outline: none;
+      cursor: pointer;
+      padding: 0 $line * .2;
+      transition: $time linear;
+
+      img {
+        width: 100%;
+        opacity: 0.4;
+      }
+
+      &:hover {
+        img {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .switch-link {
+    margin-top: $line;
+    color: $white;
+    border: none;
+    outline: none;
+    background: transparent;
+    font: {
+      family: $stratosMedium;
+      size: $line * 1.4;
+      weight: normal;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

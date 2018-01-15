@@ -60,5 +60,28 @@
   "downloadApp": {
     "caption": "СКАЧАТЬ ПРИЛОЖЕНИЕ",
     "backToMain": "< К МОИМ ЗАЯВКАМ"
+  },
+  "newTask": {
+    "constCaption": "СОЗДАЙТЕ ЗАЯВКУ С ПОМОЩЮ КОНСТРУКТОРА",
+    "backToMain": "< К МОИМ ЗАЯВКАМ",
+    "taskName": "НАЗВАНИЕ ЗАЯВКИ",
+    "namePlaceholder": "Наименование поля",
+    "title": "",
+    "newInput": {
+      "taskName": "ПОЛЕ ЗАЯВКИ",
+      "fieldType": "Тип поля: ",
+      "typeText": "текст",
+      "typePhoto": "фото",
+      "typeVideo": "видео",
+      "removeField": "Удалить поле",
+      "descPlaceholder": "Описание",
+      "fioPlaceholder": "ФИО",
+      "filePlaceholder": "Файлы",
+      "visitPlaceholder": "Фото визитки"
+    },
+    "taskFooter": {
+      "type": "Выберите тип поля: ",
+      "addInput": "+ ДОБАВИТЬ"
+    }
   }
 }

@@ -18,7 +18,7 @@ class Header extends Component {
                 <I18n ns="translations">
                     {
                         (t, {i18n}) => (
-                            <header className="navbar">
+                            <header>
                                 <div className="header-row">
                                     <div className="navbar-left">
                                         <button

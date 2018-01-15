@@ -45,3 +45,42 @@ $btnBg: linear-gradient(-174deg, #424653 0%, #282A31 100%);
     box-shadow: 0 $line / 2 $line 0 rgba(156,162,188,0.75);
   }
 }
+
+@mixin blackCaption() {
+  font: {
+    family: $stratosBlack;
+    size: $line * 3.5;
+  }
+  color: #000;
+  letter-spacing: $line * .1;
+  line-height: $line * 3;
+  text-transform: uppercase;
+}
+
+@mixin toDashboardBtn() {
+  padding: $line * 2 $line * 6;
+  background: #BDC0CF;
+  border: 0 none;
+  border-radius: 4px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.29);
+  color: #fff;
+  text-transform: uppercase;
+  font: {
+    family: $stratosMedium;
+    size: $line * 1.6;
+  }
+  padding: $line * 2 $line * 6;
+  outline: none;
+  cursor: pointer;
+  transition: {
+    duration: $time;
+    timing-function: linear;
+  }
+
+  &:hover, &:focus {
+    background: {
+      color: rgba(189, 192, 207, 0.69);
+    }
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  }
+}

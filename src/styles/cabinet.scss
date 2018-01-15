@@ -1,0 +1,301 @@
+@import "./variables.scss";
+
+.profile {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  max-height: inherit;
+
+  .profile-top {
+    width: 100%;
+    height: $line * 12;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    .user-info {
+      height: 70%;
+      flex-basis: 70%;
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      align-items: center;
+
+      .profile-photo {
+        width: $line * 6.5;
+        height: $line * 6.5;
+      }
+
+      .user-data {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 0 $line * 1.5;
+
+        #profile-id, #profile-name {
+          box-sizing: border-box;
+          background: {
+            color: transparent;
+          }
+          border: none;
+          outline: none;
+          width: 100%;
+        }
+
+        #profile-name {
+          font: {
+            family: $stratosBlack;
+            size: $line * 3.5;
+          }
+          color: #000;
+          letter-spacing: $line * .1;
+          line-height: $line * 3;
+          text-transform: uppercase;
+          max-height: 60%;
+
+          &::placeholder {
+            color: #000;
+          }
+        }
+
+        #profile-id {
+          font: {
+            family: $stratosMedium;
+            size: $line * 1.6;
+          }
+          color: $grey;
+          max-height: 40%;
+        }
+      }
+    }
+
+    .back-to-main {
+      padding: $line * 2 $line * 6;
+      background: #BDC0CF;
+      border: 0 none;
+      border-radius: 4px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.29);
+      color: #fff;
+      text-transform: uppercase;
+      font: {
+        family: $stratosMedium;
+        size: $line * 1.6;
+      }
+      padding: $line * 2 $line * 6;
+      outline: none;
+      cursor: pointer;
+      transition: {
+        duration: $time;
+        timing-function: linear;
+      }
+
+      &:hover, &:focus {
+        background: {
+          color: rgba(189, 192, 207, 0.69);
+        }
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    .profile-change-pass-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 100%;
+      padding: $line * 1.5 0;
+
+      .change-password-btn, .exit-profile-btn {
+        @include mainBlueBtn;
+      }
+    }
+  }
+
+  .change-password {
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: $line * 34;
+    height: $line * 12;
+    overflow: hidden;
+    transition: {
+      duration: $time * 2;
+      timing-function: linear;
+    }
+
+    #change-pass-input {
+      border: none;
+      outline: none;
+      border-bottom: 1px solid #D8D8D8;
+      width: 100%;
+      padding: $line * .6 $line * 1.2;
+      margin: 0 0 $line * 2 0;
+      background: {
+        color: transparent;
+      }
+      color: #555;
+      transition: {
+        duration: $time;
+        timing-function: linear;
+      }
+
+      &:hover, &:focus {
+        border: {
+          color: #4986ed;
+        }
+      }
+
+      + label {
+        font: {
+          family: $stratosBold;
+          size: $line * 1.6;
+          weight: bold;
+        }
+        color: #9CA2BC;
+      }
+    }
+
+    #change-pass-submit {
+      @include mainBlueBtn;
+    }
+
+    &.active {
+      display: flex;
+    }
+  }
+
+  .profile-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: space-between;
+    width: 100%;
+    height: $line * 25;
+
+    .task-info{
+      position: relative;
+      height: $line * 25;
+      width: 23%;
+      font: {
+        family: $stratosBold;
+        size: $line * 4.8;
+      }
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-content: flex-end;
+      flex-wrap: wrap;
+      border: {
+        radius: $line;
+      }
+      background: {
+        image: linear-gradient(-174deg, #424653 0%, #282A31 100%);
+      }
+      box-shadow: 0 10px 30px 0 rgba(156,162,188,0.65);
+      text-transform: uppercase;
+      overflow: hidden;
+
+      .task-index {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-self: center;
+        width: $line * 12;
+        height: $line * 12;
+        border: {
+          radius: $line * 20;
+          width: $line;
+          style: solid;
+          color: #595E6E;
+        }
+      }
+
+      .task-caption {
+        padding: $line * 1.5 0 0 0;
+        align-self: flex-end;
+        flex-basis: 100%;
+        text-align: center;
+        font: {
+          family: $stratosRegular;
+          size: $line * 1.6;
+          weight: normal;
+        }
+        color: $grey;
+        white-space: nowrap;
+      }
+
+      .task-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: $line * 44;
+        height: $line * 32.5;
+        border: {
+          radius: $line * 20;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    align-items: center;
+
+    .profile-top {
+      height: auto;
+
+      .user-info {
+        flex-basis: 100%;
+
+        .user-data {
+          flex-grow: 1;
+        }
+      }
+
+      .back-to-main, .profile-change-pass-btn {
+        width: 100%;
+      }
+    }
+
+    .profile-change-pass-btn {
+      width: 100%;
+    }
+
+    .profile-bottom {
+      flex-direction: column;
+
+      .task-info {
+        height: $line * 4;
+        width: 100%;
+        font: {
+          size: $line * 1.8;
+        }
+        justify-content: space-between;
+        align-content: center;
+        flex-wrap: nowrap;
+
+        .task-index {
+          width: 15%;
+          height: auto;
+          border: none;
+        }
+
+        .task-caption {
+          padding: 0 0 0 0;
+          align-self: center;
+          flex-basis: 80%;
+        }
+        img {
+          display: none;
+        }
+      }
+    }
+  }
+}

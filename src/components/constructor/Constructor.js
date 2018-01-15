@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+import {I18n} from 'react-i18next';
+import TextInput from './inputTypes/TextInput';
+import ImageInput from './inputTypes/ImageInput';
+import VideoInput from './inputTypes/VideoInput';
+import Footer from './Footer';
 import {RenderFilters, setRenderFilter} from "../../store/actions";
 import {connect} from 'react-redux';
-import Footer from './Footer';
 
 class Constructor extends Component {
     constructor(props) {
@@ -22,27 +26,43 @@ class Constructor extends Component {
 
     render() {
         return (
-            <main>
-                <form className="constructor" onSubmit={(e) => e.preventDefault()}>
-                    <fieldset className="task-caption">
-                        <h2>НАЗВАНИЕ ЗАЯВКИ</h2>
-                        <button
-                            onClick={() => {
-                                window.location.pathname = "/dashboard"
-                            }}
-                        >Back to the dashboard</button>
-                        <button className="task-title">? Help, pls!</button>
-                        <input
-                            type="text"
-                            id="task-name"
-                            name="task-name"
-                            value={this.state.inputVal}
-                            onChange={this.handleChange}
-                        />
-                    </fieldset>
-                    <Footer/>
-                </form>
-            </main>
+            <I18n>
+                {
+                    (t) => (
+                        <main>
+                            <section className="constructor">
+                                <div className="constructor-top">
+                                    <h2>{t("newTask.constCaption")}</h2>
+                                    <button
+                                        className="back-to-main"
+                                        onClick={() => {
+                                            window.location.pathname = "/dashboard"
+                                        }}
+                                    >{t("newTask.backToMain")}</button>
+                                </div>
+                                <form className="constructor-form" onSubmit={(e) => e.preventDefault()}>
+                                    <div className="task-caption">
+                                        <h3>{t("newTask.taskName")}</h3>
+                                        <button type="button" className="task-title">♥</button>
+                                        <input
+                                            type="text"
+                                            id="task-name"
+                                            name="task-name"
+                                            placeholder={t("newTask.namePlaceholder")}
+                                            value={this.state.inputVal}
+                                            onChange={this.handleChange}
+                                        />
+                                    </div>
+                                    <TextInput/>
+                                    <ImageInput/>
+                                    <VideoInput/>
+                                    <Footer/>
+                                </form>
+                            </section>
+                        </main>
+                    )
+                }
+            </I18n>
         );
     }
 }

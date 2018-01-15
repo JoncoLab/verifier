@@ -1,0 +1,152 @@
+@import "./variables.scss";
+
+.header-row {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  .navbar-left,
+  .navbar-right {
+    flex-basis: 40%;
+  }
+
+  .navbar-left {
+    margin: $line * .8 0 0 0;
+    white-space: nowrap;
+
+    .download-app {
+      padding: 10px 40px;
+      border: {
+        style: none;
+        radius: $line * .4;
+      }
+      outline: 0;
+      background: {
+        color: $grey;
+      }
+      color: $white;
+      text: {
+        transform: uppercase;
+        align: center;
+      }
+      font: {
+        size: 16px;
+        family: $stratosMedium;
+      }
+      white-space: nowrap;
+      transition: {
+        duration: $time;
+        timing-function: linear;
+      }
+      cursor: pointer;
+
+      &:hover {
+        background: rgba(189, 192, 207, 0.69);
+        color: #fff;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      &.hide {
+        display: none;
+      }
+    }
+
+    .lang {
+      margin: 0 0 0 $line;
+
+      span {
+        padding: 0 $line / 2 0 0;
+        color: $fontMain;
+        font: {
+          family: $stratosRegular;
+          size: $line * 1.4;
+        }
+        transition: {
+          duration: $time;
+          timing-function: linear;
+        }
+        cursor: pointer;
+
+        &:hover {
+          color: $blue;
+        }
+      }
+    }
+  }
+
+  .navbar-center {
+    text-align: center;
+  }
+
+  .navbar-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    transition: {
+      duration: $time;
+      timing-function: linear;
+    }
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    span {
+      font: {
+        family: $stratosMedium;
+      }
+      color: $white;
+      text: {
+        transform: uppercase;
+      }
+
+      &:last-of-type {
+        padding: 0 $line;
+      }
+    }
+
+    .profile-photo {
+      img {
+        width: 100%;
+        //box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+      }
+      border: {
+        radius: 50%;
+      }
+    }
+
+    &.hide {
+      visibility: hidden;
+    }
+  }
+}
+
+@media screen and (max-width: 700px){
+  height: $line * 20;
+  padding: 0 $line;
+  margin: 0;
+
+  .header-row {
+    box-sizing: content-box;
+    padding: $line * 4 0 0 0 0;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    align-content: center;
+
+    .navbar-left {
+      flex-basis: 70%;
+    }
+
+    .navbar-center {
+      flex-basis: 20%;
+    }
+
+    .navbar-right {
+      flex-basis: 80%;
+    }
+  }
+}

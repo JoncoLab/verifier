@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {I18n} from 'react-i18next';
 import TypeSelect from './TypeSelect';
 import {typesAction} from "./constStore/constActionCreators";
 import {TypesList} from "./constStore/constActions";
@@ -8,31 +9,45 @@ class Footer extends Component {
     render() {
         console.log(this.props.inputType);
         return (
-            <div className="first-form-footer">
-                <h2>ДОБАВИТЬ ПОЛЕ</h2>
-                <span className="current-type">Выберите тип поля: {this.props.data}</span>
-                <div className="available-types">
-                    <TypeSelect
-                        onClick={() => {
-                            if(this.props.inputType !== 'TEXT_TYPE') this.props.typeText();
-                            console.log(this.props.inputType);
-                        }}
-                    />
-                    <TypeSelect
-                        onClick={() => {
-                            if(this.props.inputType !== 'IMAGE_TYPE') this.props.typeImage();
-                            console.log(this.props.inputType);
-                        }}
-                    />
-                    <TypeSelect
-                        onClick={() => {
-                            if(this.props.inputType !== 'VIDEO_TYPE') this.props.typeVideo();
-                            console.log(this.props.inputType);
-                        }}
-                    />
-                </div>
-                <button className="add-input">+ ADD</button>
-            </div>
+            <I18n>
+                {
+                    (t) => (
+                        <div className="footer">
+                            <div className="footer-text">
+                                <h2>ДОБАВИТЬ ПОЛЕ</h2>
+                                <span className="current-type">{t("newTask.taskFooter.type")}<span>photo</span></span>
+                            </div>
+                            <div className="available-types">
+                                <TypeSelect
+                                    text="•"
+                                    btnClass="type-select"
+                                    onClick={() => {
+                                        if(this.props.inputType !== 'TEXT_TYPE') this.props.typeText();
+                                        console.log(this.props.inputType);
+                                    }}
+                                />
+                                <TypeSelect
+                                    text="♦"
+                                    btnClass="type-select"
+                                    onClick={() => {
+                                        if(this.props.inputType !== 'IMAGE_TYPE') this.props.typeImage();
+                                        console.log(this.props.inputType);
+                                    }}
+                                />
+                                <TypeSelect
+                                    text="♣"
+                                    btnClass="type-select"
+                                    onClick={() => {
+                                        if(this.props.inputType !== 'VIDEO_TYPE') this.props.typeVideo();
+                                        console.log(this.props.inputType);
+                                    }}
+                                />
+                            </div>
+                            <button className="add-input">{t("newTask.taskFooter.addInput")}</button>
+                        </div>
+                    )
+                }
+            </I18n>
         );
     }
 }
