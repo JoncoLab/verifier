@@ -7,6 +7,7 @@ $time: 0.2s;
 $blue: #337ab7;
 $grey: #BDC0CF;
 $fontBlack: #282A31;
+$red: #EA4E33;
 $white: #fff;
 $fontMain: #9CA2BC;
 $headerBg: linear-gradient(174deg, #424653 0%, #282A31 100%);
@@ -57,7 +58,7 @@ $btnBg: linear-gradient(-174deg, #424653 0%, #282A31 100%);
   text-transform: uppercase;
 }
 
-@mixin toDashboardBtn() {
+@mixin greyBtn() {
   padding: $line * 2 $line * 6;
   background: #BDC0CF;
   border: 0 none;
@@ -82,5 +83,26 @@ $btnBg: linear-gradient(-174deg, #424653 0%, #282A31 100%);
       color: rgba(189, 192, 207, 0.69);
     }
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@mixin input() {
+  background: {
+    color: transparent;
+  }
+  width: 100%;
+  line-height: 24px;
+  padding: $line / 2 $line;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid rgba(0,0,0,0.42);
+  transition: $time linear;
+
+  &::placeholder {
+    color: #8c8e9c;
+  }
+
+  &:focus {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.9);
   }
 }

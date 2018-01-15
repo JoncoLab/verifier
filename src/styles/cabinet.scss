@@ -77,31 +77,7 @@
     }
 
     .back-to-main {
-      padding: $line * 2 $line * 6;
-      background: #BDC0CF;
-      border: 0 none;
-      border-radius: 4px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.29);
-      color: #fff;
-      text-transform: uppercase;
-      font: {
-        family: $stratosMedium;
-        size: $line * 1.6;
-      }
-      padding: $line * 2 $line * 6;
-      outline: none;
-      cursor: pointer;
-      transition: {
-        duration: $time;
-        timing-function: linear;
-      }
-
-      &:hover, &:focus {
-        background: {
-          color: rgba(189, 192, 207, 0.69);
-        }
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-      }
+      @include greyBtn;
     }
 
     .profile-change-pass-btn {
