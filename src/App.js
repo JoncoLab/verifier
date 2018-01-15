@@ -5,6 +5,7 @@ import Sign from "./components/Sign";
 import Dashboard from "./components/dashboard/Dashboard";
 import Cabinet from "./components/cabinet/Cabinet";
 import Constructor from "./components/constructor/Constructor";
+import DownloadApp from "./components/DownloadApp";
 import {connect} from 'react-redux';
 import {RenderFilters, setRenderFilter} from "./store/actions";
 import * as $ from "jquery";
@@ -39,6 +40,7 @@ class App extends Component {
                     break;
                 case "/downloadApp":
                     targetPage = "RENDER_DOWNLOAD_LINKS";
+                    break;
                 case "/sign":
                     targetPage = "RENDER_SIGN";
                     break;
@@ -62,13 +64,16 @@ class App extends Component {
                     <Sign/>;
                 break;
             case 'RENDER_DASHBOARD':
-                targetComponent = <Dashboard token={this.state.token}/>;
+                targetComponent = <Dashboard/>;
                 break;
             case 'RENDER_CABINET':
-                targetComponent = <Cabinet token={this.state.token}/>;
+                targetComponent = <Cabinet/>;
                 break;
             case 'RENDER_CONSTRUCTOR':
-                targetComponent = <Constructor token={this.state.token}/>;
+                targetComponent = <Constructor/>;
+                break;
+            case "RENDER_DOWNLOAD_LINKS":
+                targetComponent = <DownloadApp/>;
                 break;
             default:
                 document.cookie.replace("token=" + this.state.token + ";", "");
