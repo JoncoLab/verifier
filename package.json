@@ -1,5 +1,6 @@
 {
   "name": "verifier",
+  "homepage": "joncolab.github.io/verifier",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -27,11 +28,14 @@
     "build": "npm run build-css && react-scripts build",
     "ready": "npm-run-all -p build start && firebase deploy && firebase serve",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
   "main": "build/index.html",
   "devDependencies": {
+    "gh-pages": "^1.1.0",
     "react-prop-types": "^0.4.0"
   },
   "author": "JoncoLab",

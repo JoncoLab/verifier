@@ -9,7 +9,6 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import Backend from "i18next-xhr-backend";
 import {Provider} from 'react-redux';
 import store from './store/store';
-import * as $ from "jquery";
 
 i18n
     .use(Backend)

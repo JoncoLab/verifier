@@ -82,27 +82,6 @@ class App extends Component {
         }
         return targetComponent;
     }
-    getUserData() {
-        $.ajax({
-            url: "http://185.4.75.58:8181/verifier/api/v1/user/customer/0",
-            method: "GET",
-            async: true,
-            crossDomain: true,
-            contentType: false,
-            headers: {
-                "Token": this.state.token
-            }
-        })
-            .then((response) => {
-                alert(response.code);
-            }, (response) => {
-                alert(
-                    typeof response === "object" ?
-                        JSON.stringify(response) :
-                        response
-                );
-            });
-    }
     render() {
         return (
             <div className="App">
