@@ -15,7 +15,7 @@ class Dashboard extends Component {
                                 <button className="new-task"
                                         onClick={
                                             () => {
-                                                window.location.pathname = "/constructor"
+                                                window.location.pathname = "/constructor";
                                             }
                                         }
                                 >

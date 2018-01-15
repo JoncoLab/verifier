@@ -136,6 +136,9 @@ const mapDispatchToProps = (dispatch) => {
                 case "RENDER_CONSTRUCTOR":
                     targetPage = RenderFilters.RENDER_CONSTRUCTOR;
                     break;
+                case "RENDER_DOWNLOAD_LINKS":
+                    targetPage = RenderFilters.RENDER_DOWNLOAD_LINKS;
+                    break;
                 default:
                     targetPage = RenderFilters.RENDER_SIGN;
             }
