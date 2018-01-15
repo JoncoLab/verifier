@@ -1,0 +1,64 @@
+{
+  "header": {
+    "appsButtonText": "Download App",
+    "logoTitleText": "Home"
+  },
+  "sign": {
+    "caption": "You can enter with your E-mail or ID",
+    "errors": {
+      "noSuchUser": "No user with such login details found!",
+      "passwordsDoNotMatch": "Passwords do not match!",
+      "servError": "Some server error occurred!"
+    },
+    "in": {
+      "emailPlaceholder": "Your E-mail or ID",
+      "passPlaceholder": "Your password",
+      "submitText": "Log in",
+      "switchLinkText": "REGISTER"
+    },
+    "up": {
+      "firstNamePlaceholder": "Your first name",
+      "secondNamePlaceholder": "Your second name",
+      "companyNamePlaceholder": "Company name",
+      "birthDatePlaceholder": "Your date of birth",
+      "phonePlaceholder": "Your phone number",
+      "emailPlaceholder": "Your email",
+      "passPlaceholder": "Your password",
+      "confirmPassPlaceholder": "Retype password",
+      "photoPlaceholder": "Upload photo",
+      "submitText": "Create new account",
+      "switchLinkText": "LOGIN CABINET"
+    }
+  },
+  "main": {
+    "newTaskBtn": "CREATE NEW TASK",
+    "verificationTypes": {
+      "selfie": "Selfie",
+      "business": "Verify business card",
+      "yourself": "Verify yourself",
+      "event": "Verify event"
+    },
+    "verificationDesc": {
+      "selfie": "In this task you have to verify yourself.",
+      "business": "Take a photo of your business card. This task is an example of document verification.",
+      "yourself": "In this task you have to take a photo of some guest who has already logged in to the application and fill the field with his ID.",
+      "event": "You have to verify yourself at the meetup and take a photo near the Verifier roll-up."
+    },
+    "verificationState": "WAITING FOR VERIFIER"
+  },
+  "profile": {
+    "backToMain": "< TO MY TASKS",
+    "changePassBtn": "CHANGE PASSWORD",
+    "exitProfile": "EXIT",
+    "newPassLabel": "New Password *",
+    "newPassSubmit": "SUBMIT",
+    "tasksCreated": "TASKS CREATED",
+    "tasksWaitingForVerifier": "TASKS WAITING FOR VERIFIER",
+    "tasksInProcess": "TASKS IN PROCESS",
+    "tasksDone": "TASKS DONE"
+  },
+  "downloadApp": {
+    "caption": "DOWNLOAD APP",
+    "backToMain": "< TO MY TASKS"
+  }
+}
