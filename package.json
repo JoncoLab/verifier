@@ -1,6 +1,6 @@
 {
   "name": "verifier",
-  "homepage": "joncolab.github.io/verifier",
+  "homepage": "https://joncolab.github.io/verifier",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
