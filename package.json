@@ -2,7 +2,7 @@
   "name": "verifier",
   "homepage": "https://joncolab.github.io/verifier",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "i18next": "^10.2.1",
     "i18next-browser-languagedetector": "^2.1.0",

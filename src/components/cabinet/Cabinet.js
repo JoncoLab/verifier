@@ -16,7 +16,6 @@ class Cabinet extends Component {
 
         this.changePassActive = this.changePassActive.bind(this);
     }
-
     static getUserData(token) {
         $.ajax({
             url: "http://185.4.75.58:8181/verifier/api/v1/user/customer/0",
@@ -35,13 +34,33 @@ class Cabinet extends Component {
                     alert(JSON.stringify(response));
                 });
     }
-
     changePassActive() {
         this.setState({
             changePassActive: !this.state.changePassActive
         })
     }
-
+    changePassword(event) {
+        event.preventDefault();
+        let form = new FormData();
+        let newPass = form.append("password", document.getElementById("change-pass-input").value);
+        $.ajax({
+            url: "http://185.4.75.58:8181/verifier/api/v1/user/customer/update",
+            method: "POST",
+            crossDomain: true,
+            async: true,
+            processData: false,
+            contentType: false,
+            mimeType: "multipart/form-data",
+            data: form,
+            headers: {
+                "Token": document.cookie.replace("token=", "")
+            }
+        }).then(() => {
+            alert("YEA!");
+        }, () => {
+            alert("Nooo!");
+        });
+    }
     render() {
         let changePass = classSet({
             'change-password': true,
@@ -89,7 +108,7 @@ class Cabinet extends Component {
                                         }}>{t("profile.exitProfile")}</button>
                                     </div>
                                 </div>
-                                <form className={changePass}>
+                                <form className={changePass} onSubmit={(e) => this.changePassword(e)}>
                                     <label htmlFor="change-pass-input">{t("profile.newPassLabel")}</label>
                                     <input type="password" name="change-password" id="change-pass-input" required={true}/>
                                     <button type="submit" id="change-pass-submit">{t("profile.newPassSubmit")}</button>

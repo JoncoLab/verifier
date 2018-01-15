@@ -15,7 +15,7 @@ class App extends Component {
         super(props);
 
         this.state = {
-            active: document.cookie.replace("token=", "") !== "0"
+            active: document.cookie.replace("token=", "") !== "0" && document.cookie.replace("token=", "") !== ""
         };
 
         this.renderApp = this.renderApp.bind(this);
