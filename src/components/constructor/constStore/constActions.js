@@ -5,3 +5,5 @@ export const TypesList = {
     IMAGE_TYPE: 'IMAGE_TYPE',
     VIDEO_TYPE: 'VIDEO_TYPE'
 };
+
+export const ADD_INPUT = 'ADD_INPUT';

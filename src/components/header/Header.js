@@ -10,6 +10,10 @@ class Header extends Component {
             'download-app': true,
             'hide': this.props.renderAppFilter === 'RENDER_SIGN'
         });
+        const navbarRightStyle = classSet({
+            'navbar-right': true,
+            'hide': this.props.renderAppFilter === 'RENDER_SIGN'
+        });
         return (
                 <I18n ns="translations">
                     {
@@ -17,7 +21,12 @@ class Header extends Component {
                             <header className="navbar">
                                 <div className="header-row">
                                     <div className="navbar-left">
-                                        <button className={downloadBtnStyle}
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                window.location.pathname = "/downloadApp";
+                                            }}
+                                            className={downloadBtnStyle}
                                         >{t("header.appsButtonText")}</button>
                                         <span className="lang">
                                             <span id="ru" onClick={() => i18n.changeLanguage('ru')}>RU</span>
@@ -36,8 +45,8 @@ class Header extends Component {
                                             <img title={t("header.logoTitleText")} alt="logo" src="../../img/logo.png"/>
                                         </a>
                                     </div>
-                                    <div className="navbar-right" onClick={() => {
-                                        window.location.pathname = "/cabinet"
+                                    <div className={navbarRightStyle} onClick={() => {
+                                        window.location.pathname = "/cabinet";
                                     }}
                                         >
                                         <span>FirstName</span>

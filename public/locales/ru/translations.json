@@ -56,5 +56,9 @@
     "tasksWaitingForVerifier": "ЗАЯВОК В ОЖИДАНИИ ВЕРИФИКАТОРА",
     "tasksInProcess": "ЗАЯВОК В РАБОТЕ",
     "tasksDone": "ЗАЯВОК ВЫПОЛНЕНО"
+  },
+  "downloadApp": {
+    "caption": "СКАЧАТЬ ПРИЛОЖЕНИЕ",
+    "backToMain": "< К МОИМ ЗАЯВКАМ"
   }
 }

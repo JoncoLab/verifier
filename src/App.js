@@ -72,7 +72,7 @@ class App extends Component {
             case 'RENDER_CONSTRUCTOR':
                 targetComponent = <Constructor/>;
                 break;
-            case "RENDER_DOWNLOAD_LINKS":
+            case 'RENDER_DOWNLOAD_LINKS':
                 targetComponent = <DownloadApp/>;
                 break;
             default:

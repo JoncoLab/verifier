@@ -140,6 +140,10 @@
             radius: 50%;
           }
         }
+
+        &.hide {
+          visibility: hidden;
+        }
       }
     }
 
@@ -149,6 +153,8 @@
       margin: 0;
 
       .header-row {
+        box-sizing: content-box;
+        padding: $line * 4 0 0 0 0;
         width: 100%;
         height: 100%;
         justify-content: space-between;
@@ -167,33 +173,6 @@
         }
       }
     }
-
-    //@media screen and (min-width: 470px) and (max-width: 1024px){
-    //  padding: $line * 2;
-    //  height: $line * 2;
-    //
-    //  .header-row {
-    //    width: 95%;
-    //    height: 100%;
-    //    justify-content: space-between;
-    //    align-content: center;
-    //
-    //    .navbar-left {
-    //      flex-basis: 100%;
-    //      align-self: center;
-    //    }
-    //
-    //    .navbar-center {
-    //      flex-basis: 20%;
-    //      align-self: flex-start;
-    //    }
-    //
-    //    .navbar-right {
-    //      align-self: flex-end;
-    //      flex-basis: 80%;
-    //    }
-    //  }
-    //}
   }
 
   .sign {
@@ -248,7 +227,6 @@
 
       @media screen and (max-width: 1024px) {
         width: 90%;
-        min-height: 80%;
         padding: $line * 8 $line * 2 $line * 10 $line * 2;
       }
 
@@ -443,7 +421,7 @@
 
       @media screen and (max-width: 470px) {
         width: 90%;
-        height: auto;
+        height: $line * 120;
         padding: $line * 2 $line * 2 $line * 6 $line * 2;
       }
     }
@@ -950,6 +928,129 @@
 
     .top {
 
+    }
+
+    .download-app {
+      width: 100%;
+      height: 80%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+
+      &::before {
+        position: absolute;
+        content: '';
+        display: block;
+        top: 40%;
+        height: $line * 30;
+        width: 100%;
+        background: {
+          image: url("../img/bg_appstore.jpg");
+          attachment: fixed;
+          repeat: no-repeat;
+          size: 100%;
+          position: center;
+        }
+        z-index: -1;
+      }
+
+      .download-app-caption {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        h2 {
+          font: {
+            family: $stratosBlack;
+            size: $line * 3.5;
+          }
+          color: #000;
+          letter-spacing: $line * .1;
+          line-height: $line * 3;
+          text-transform: uppercase;
+        }
+
+        .back-to-main {
+          padding: $line * 2 $line * 6;
+          background: #BDC0CF;
+          border: 0 none;
+          border-radius: 4px;
+          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.29);
+          color: #fff;
+          text-transform: uppercase;
+          font: {
+            family: $stratosMedium;
+            size: $line * 1.6;
+          }
+          padding: $line * 2 $line * 6;
+          outline: none;
+          cursor: pointer;
+          transition: {
+            duration: $time;
+            timing-function: linear;
+          }
+
+          &:hover, &:focus {
+            background: {
+              color: rgba(189, 192, 207, 0.69);
+            }
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+          }
+        }
+      }
+
+      .download-app-links {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        a {
+          position: relative;
+          width: $line * 55;
+          border: {
+            radius: $line * .8;
+          }
+          height: $line * 29.5;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-evenly;
+          align-items: center;
+          box-shadow: 0 5px 30px rgba(0, 0, 0, 0.29);
+        }
+        .android-link {
+          background: {
+            color: #282A31;
+            image:
+                    linear-gradient(-174deg, #424653 0%, #282A31 100%);
+            repeat: no-repeat;
+          }
+
+          .link-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: $line * 55;
+            height: $line * 35;
+          }
+        }
+
+        .ios-link {
+          background: {
+            color: rgb(244, 245, 255);
+          }
+          .link-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: $line * 55;
+            height: $line * 41;
+          }
+        }
+      }
     }
 
     @media screen and (max-width: 470px){

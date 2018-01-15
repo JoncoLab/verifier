@@ -56,5 +56,9 @@
     "tasksWaitingForVerifier": "TASKS WAITING FOR VERIFIER",
     "tasksInProcess": "TASKS IN PROCESS",
     "tasksDone": "TASKS DONE"
+  },
+  "downloadApp": {
+    "caption": "DOWNLOAD APP",
+    "backToMain": "< TO MY TASKS"
   }
 }

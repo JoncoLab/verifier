@@ -1,10 +1,16 @@
-import {INPUT_TYPES} from "./constActions";
+import {INPUT_TYPES, ADD_INPUT} from "./constActions";
 
-export function typesAction(filter, active) {
+export function typesAction(inputType) {
     return {
         type: INPUT_TYPES,
-        filter,
-        active
+        inputType
+    }
+}
+
+export function inputAction(text) {
+    return {
+        type: ADD_INPUT,
+        text
     }
 }
 

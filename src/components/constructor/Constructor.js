@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import {RenderFilters, setRenderFilter} from "../../store/actions";
 import {connect} from 'react-redux';
-import FirstFormFooter from './Footer';
-//import StatelessInput from './StatelessInput';
-//import CustomFieldset from './CustomFieldset';
+import Footer from './Footer';
 
 class Constructor extends Component {
     constructor(props) {
@@ -42,7 +40,7 @@ class Constructor extends Component {
                             onChange={this.handleChange}
                         />
                     </fieldset>
-                    <FirstFormFooter/>
+                    <Footer/>
                 </form>
             </main>
         );
