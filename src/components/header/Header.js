@@ -20,9 +20,9 @@ class Header extends Component {
                                         <button className={downloadBtnStyle}
                                         >{t("header.appsButtonText")}</button>
                                         <span className="lang">
-                        <span id="ru" onClick={() => i18n.changeLanguage('ru')}>RU</span>
-                        <span id="en" onClick={() => i18n.changeLanguage('en')}>EN</span>
-                    </span>
+                                            <span id="ru" onClick={() => i18n.changeLanguage('ru')}>RU</span>
+                                            <span id="en" onClick={() => i18n.changeLanguage('en')}>EN</span>
+                                        </span>
                                     </div>
                                     <div className="navbar-center">
                                         <a
@@ -37,9 +37,7 @@ class Header extends Component {
                                         </a>
                                     </div>
                                     <div className="navbar-right" onClick={() => {
-                                        if(this.props.renderAppFilter !== 'RENDER_CABINET' && this.props.renderAppFilter !== 'RENDER_SIGN') {
-                                            this.props.onHeaderClick()
-                                        }
+                                        window.location.pathname = "/cabinet"
                                     }}
                                         >
                                         <span>FirstName</span>

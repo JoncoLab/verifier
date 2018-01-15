@@ -25,12 +25,12 @@ class Constructor extends Component {
     render() {
         return (
             <main>
-                <form className="constructor">
+                <form className="constructor" onSubmit={(e) => e.preventDefault()}>
                     <fieldset className="task-caption">
                         <h2>НАЗВАНИЕ ЗАЯВКИ</h2>
                         <button
                             onClick={() => {
-                                if(this.props.renderAppFilter === 'RENDER_CONSTRUCTOR') this.props.fromConstToDash()
+                                window.location.pathname = "/dashboard"
                             }}
                         >Back to the dashboard</button>
                         <button className="task-title">? Help, pls!</button>

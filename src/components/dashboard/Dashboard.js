@@ -15,8 +15,7 @@ class Dashboard extends Component {
                                 <button className="new-task"
                                         onClick={
                                             () => {
-                                                if (this.props.renderAppFilter !== 'RENDER_CONSTRUCTOR')
-                                                    this.props.fromDashToCont();
+                                                window.location.pathname = "/constructor"
                                             }
                                         }
                                 >

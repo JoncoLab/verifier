@@ -74,7 +74,7 @@ class Cabinet extends Component {
                                     <button
                                         className="back-to-main"
                                         onClick={() => {
-                                            if(this.props.renderAppFilter === 'RENDER_CABINET') this.props.fromCabinetToDashboard()
+                                            window.location.pathname = "/dashboard"
                                         }}
                                     >{t("profile.backToMain")}
                                     </button>
@@ -85,7 +85,7 @@ class Cabinet extends Component {
                                         >{t("profile.changePassBtn")}
                                         </button>
                                         <button className="exit-profile-btn" onClick={() => {
-                                            if(this.props.renderAppFilter !== 'RENDER_SIGN') this.props.exitCabinetEvent()
+                                            window.location.pathname = "/signOut"
                                         }}>{t("profile.exitProfile")}</button>
                                     </div>
                                 </div>

@@ -22,7 +22,7 @@ class Sign extends Component {
         this.signUpUser = this.signUpUser.bind(this);
         this.showError = this.showError.bind(this);
         this.sendRequest = this.sendRequest.bind(this);
-        this.proceedToDashboard = this.proceedToDashboard.bind(this);
+        Sign.proceedToDashboard = Sign.proceedToDashboard.bind(this);
     }
     showError(err) {
         this.setState({
@@ -32,12 +32,12 @@ class Sign extends Component {
     sendRequest(settings) {
         $.ajax(settings)
             .then((response) => {
-                if (typeof response === "object" && response.code === 200)
+                if (typeof response === "object") {
                     /**
                      * @property token Token returned by server
                      */
-                    // this.proceedToDashboard(response.data.token);
-                    this.proceedToDashboard(response.data.token);
+                    Sign.proceedToDashboard(response.data.token);
+                }
                 else
                     alert(response);
             }, (response) => {
@@ -73,10 +73,8 @@ class Sign extends Component {
                 headers: {
                     "Content-Type": "application/json"
                 }
-        };
-
+            };
         this.sendRequest(settings);
-        this.props.signInEvent()
     }
     signUpUser() {
         let pass = Sign.getVal("sign-up-password"),
@@ -125,9 +123,9 @@ class Sign extends Component {
             this.signInUser() :
             this.signUpUser();
     }
-    proceedToDashboard(token) {
-        this.parseToken(token);
+    static proceedToDashboard(token) {
         document.cookie = "token=" + token + ";";
+        window.location.pathname = "/dashboard";
     }
     static loadPhoto() {
         let input = document.getElementById("photo");

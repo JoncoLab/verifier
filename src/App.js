@@ -7,29 +7,57 @@ import Cabinet from "./components/cabinet/Cabinet";
 import Constructor from "./components/constructor/Constructor";
 import {connect} from 'react-redux';
 import {RenderFilters, setRenderFilter} from "./store/actions";
+import * as $ from "jquery";
 
 class App extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            token: "",
-            active: document.cookie.includes("token")
+            active: document.cookie.replace("token=", "") !== "0"
         };
 
-        this.Start = this.Start.bind(this);
+        this.renderApp = this.renderApp.bind(this);
     }
-    Start(state = this.props.renderAppFilter) {
+    componentWillMount() {
+        if (this.state.active) {
+            let currentPage = window.location.pathname,
+                targetPage;
+
+            switch (currentPage) {
+                case "/":
+                    targetPage = "RENDER_DASHBOARD";
+                    break;
+                case "/dashboard":
+                    targetPage = "RENDER_DASHBOARD";
+                    break;
+                case "/cabinet":
+                    targetPage = "RENDER_CABINET";
+                    break;
+                case "/constructor":
+                    targetPage = "RENDER_CONSTRUCTOR";
+                    break;
+                case "/sign":
+                    targetPage = "RENDER_SIGN";
+                    break;
+                case "/signOut":
+                    document.cookie = "token=0;";
+                    targetPage = "RENDER_SIGN";
+                    break;
+                default:
+                    targetPage = "RENDER_SIGN";
+            }
+            this.props.renderTargetPage(targetPage);
+        } else {
+            this.props.renderTargetPage("RENDER_SIGN");
+        }
+    }
+    renderApp(state = this.props.renderAppFilter) {
         let targetComponent;
         switch (state) {
             case 'RENDER_SIGN':
                 targetComponent =
-                    <Sign parseToken={
-                        (token) => {
-                            this.setState({
-                                token: token
-                            });
-                        }
-                    }/>;
+                    <Sign/>;
                 break;
             case 'RENDER_DASHBOARD':
                 targetComponent = <Dashboard token={this.state.token}/>;
@@ -43,60 +71,36 @@ class App extends Component {
             default:
                 document.cookie.replace("token=" + this.state.token + ";", "");
                 targetComponent =
-                    <Sign parseToken={
-                        (token) => {
-                            this.setState({
-                                token: token
-                            });
-                        }
-                    }/>;
+                    <Sign/>;
         }
         return targetComponent;
     }
-    Continue() {
-        let token = document.cookie
-                .split(";")
-                .find((element) => {
-                    return element.includes("token=");
-                })
-                .replace("token=", ""),
-            currentPage = window.location.pathname,
-            targetPage;
-
-        this.setState({
-            token: token
-        });
-
-        switch (currentPage) {
-            case "/":
-                targetPage = "RENDER_DASHBOARD";
-                break;
-            case "/dashboard":
-                targetPage = "RENDER_DASHBOARD";
-                break;
-            case "/cabinet":
-                targetPage = "RENDER_CABINET";
-                break;
-            case "/constructor":
-                targetPage = "RENDER_CONSTRUCTOR";
-                break;
-            case "/sign":
-                targetPage = "RENDER_SIGN";
-                break;
-            case "/signOut":
-                document.cookie.replace("token=" + token + ";", "");
-                break;
-            default:
-                document.cookie.replace("token=" + token + ";", "");
-                targetPage = "RENDER_SIGN";
-        }
-        this.props.renderTargetPage(targetPage);
+    getUserData() {
+        $.ajax({
+            url: "http://185.4.75.58:8181/verifier/api/v1/user/customer/0",
+            method: "GET",
+            async: true,
+            crossDomain: true,
+            contentType: false,
+            headers: {
+                "Token": this.state.token
+            }
+        })
+            .then((response) => {
+                alert(response.code);
+            }, (response) => {
+                alert(
+                    typeof response === "object" ?
+                        JSON.stringify(response) :
+                        response
+                );
+            });
     }
     render() {
         return (
             <div className="App">
                 <Header/>
-                {this.Start()}
+                {this.renderApp()}
             </div>
         );
     }
