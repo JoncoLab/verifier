@@ -1,13 +1,27 @@
 import React, {Component} from 'react';
 import {I18n} from 'react-i18next';
+import classSet from 'react-classset';
 import TypeSelect from './TypeSelect';
-import {typesAction} from "./constStore/constActionCreators";
-import {TypesList} from "./constStore/constActions";
+import TextInput from './inputTypes/TextInput';
+import ImageInput from './inputTypes/ImageInput';
+import VideoInput from './inputTypes/VideoInput';
+import {inputAction, typesAction} from "./constStore/constActionCreators";
 import {connect} from 'react-redux';
 
 class Footer extends Component {
     render() {
-        console.log(this.props.inputType);
+        const textSelectClass = classSet({
+            'type-select': true,
+            'active': this.props.inputProps === "TEXT_TYPE"
+        });
+        const imageSelectClass = classSet({
+            'type-select': true,
+            'active': this.props.inputProps === "IMAGE_TYPE"
+        });
+        const videoSelectClass = classSet({
+            'type-select': true,
+            'active': this.props.inputProps === "VIDEO_TYPE"
+        });
         return (
             <I18n>
                 {
@@ -20,30 +34,27 @@ class Footer extends Component {
                             <div className="available-types">
                                 <TypeSelect
                                     text="•"
-                                    btnClass="type-select"
-                                    onClick={() => {
-                                        if(this.props.inputType !== 'TEXT_TYPE') this.props.typeText();
-                                        console.log(this.props.inputType);
-                                    }}
+                                    btnClass={textSelectClass}
+                                    inputType="TEXT_TYPE"
                                 />
                                 <TypeSelect
                                     text="♦"
-                                    btnClass="type-select"
-                                    onClick={() => {
-                                        if(this.props.inputType !== 'IMAGE_TYPE') this.props.typeImage();
-                                        console.log(this.props.inputType);
-                                    }}
+                                    btnClass={imageSelectClass}
+                                    inputType="IMAGE_TYPE"
                                 />
                                 <TypeSelect
                                     text="♣"
-                                    btnClass="type-select"
-                                    onClick={() => {
-                                        if(this.props.inputType !== 'VIDEO_TYPE') this.props.typeVideo();
-                                        console.log(this.props.inputType);
-                                    }}
+                                    btnClass={videoSelectClass}
+                                    inputType="VIDEO_TYPE"
                                 />
                             </div>
-                            <button className="add-input">{t("newTask.taskFooter.addInput")}</button>
+                            <button
+                                type="button"
+                                className="add-input"
+                                onClick={() => {
+                                    this.props.addInputEvent(this.props.inputProps)
+                                }}
+                            >{t("newTask.taskFooter.addInput")}</button>
                         </div>
                     )
                 }
@@ -54,22 +65,29 @@ class Footer extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        inputType: state.typeSelect.inputType
+        inputProps: state.typeSelect.inputType
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return ({
-        typeText: () => {
-            dispatch(typesAction(TypesList.TEXT_TYPE))
-        },
-
-        typeImage: () => {
-            dispatch(typesAction(TypesList.IMAGE_TYPE))
-        },
-
-        typeVideo: () => {
-            dispatch(typesAction(TypesList.VIDEO_TYPE))
+        addInputEvent: (target) => {
+            let targetField;
+            switch(target) {
+                case "TEXT_TYPE":
+                    targetField = <TextInput/>;
+                    break;
+                case "IMAGE_TYPE":
+                    targetField = <ImageInput/>;
+                    break;
+                case "VIDEO_TYPE":
+                    targetField = <VideoInput/>;
+                    break;
+                default:
+                    targetField = null;
+                    break;
+            }
+            dispatch(inputAction(targetField))
         }
     })
 };

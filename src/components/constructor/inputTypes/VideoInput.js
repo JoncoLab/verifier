@@ -8,7 +8,7 @@ class VideoInput extends Component {
             <I18n>
                 {
                     (t) => (
-                        <div className="video-input">
+                        <div id={2} className="video-input">
                             <div className="input-caption">
                                 <div className="input-info">
                                     <h2>{t("newTask.newInput.taskName")}</h2>

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import {I18n} from 'react-i18next';
-import TextInput from './inputTypes/TextInput';
-import ImageInput from './inputTypes/ImageInput';
-import VideoInput from './inputTypes/VideoInput';
 import Footer from './Footer';
+import {RequiredFields} from "./RequiredFields";
 import {RenderFilters, setRenderFilter} from "../../store/actions";
 import {connect} from 'react-redux';
 
@@ -25,12 +23,13 @@ class Constructor extends Component {
     }
 
     render() {
+        console.log(this.props.inputsList);
         return (
             <I18n>
                 {
                     (t) => (
                         <main>
-                            <section className="constructor">
+                            <form className="constructor" onSubmit={(e) => e.preventDefault()}>
                                 <div className="constructor-top">
                                     <h2>{t("newTask.constCaption")}</h2>
                                     <button
@@ -40,7 +39,7 @@ class Constructor extends Component {
                                         }}
                                     >{t("newTask.backToMain")}</button>
                                 </div>
-                                <form className="constructor-form" onSubmit={(e) => e.preventDefault()}>
+                                <section className="constructor-form">
                                     <div className="task-caption">
                                         <h3>{t("newTask.taskName")}</h3>
                                         <button type="button" className="task-title">♥</button>
@@ -53,12 +52,13 @@ class Constructor extends Component {
                                             onChange={this.handleChange}
                                         />
                                     </div>
-                                    <TextInput/>
-                                    <ImageInput/>
-                                    <VideoInput/>
+                                    {this.props.inputsList.map((input) => {
+                                        return input
+                                    })}
                                     <Footer/>
-                                </form>
-                            </section>
+                                </section>
+                                <RequiredFields/>
+                            </form>
                         </main>
                     )
                 }
@@ -69,7 +69,8 @@ class Constructor extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        renderAppFilter: state.renderAppReducer
+        renderAppFilter: state.renderAppReducer,
+        inputsList: state.addInput
     }
 };
 

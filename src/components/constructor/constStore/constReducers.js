@@ -15,16 +15,13 @@ export function typeSelect(state = initialState, action) {
     }
 }
 
-const initialInputState = {
-    text: 'laksjfga;skdba.skdfjvbhpz,bhqlb oh'
-};
-
-export function addInput(state = initialInputState, action) {
+export function addInput(state = [], action) {
     switch(action.type) {
         case ADD_INPUT:
-            return {...state,
-                text: action.text
-            };
+            return [
+                ...state,
+                action.el
+            ];
         default:
             return state;
     }

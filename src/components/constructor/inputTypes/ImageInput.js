@@ -8,7 +8,7 @@ class ImageInput extends Component {
             <I18n>
                 {
                     (t) => (
-                        <div className="image-input">
+                        <div id={1} className="image-input">
                             <div className="input-caption">
                                 <div className="input-info">
                                     <h2>{t("newTask.newInput.taskName")}</h2>

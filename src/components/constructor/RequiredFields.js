@@ -17,12 +17,7 @@ export class RequiredFields extends Component {
                     (t) => (
                         <section className="constructor-required">
                             <h2 className="caption">{t("newTask.taskRequiredFields.caption")}</h2>
-                            <form
-                                name="required-fields"
-                                onSubmit={(e) => {
-                                    e.preventDefault();
-                                }}
-                            >
+                            <div className="required-fields">
                                 <div className="field-set names">
                                     <input
                                         id="f"
@@ -123,7 +118,7 @@ export class RequiredFields extends Component {
                                         {t("newTask.taskRequiredFields.save")}
                                     </button>
                                 </div>
-                            </form>
+                            </div>
                             <input
                                 type="submit"
                                 name="constructor-submit"

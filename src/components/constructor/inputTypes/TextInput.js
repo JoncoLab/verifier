@@ -3,12 +3,13 @@ import {I18n} from 'react-i18next';
 import TypeSelect from '../TypeSelect';
 
 class TextInput extends Component {
+
     render() {
         return (
             <I18n>
                 {
                     (t) => (
-                        <div className="text-input">
+                        <div id={3} className="text-input">
                             <div className="input-caption">
                                 <div className="input-info">
                                     <h2>{t("newTask.newInput.taskName")}</h2>

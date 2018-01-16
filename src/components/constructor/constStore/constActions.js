@@ -7,3 +7,5 @@ export const TypesList = {
 };
 
 export const ADD_INPUT = 'ADD_INPUT';
+
+export const REMOVE_INPUT = 'REMOVE_INPUT';
