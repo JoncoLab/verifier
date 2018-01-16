@@ -169,13 +169,6 @@ class Sign extends Component {
                                 required
                             />
                         </label>
-                        <input
-                            type="tel"
-                            name="phone"
-                            id="phone"
-                            placeholder={t("sign.up.phonePlaceholder")}
-                            required
-                        />
                         <label>
                             {
                                 t("sign.up.photoPlaceholder")
