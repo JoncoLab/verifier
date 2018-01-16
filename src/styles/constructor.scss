@@ -304,3 +304,231 @@
     }
   }
 }
+
+.constructor-required {
+  text-align: right;
+
+  .caption {
+    text-align: left;
+    @include blackCaption;
+  }
+
+  form {
+    width: 98%;
+    border: {
+      radius: $line;
+      style: none;
+    }
+    margin: $line * 5 auto;
+    box-shadow: 0 $line $line * 3 0 rgba(156,162,188,0.55);
+    background: {
+      color: white;
+    }
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: $line * 2 $line * 4;
+
+    .field-set {
+      width: 100%;
+      margin: $line * 2 0;
+      display: flex;
+      border: none;
+      justify-content: space-between;
+
+      label {
+        display: flex;
+        align-items: center;
+        color: black;
+        font: {
+          family: $stratosMedium;
+          size: $line * 1.6;
+        }
+      }
+
+      &.names {
+        #f {
+          display: none;
+
+          + label {
+            flex-basis: 30%;
+            min-width: 30%;
+
+            &::before {
+              content: "◘";
+              margin: 0 $line 0 0;
+              font: {
+                family: $ico;
+                size: $line * 2.5;
+              }
+              color: $blue;
+            }
+          }
+
+          &:checked {
+            + label::before {
+              content: "○";
+            }
+          }
+        }
+
+        input[type="text"] {
+          @include input;
+          max-width: 20%;
+          margin: 0 $line 0;
+
+          &:first-of-type {
+            margin: 0 $line 0 $line * 2;
+          }
+
+          &:last-of-type {
+            margin: 0 0 0 $line;
+          }
+        }
+      }
+
+      &.date {
+        label {
+          &:first-of-type {
+            flex-basis: 30%;
+            min-width: 30%;
+          }
+        }
+
+        input {
+          @include input;
+          max-width: 20%;
+          margin: 0 $line 0;
+
+          &:first-of-type {
+            margin: 0 $line 0 $line * 2;
+          }
+
+          &:last-of-type {
+            margin: 0 0 0 $line;
+          }
+        }
+      }
+
+      &.address {
+        label {
+          flex-basis: 30%;
+          min-width: 30%;
+        }
+
+        input {
+          @include input;
+          margin: 0 0 0 $line * 2;
+        }
+      }
+
+      &.price {
+        justify-content: space-between;
+
+        label {
+          flex-basis: 30%;
+          min-width: 30%;
+
+          .value {
+            margin: 0 0 0 $line;
+            color: $blue;
+          }
+        }
+
+        #price {
+          -webkit-appearance: none;
+          width: 100%;
+          background: transparent;
+          margin: 0 0 0 $line * 2;
+
+          &:focus {
+            outline: none;
+          }
+
+          &::-ms-track {
+            width: 100%;
+            cursor: pointer;
+            background: transparent;
+            border-color: transparent;
+            color: transparent;
+          }
+
+          &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: $line * 4;
+            height: $line * 4;
+            margin: $line * -1.9 0 0 0;
+            background: linear-gradient(68deg, #6B68DB 0%, #3C75CE 95%), $blue;
+            border: $line / 5 solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 $line * 2 0 $fontMain;
+            cursor: pointer;
+
+            transition: {
+              duration: $time;
+              timing-function: linear;
+            }
+
+            &:hover {
+              box-shadow: 0 0 $line 0 $fontMain;
+              background: $blue;
+            }
+          }
+
+          &::-webkit-slider-runnable-track {
+            width: 100%;
+            height: $line / 5;
+            cursor: pointer;
+            background: $fontMain;
+            border-radius: $line / 5;
+          }
+
+          &::-webkit-media-slider-thumb {
+            background: black;
+          }
+        }
+      }
+
+      &.comment {
+
+        textarea {
+          @include input;
+          background: {
+            color: lighten($grey, 20%);
+          }
+          resize: none;
+          padding: $line * 2;
+          border: {
+            top-right-radius: $line;
+            top-left-radius: $line;
+          }
+          font: {
+            size: $line * 1.5;
+          }
+        }
+      }
+
+      &.buttons {
+        width: 50%;
+        justify-content: space-around;
+
+        button {
+          @include greyBtn;
+        }
+      }
+    }
+  }
+
+  #constructor-submit {
+    display: none;
+
+    + label {
+      @include mainBlueBtn;
+      display: inline-block;
+      margin: 0 $line * 6 $line * 4;
+      padding: $line * 2 $line * 4;
+      box-sizing: border-box;
+    }
+  }
+}

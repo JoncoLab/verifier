@@ -6,6 +6,7 @@ import VideoInput from './inputTypes/VideoInput';
 import Footer from './Footer';
 import {RenderFilters, setRenderFilter} from "../../store/actions";
 import {connect} from 'react-redux';
+import {RequiredFields} from "./RequiredFields";
 
 class Constructor extends Component {
     constructor(props) {
@@ -59,6 +60,7 @@ class Constructor extends Component {
                                     <Footer/>
                                 </form>
                             </section>
+                            <RequiredFields/>
                         </main>
                     )
                 }

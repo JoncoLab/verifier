@@ -82,6 +82,23 @@
     "taskFooter": {
       "type": "Select field type: ",
       "addInput": "+ ADD"
-    }
+    },
+    "taskRequiredFields": {
+      "caption": "Required fields",
+      "f": "Физическое лицо verification",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "secondName": "Second name",
+      "date": "Verification date and time",
+      "from": "from",
+      "to": "to",
+      "address": "Verification address",
+      "addressPlaceholder": "Enter full address",
+      "price": "Price: ",
+      "comment": "Comment",
+      "preview": "Preview",
+      "save": "Save as template"
+    },
+    "submit": "Send"
   }
 }
