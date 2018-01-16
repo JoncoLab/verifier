@@ -46,12 +46,11 @@ class Constructor extends Component {
         });
     }
 
-    onSubmitConstructor(e) {
-        e.preventDefault();
+    onSubmitConstructor() {
         let form = document.forms[0];
 
         for (let i = 0; i < form.length; i++) {
-            alert(form[i].name);
+            alert(form[i].id);
         }
     }
 
@@ -74,7 +73,10 @@ class Constructor extends Component {
                                 className="constructor"
                                 name="constructor"
                                 id="constructor"
-                                onSubmit={(e) => this.onSubmitConstructor(e)}
+                                onSubmit={(e) => {
+                                    e.preventDefault();
+                                    this.onSubmitConstructor();
+                                }}
                             >
                                 <div className="constructor-top">
                                     <h2>{t("newTask.constCaption")}</h2>
@@ -97,7 +99,6 @@ class Constructor extends Component {
                                             id="task-name"
                                             name="task-name"
                                             placeholder={t("newTask.namePlaceholder")}
-                                            onChange={this.handleChange}
                                         />
                                     </div>
                                     <div className="custom-fields">

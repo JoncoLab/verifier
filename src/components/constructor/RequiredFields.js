@@ -24,6 +24,7 @@ export class RequiredFields extends Component {
                                         id="f"
                                         name="f"
                                         type="checkbox"
+                                        required={true}
                                         checked={this.state.f}
                                         onChange={() => {
                                             this.setState({
@@ -39,6 +40,7 @@ export class RequiredFields extends Component {
                                         type="text"
                                         name="first-name"
                                         id="first-name"
+                                        required={true}
                                         placeholder={t("newTask.taskRequiredFields.firstName")}
                                         disabled={!this.state.f}
                                     />
@@ -46,6 +48,7 @@ export class RequiredFields extends Component {
                                         type="text"
                                         name="last-name"
                                         id="last-name"
+                                        required={true}
                                         placeholder={t("newTask.taskRequiredFields.lastName")}
                                         disabled={!this.state.f}
                                     />
@@ -53,6 +56,7 @@ export class RequiredFields extends Component {
                                         type="text"
                                         name="second-name"
                                         id="second-name"
+                                        required={true}
                                         placeholder={t("newTask.taskRequiredFields.secondName")}
                                         disabled={!this.state.f}
                                     />
@@ -63,18 +67,21 @@ export class RequiredFields extends Component {
                                         type="date"
                                         name="date"
                                         id="date"
+                                        required={true}
                                     />
                                     <label htmlFor="time">{t("newTask.taskRequiredFields.from")}</label>
                                     <input
                                         type="time"
                                         name="from"
                                         id="from"
+                                        required={true}
                                     />
                                     <label htmlFor="to">{t("newTask.taskRequiredFields.to")}</label>
                                     <input
                                         type="time"
                                         name="to"
                                         id="to"
+                                        required={true}
                                     />
                                 </div>
                                 <div className="field-set address">
@@ -83,6 +90,7 @@ export class RequiredFields extends Component {
                                         type="text"
                                         name="address"
                                         id="address"
+                                        required={true}
                                         placeholder={t("newTask.taskRequiredFields.addressPlaceholder")}
                                     />
                                 </div>
@@ -95,6 +103,7 @@ export class RequiredFields extends Component {
                                         type="range"
                                         name="price"
                                         id="price"
+                                        required={true}
                                         placeholder="pricePlaceholder"
                                         min="10"
                                         max="1000"
@@ -112,6 +121,7 @@ export class RequiredFields extends Component {
                                     <textarea
                                         name="comment"
                                         id="comment"
+                                        required={true}
                                         rows="5"
                                         placeholder={t("newTask.taskRequiredFields.comment")}
                                     >
