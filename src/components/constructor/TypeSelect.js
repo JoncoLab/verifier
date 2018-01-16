@@ -7,7 +7,11 @@ class TypeSelect extends Component {
     render() {
         return (
             <button
-                onClick={() => {this.props.onClickBtn()}}
+                onClick={
+                    !this.props.local ?
+                        () => {this.props.onClickBtn()} :
+                        this.props.onClick
+                }
                 type="button"
                 className={this.props.btnClass}>
                 {this.props.text}

@@ -2,42 +2,80 @@ import React, { Component } from 'react';
 import {I18n} from 'react-i18next';
 import Footer from './Footer';
 import {RequiredFields} from "./RequiredFields";
-import {RenderFilters, setRenderFilter} from "../../store/actions";
-import {removeAction} from "./constStore/constActionCreators";
 import {connect} from 'react-redux';
+import CustomFieldset from "./inputTypes/CustomFieldSet";
 
 class Constructor extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            inputVal: ''
+            inputVal: '',
+            customFields: [
+                {
+                    id: 1,
+                    type: "IMAGE_TYPE"
+                },
+                {
+                    id: 2,
+                    type: "TEXT_TYPE"
+                },
+                {
+                    id: 3,
+                    type: "VIDEO_TYPE"
+                }
+            ]
         };
 
-        this.handleChange = this.handleChange.bind(this);
+        this.setCustomFields = this.setCustomFields.bind(this);
+        this.removeEvent = this.removeEvent.bind(this);
+        this.onSubmitConstructor = this.onSubmitConstructor.bind(this);
+        this.constructorPreview = this.constructorPreview.bind(this);
+        this.saveConstructorAsTemplate = this.saveConstructorAsTemplate.bind(this);
     }
 
-    arrayCut(num) {
-        if(this.props.inputsList > 0) {
-            this.props.inputsList.splice(num)
-        }
+    removeEvent(id) {
+        let newFieldSet = this.state.customFields;
+        newFieldSet.splice(id - 1, 1);
+        this.setCustomFields(newFieldSet);
     }
 
-    handleChange(event) {
+    setCustomFields(fields) {
         this.setState({
-            inputVal: event.target.value
+            customFields: fields
         });
     }
 
+    onSubmitConstructor(e) {
+        e.preventDefault();
+        let form = document.forms[0];
+
+        for (let i = 0; i < form.length; i++) {
+            alert(form[i].name);
+        }
+    }
+
+    constructorPreview(e) {
+        e.preventDefault();
+    }
+
+    saveConstructorAsTemplate(e) {
+        e.preventDefault();
+    }
+
     render() {
-        console.log(this.props.inputsList);
-        console.log(this.props.arrayCut);
+        console.log(this.state.customFields);
         return (
             <I18n>
                 {
                     (t) => (
                         <main>
-                            <form className="constructor" onSubmit={(e) => e.preventDefault()}>
+                            <form
+                                className="constructor"
+                                name="constructor"
+                                id="constructor"
+                                onSubmit={(e) => this.onSubmitConstructor(e)}
+                            >
                                 <div className="constructor-top">
                                     <h2>{t("newTask.constCaption")}</h2>
                                     <button
@@ -50,24 +88,36 @@ class Constructor extends Component {
                                 <section className="constructor-form">
                                     <div className="task-caption">
                                         <h3>{t("newTask.taskName")}</h3>
-                                        <button type="button" className="task-title"
-                                                onClick={() => {
-                                                    this.props.arrayCut(this.props.inputsList, 1)
-                                                }}
+                                        <button
+                                            type="button"
+                                            className="task-title"
                                         >♥</button>
                                         <input
                                             type="text"
                                             id="task-name"
                                             name="task-name"
                                             placeholder={t("newTask.namePlaceholder")}
-                                            value={this.state.inputVal}
                                             onChange={this.handleChange}
                                         />
                                     </div>
-
-                                    <Footer/>
+                                    <div className="custom-fields">
+                                        {this.state.customFields.map((field) => (
+                                            <CustomFieldset
+                                                remove={this.removeEvent}
+                                                key={field.id}
+                                                {...field}
+                                            />
+                                        ))}
+                                    </div>
+                                    <Footer
+                                        components={this.state.customFields}
+                                        setCustomFields={this.setCustomFields}
+                                    />
                                 </section>
-                                <RequiredFields/>
+                                <RequiredFields
+                                    constructorPreview={(e) => this.constructorPreview(e)}
+                                    saveConstructorAsTemplate={(e) => this.saveConstructorAsTemplate(e)}
+                                />
                             </form>
                         </main>
                     )
@@ -84,16 +134,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return ({
-        fromConstToDash: () => {
-            dispatch(setRenderFilter(RenderFilters.RENDER_DASHBOARD))
-        },
-
-        arrayCut: (target, index) => {
-            dispatch(removeAction(target, index))
-        }
-    })
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Constructor)
+export default connect(mapStateToProps)(Constructor)

@@ -118,13 +118,13 @@ export class RequiredFields extends Component {
                                     </textarea>
                                 </div>
                                 <div className="field-set buttons">
-                                    <button onClick={(e) => {
-                                        e.preventDefault();
+                                    <button onClick={() => {
+                                        this.props.constructorPreview()
                                     }}>
                                         {t("newTask.taskRequiredFields.preview")}
                                     </button>
-                                    <button onClick={(e) => {
-                                        e.preventDefault();
+                                    <button onClick={() => {
+                                        this.props.saveConstructorAsTemplate()
                                     }}>
                                         {t("newTask.taskRequiredFields.save")}
                                     </button>
@@ -134,7 +134,6 @@ export class RequiredFields extends Component {
                                 type="submit"
                                 name="constructor-submit"
                                 id="constructor-submit"
-                                form="required-fields"
                             />
                             <label htmlFor="constructor-submit">{t("newTask.submit")}</label>
                         </section>

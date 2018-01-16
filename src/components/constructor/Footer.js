@@ -2,13 +2,24 @@ import React, {Component} from 'react';
 import {I18n} from 'react-i18next';
 import classSet from 'react-classset';
 import TypeSelect from './TypeSelect';
-import {setTypeAction} from "./constStore/constActionCreators";
 import {connect} from 'react-redux';
 
 class Footer extends Component {
     constructor(props) {
         super(props);
 
+        this.components = props.components;
+
+        this.state = {
+            id: this.components.length + 1
+        };
+    }
+    appendField(id) {
+        this.components.push({
+            id: id,
+            type: this.props.inputProps
+        });
+        this.props.setCustomFields(this.components);
     }
     render() {
         const textSelectClass = classSet({
@@ -35,16 +46,19 @@ class Footer extends Component {
                             <div className="available-types">
                                 <TypeSelect
                                     text="•"
+                                    local={false}
                                     btnClass={textSelectClass}
                                     inputType="TEXT_TYPE"
                                 />
                                 <TypeSelect
                                     text="♦"
+                                    local={false}
                                     btnClass={imageSelectClass}
                                     inputType="IMAGE_TYPE"
                                 />
                                 <TypeSelect
                                     text="♣"
+                                    local={false}
                                     btnClass={videoSelectClass}
                                     inputType="VIDEO_TYPE"
                                 />
@@ -53,7 +67,10 @@ class Footer extends Component {
                                 type="button"
                                 className="add-input"
                                 onClick={() => {
-                                    this.props.selectedTypeEvent(this.props.inputProps)
+                                    this.setState({
+                                        id: this.state.id + 1
+                                    });
+                                    this.appendField(this.state.id);
                                 }}
                             >{t("newTask.taskFooter.addInput")}</button>
                         </div>
@@ -70,13 +87,5 @@ const mapStateToProps = (state) => {
     }
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return ({
-        selectedTypeEvent: (target) => {
-            dispatch(setTypeAction(target))
-        }
-    })
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Footer)
+export default connect(mapStateToProps)(Footer)
 

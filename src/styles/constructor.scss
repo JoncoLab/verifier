@@ -72,152 +72,156 @@
       }
     }
 
-    .text-input, .image-input, .video-input {
+    .custom-fields {
       width: 100%;
-      margin: $line * 4 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
 
-      .input-caption {
+      .text-input, .image-input, .video-input {
         width: 100%;
+        margin: $line * 4 0;
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        align-content: space-between;
 
-        .input-info {
-          flex-grow: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          align-items: flex-start;
-
-          h2 {
-            @include blackCaption;
-          }
-
-          .remove-btn {
-            border: none;
-            outline: none;
-            background: {
-              color: transparent;
-            }
-            color: $fontMain;
-            font: {
-              family: $ico, $stratosMedium;
-              size: $line * 1.6;
-            }
-
-            &:hover {
-              color: $red;
-            }
-          }
-        }
-
-        .input-types {
-          width: $line * 22;
+        .input-caption {
+          width: 100%;
           display: flex;
           flex-wrap: wrap;
           justify-content: space-between;
-          align-items: flex-start;
+          align-items: center;
           align-content: space-between;
 
-          .type {
-            width: 80%;
-            font: {
-              family: $stratosMedium;
-              size: $line * 1.5;
-            }
-            color: $fontMain;
+          .input-info {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
 
-            span {
-              color: $blue;
+            h2 {
+              @include blackCaption;
             }
-          }
 
-          .task-title {
-            font: {
-              family: $ico;
-              size: $line * 2.4;
-            }
-            color: $fontMain;
-            background: {
-              color: transparent;
-            }
-            border: none;
-            outline: none;
-          }
-
-          .available-types {
-            width: 100%;
-            margin: $line / 2 0 0 0;
-
-            .input-type {
-              background: {
-                color: #F5F5FF;
-              }
-              border: {
-                radius: $line * .4;
-                style: none;
-              }
+            .remove-btn {
+              border: none;
               outline: none;
-              color: #BDC1CD;
+              background: {
+                color: transparent;
+              }
+              color: $fontMain;
               font: {
                 family: $ico, $stratosMedium;
-                size: $line * 2.5;
-              }
-              margin: 0 $line / 2;
-              padding: $line * 1.7;
-              text-align: center;
-              cursor: pointer;
-              transition: {
-                duration: $time;
-                timing-function: linear;
+                size: $line * 1.6;
               }
 
-              &:hover, &.active {
+              &:hover {
+                color: $red;
+              }
+            }
+          }
+
+          .input-types {
+            width: $line * 22;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            align-content: space-between;
+
+            .type {
+              width: 80%;
+              font: {
+                family: $stratosMedium;
+                size: $line * 1.5;
+              }
+              color: $fontMain;
+
+              span {
+                color: $blue;
+              }
+            }
+
+            .task-title {
+              font: {
+                family: $ico;
+                size: $line * 2.4;
+              }
+              color: $fontMain;
+              background: {
+                color: transparent;
+              }
+              border: none;
+              outline: none;
+            }
+
+            .available-types {
+              width: 100%;
+              margin: $line / 2 0 0 0;
+
+              .input-type {
                 background: {
-                  color: $blue;
-                  image: linear-gradient(68deg, #6B68DB 0%, #3C75CE 95%);
+                  color: #F5F5FF;
                 }
-                box-shadow: 0 10px 30px 0 rgba(156,162,188,0.75);
-                color: white;
+                border: {
+                  radius: $line * .4;
+                  style: none;
+                }
+                outline: none;
+                color: #BDC1CD;
+                font: {
+                  family: $ico, $stratosMedium;
+                  size: $line * 2.5;
+                }
+                margin: 0 $line / 2;
+                padding: $line * 1.7;
+                text-align: center;
+                cursor: pointer;
+                transition: {
+                  duration: $time;
+                  timing-function: linear;
+                }
+
+                &:hover, &.active {
+                  background: {
+                    color: $blue;
+                    image: linear-gradient(68deg, #6B68DB 0%, #3C75CE 95%);
+                  }
+                  box-shadow: 0 10px 30px 0 rgba(156,162,188,0.75);
+                  color: white;
+                }
               }
             }
           }
         }
-      }
 
-      .input-fields {
-        margin: $line * 6 0 0 0;
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-        align-content: space-between;
+        .input-fields {
+          margin: $line * 6 0 0 0;
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          align-items: center;
+          align-content: space-between;
 
-        input {
-          @include input;
+          input {
+            @include input;
+          }
         }
       }
-    }
 
-    .text-input, .video-input {
-      .input-fields {
-        input {
-          width: 47%;
+      .text-input, .video-input {
+        .input-fields {
+          input {
+            width: 47%;
+          }
         }
       }
-    }
 
-    .image-input {
-      .input-fields {
-        input {
-          width: 31%;
+      .image-input {
+        .input-fields {
+          input {
+            width: 31%;
+          }
         }
       }
     }

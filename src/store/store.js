@@ -1,12 +1,10 @@
 import {combineReducers, createStore} from 'redux';
 import {renderAppReducer} from "./reducer";
-import {typeSelect, addInput, setCustomFieldType} from "../components/constructor/constStore/constReducers";
+import {typeSelect} from "../components/constructor/constStore/constReducers";
 
 const globalReducer = combineReducers({
     renderAppReducer,
-    typeSelect,
-    addInput,
-    setCustomFieldType
+    typeSelect
 });
 const store = createStore(globalReducer);
 

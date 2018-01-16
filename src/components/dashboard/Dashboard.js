@@ -8,6 +8,9 @@ class Dashboard extends Component {
     componentDidMount() {
         // Here AJAX is supposed to be
     }
+    popUp() {
+        // popUp function to display order
+    }
     render() {
         return (
             <I18n>
