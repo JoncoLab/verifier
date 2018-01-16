@@ -46,12 +46,16 @@ class CustomFieldSet extends Component {
                             type="text"
                             name={"text-name-" + this.props.id}
                             id={"text-name-" + this.props.id}
-                            placeholder={t("newTask.namePlaceholder")}/>
+                            placeholder={t("newTask.namePlaceholder")}
+                            required={true}
+                        />
                         <input
                             type="text"
                             name={"text-desc-" + this.props.id}
                             id={"text-desc-" + this.props.id}
-                            placeholder={t("newTask.newInput.descPlaceholder")}/>
+                            placeholder={t("newTask.newInput.descPlaceholder")}
+                            required={true}
+                        />
                     </div>
                 </div>
             )
@@ -100,17 +104,23 @@ class CustomFieldSet extends Component {
                             type="text"
                             name={"image-name-" + this.props.id}
                             id={"image-name-" + this.props.id}
-                            placeholder={t("newTask.newInput.fioPlaceholder")}/>
+                            placeholder={t("newTask.newInput.fioPlaceholder")}
+                            required={true}
+                        />
                         <input
                             type="text"
                             name={"image-desc-" + this.props.id}
                             id={"image-desc-" + this.props.id}
-                            placeholder={t("newTask.newInput.visitPlaceholder")}/>
+                            placeholder={t("newTask.newInput.visitPlaceholder")}
+                            required={true}
+                        />
                         <input
                             type="number"
                             name={"image-files-" + this.props.id}
                             id={"image-files-" + this.props.id}
-                            placeholder={t("newTask.newInput.filePlaceholder")}/>
+                            placeholder={t("newTask.newInput.filePlaceholder")}
+                            required={true}
+                        />
                     </div>
                 </div>
             )
@@ -159,12 +169,16 @@ class CustomFieldSet extends Component {
                             type="text"
                             name={"video-name-" + this.props.id}
                             id={"video-name-" + this.props.id}
-                            placeholder={t("newTask.namePlaceholder")}/>
+                            placeholder={t("newTask.namePlaceholder")}
+                            required={true}
+                        />
                         <input
                             type="text"
                             name={"video-desc-" + this.props.id}
                             id={"video-desc-" + this.props.id}
-                            placeholder={t("newTask.newInput.descPlaceholder")}/>
+                            placeholder={t("newTask.newInput.descPlaceholder")}
+                            required={true}
+                        />
                     </div>
                 </div>
             )
