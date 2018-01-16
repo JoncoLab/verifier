@@ -241,14 +241,13 @@ class Sign extends Component {
     sendRequest(settings) {
         $.ajax(settings)
             .then((response) => {
-                if (typeof response === "object") {
-                    /**
-                     * @property token Token returned by server
-                     */
-                    Sign.proceedToDashboard(response.data.token);
-                }
-                else
-                    alert(response);
+                /**
+                 * @property token Token returned by server
+                 */
+                Sign.proceedToDashboard(this.state.type === 2 ?
+                    JSON.parse(response).data.token :
+                    response.data.token
+                );
             }, (response) => {
                 alert(
                     typeof response === "object" ?
