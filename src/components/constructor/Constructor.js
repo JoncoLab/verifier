@@ -81,6 +81,7 @@ class Constructor extends Component {
                                 <div className="constructor-top">
                                     <h2>{t("newTask.constCaption")}</h2>
                                     <button
+                                        type="button"
                                         className="back-to-main"
                                         onClick={() => {
                                             window.location.pathname = "/dashboard"
