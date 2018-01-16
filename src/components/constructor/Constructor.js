@@ -46,7 +46,7 @@ class Constructor extends Component {
         });
     }
 
-    onSubmitConstructor() {
+    static onSubmitConstructor() {
         let form = document.forms[0];
 
         for (let i = 0; i < form.length; i++) {
@@ -60,14 +60,20 @@ class Constructor extends Component {
                 alert("Id: " + id + s + "Type: " + type + s + "Value: " + value);
             }
         }
+
+        // Тут треба форм дату красиво складати і передавати на рест
     }
 
     constructorPreview(e) {
         e.preventDefault();
+
+        // Тут треба викликати попап із Settings по формдаті
     }
 
     saveConstructorAsTemplate(e) {
         e.preventDefault();
+        
+        // Тут треба формдату передавати на рест і зберігати, як шаблон
     }
 
     render() {
