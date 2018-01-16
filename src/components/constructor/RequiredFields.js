@@ -7,7 +7,8 @@ export class RequiredFields extends Component {
         super(props);
 
         this.state = {
-            price: 10
+            price: 50,
+            f: true
         }
     }
     render() {
@@ -23,6 +24,12 @@ export class RequiredFields extends Component {
                                         id="f"
                                         name="f"
                                         type="checkbox"
+                                        checked={this.state.f}
+                                        onChange={() => {
+                                            this.setState({
+                                                f: !this.state.f
+                                            });
+                                        }}
                                     />
                                     <label htmlFor="f">
                                         <span className="ico"/>
@@ -33,18 +40,21 @@ export class RequiredFields extends Component {
                                         name="first-name"
                                         id="first-name"
                                         placeholder={t("newTask.taskRequiredFields.firstName")}
+                                        disabled={!this.state.f}
                                     />
                                     <input
                                         type="text"
                                         name="last-name"
                                         id="last-name"
                                         placeholder={t("newTask.taskRequiredFields.lastName")}
+                                        disabled={!this.state.f}
                                     />
                                     <input
                                         type="text"
                                         name="second-name"
                                         id="second-name"
                                         placeholder={t("newTask.taskRequiredFields.secondName")}
+                                        disabled={!this.state.f}
                                     />
                                 </div>
                                 <div className="field-set date">
@@ -89,6 +99,7 @@ export class RequiredFields extends Component {
                                         min="10"
                                         max="1000"
                                         step="1"
+                                        defaultValue={50}
                                         onChange={() => {
                                             let value = document.getElementById("price").value;
                                             this.setState({

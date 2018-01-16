@@ -305,6 +305,7 @@
   }
 
   .constructor-required {
+    width: 100%;
     text-align: right;
 
     .caption {
@@ -383,6 +384,10 @@
 
             &:last-of-type {
               margin: 0 0 0 $line;
+            }
+
+            &:disabled {
+              background: $grey;
             }
           }
         }
@@ -509,11 +514,12 @@
         }
 
         &.buttons {
-          width: 50%;
+          width: 65%;
           justify-content: space-around;
 
           button {
             @include greyBtn;
+            margin: $line;
           }
         }
       }

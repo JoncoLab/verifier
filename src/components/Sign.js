@@ -142,8 +142,7 @@ class Sign extends Component {
     }
     static getVal(id) {
         let element = document.getElementById(id);
-        if (element.decoded !== undefined) alert(element.decoded);
-        return element.value;
+        return element.decoded ? element.decoded : element.value;
     }
     render() {
         return (
