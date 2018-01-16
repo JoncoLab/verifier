@@ -50,7 +50,15 @@ class Constructor extends Component {
         let form = document.forms[0];
 
         for (let i = 0; i < form.length; i++) {
-            alert(form[i].id);
+            let name = form[i].name,
+                id = form[i].id,
+                type = form[i].type,
+                value = form[i].value,
+                s = ";\r\n";
+
+            if (name.length > 0) {
+                alert("Id: " + id + s + "Type: " + type + s + "Value: " + value);
+            }
         }
     }
 
