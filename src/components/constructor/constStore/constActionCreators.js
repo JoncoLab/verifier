@@ -1,7 +1,8 @@
 import {
     INPUT_TYPES,
     ADD_INPUT,
-    REMOVE_INPUT
+    REMOVE_INPUT,
+    SET_TYPE
 } from "./constActions";
 
 // Change field type actionCreator
@@ -12,21 +13,29 @@ export function typesAction(inputType) {
     }
 }
 
+export function setTypeAction(selectedType) {
+    return {
+        type: SET_TYPE,
+        selectedType
+    }
+}
+
 // Add new field actionCreator
-let nextIdKey = 0;
-export function inputAction(el) {
+export function inputAction(id, customType) {
     return {
         type: ADD_INPUT,
-        el,
-        keyId: nextIdKey++
+        id,
+        customType
     }
 }
 
 // Remove created field actionCreator
-export function removeAction(remove) {
+export function removeAction(array, index) {
     return {
         type: REMOVE_INPUT,
-        remove
+        remove: () => {
+            array.splice(index)
+        }
     }
 }
 
