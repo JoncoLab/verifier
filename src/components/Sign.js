@@ -375,10 +375,10 @@ class Sign extends Component {
                     (t) => (
                         <section className="sign">
                             {this.renderForm()}
-                            <div className="sign-in-with-socials">
-                                <button className="fb"><img src="../img/facebook.png" alt={"FB"}/></button>
-                                <button className="tw"><img src="../img/twitter.png" alt={"TW"}/></button>
-                            </div>
+                            {/*<div className="sign-in-with-socials">*/}
+                                {/*<button className="fb"><img src="../img/facebook.png" alt={"FB"}/></button>*/}
+                                {/*<button className="tw"><img src="../img/twitter.png" alt={"TW"}/></button>*/}
+                            {/*</div>*/}
                             <button
                                 className="switch-link"
                                 onClick={this.switcher}
