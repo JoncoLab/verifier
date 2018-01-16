@@ -1,8 +1,8 @@
 {
-  "main.css": "static/css/main.6773680d.css",
-  "main.css.map": "static/css/main.6773680d.css.map",
-  "main.js": "static/js/main.0d4637d8.js",
-  "main.js.map": "static/js/main.0d4637d8.js.map",
+  "main.css": "static/css/main.622b60e4.css",
+  "main.css.map": "static/css/main.622b60e4.css.map",
+  "main.js": "static/js/main.d5655045.js",
+  "main.js.map": "static/js/main.d5655045.js.map",
   "static\\media\\234138.png": "static/media/234138.d0a76904.png",
   "static\\media\\Stratos-Black-Web.ttf": "static/media/Stratos-Black-Web.733c24d8.ttf",
   "static\\media\\Stratos-Black-Web.woff": "static/media/Stratos-Black-Web.08e950cd.woff",
@@ -25,6 +25,6 @@
   "static\\media\\bg_appstore.jpg": "static/media/bg_appstore.e59b8bd2.jpg",
   "static\\media\\card_decor_gr.svg": "static/media/card_decor_gr.027d3e1a.svg",
   "static\\media\\decor.svg": "static/media/decor.92b6608c.svg",
-  "static\\media\\ico.ttf": "static/media/ico.7a9f0bd3.ttf",
-  "static\\media\\ico.woff": "static/media/ico.88d86d5a.woff"
+  "static\\media\\ico.ttf": "static/media/ico.7cb55d4c.ttf",
+  "static\\media\\ico.woff": "static/media/ico.1202db0b.woff"
 }

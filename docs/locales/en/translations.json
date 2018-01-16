@@ -60,5 +60,45 @@
   "downloadApp": {
     "caption": "DOWNLOAD APP",
     "backToMain": "< TO MY TASKS"
+  },
+  "newTask": {
+    "constCaption": "CREATE TASK FROM THE CONSTRUCTOR",
+    "taskName": "TASK NAME",
+    "backToMain": "< TO MY TASKS",
+    "namePlaceholder": "Field name",
+    "title": "",
+    "newInput": {
+      "taskName": "TASK FIELD",
+      "fieldType": "Field type: ",
+      "typeText": "text",
+      "typePhoto": "photo",
+      "typeVideo": "video",
+      "removeField": "Remove field",
+      "descPlaceholder": "Description",
+      "fioPlaceholder": "Your name",
+      "filePlaceholder": "Files",
+      "visitPlaceholder": "Visit card photo"
+    },
+    "taskFooter": {
+      "type": "Select field type: ",
+      "addInput": "+ ADD"
+    },
+    "taskRequiredFields": {
+      "caption": "Required fields",
+      "f": "Физическое лицо verification",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "secondName": "Second name",
+      "date": "Verification date and time",
+      "from": "from",
+      "to": "to",
+      "address": "Verification address",
+      "addressPlaceholder": "Enter full address",
+      "price": "Price: ",
+      "comment": "Comment",
+      "preview": "Preview",
+      "save": "Save as template"
+    },
+    "submit": "Send"
   }
 }
