@@ -81,6 +81,7 @@ class Constructor extends Component {
                                 <div className="constructor-top">
                                     <h2>{t("newTask.constCaption")}</h2>
                                     <button
+                                        form="none"
                                         type="button"
                                         className="back-to-main"
                                         onClick={() => {
@@ -92,6 +93,7 @@ class Constructor extends Component {
                                     <div className="task-caption">
                                         <h3>{t("newTask.taskName")}</h3>
                                         <button
+                                            form="none"
                                             type="button"
                                             className="task-title"
                                         >♥</button>

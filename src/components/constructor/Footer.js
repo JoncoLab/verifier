@@ -64,6 +64,7 @@ class Footer extends Component {
                                 />
                             </div>
                             <button
+                                form="none"
                                 type="button"
                                 className="add-input"
                                 onClick={() => {

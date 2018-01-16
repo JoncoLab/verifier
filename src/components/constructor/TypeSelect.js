@@ -12,6 +12,7 @@ class TypeSelect extends Component {
                         () => {this.props.onClickBtn()} :
                         this.props.onClick
                 }
+                form="none"
                 type="button"
                 className={this.props.btnClass}>
                 {this.props.text}

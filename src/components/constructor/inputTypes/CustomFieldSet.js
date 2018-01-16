@@ -11,6 +11,7 @@ class CustomFieldSet extends Component {
                         <div className="input-info">
                             <h2>{t("newTask.newInput.taskName")}</h2>
                             <button
+                                form="none"
                                 type="button"
                                 className="remove-btn"
                                 onClick={this.remove}
@@ -18,7 +19,7 @@ class CustomFieldSet extends Component {
                         </div>
                         <div className="input-types">
                             <span className="type">{t("newTask.newInput.fieldType")} <span>{t("newTask.newInput.typeText")}</span></span>
-                            <button type="button" className="task-title">♥</button>
+                            <button type="button" form="none" className="task-title">♥</button>
                             <div className="available-types">
                                 <TypeSelect
                                     btnClass="input-type active"
@@ -69,6 +70,7 @@ class CustomFieldSet extends Component {
                         <div className="input-info">
                             <h2>{t("newTask.newInput.taskName")}</h2>
                             <button
+                                form="none"
                                 type="button"
                                 className="remove-btn"
                                 onClick={this.remove}
@@ -76,7 +78,7 @@ class CustomFieldSet extends Component {
                         </div>
                         <div className="input-types">
                             <span className="type">{t("newTask.newInput.fieldType")} <span>{t("newTask.newInput.typePhoto")}</span></span>
-                            <button type="button" className="task-title">♥</button>
+                            <button type="button" form="none" className="task-title">♥</button>
                             <div className="available-types">
                                 <TypeSelect
                                     btnClass="input-type"
@@ -134,6 +136,7 @@ class CustomFieldSet extends Component {
                         <div className="input-info">
                             <h2>{t("newTask.newInput.taskName")}</h2>
                             <button
+                                form="none"
                                 type="button"
                                 className="remove-btn"
                                 onClick={this.remove}
@@ -141,7 +144,7 @@ class CustomFieldSet extends Component {
                         </div>
                         <div className="input-types">
                             <span className="type">{t("newTask.newInput.fieldType")} <span>{t("newTask.newInput.typeVideo")}</span></span>
-                            <button type="button" className="task-title">♥</button>
+                            <button type="button" form="none" className="task-title">♥</button>
                             <div className="available-types">
                                 <TypeSelect
                                     btnClass="input-type"
