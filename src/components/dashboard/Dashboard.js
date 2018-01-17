@@ -59,11 +59,12 @@ class Dashboard extends Component {
                                                 orderName={order.orderName}
                                                 status={order.status}
                                                 orderComment={order.orderComment}
-                                                orderAddr={order.orderAddr}
+                                                verifAddr={order.verifAddr}
                                                 orderId={order.orderId}
                                                 orderRate={order.orderRate}
                                                 orderRating={order.orderRating}
                                                 orderCreatedAt={order.orderCreatedAt}
+                                                key={order.orderId}
                                             />
                                         ))
                                     }
