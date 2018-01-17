@@ -29,7 +29,6 @@ class Constructor extends Component {
 
         this.setCustomFields = this.setCustomFields.bind(this);
         this.removeEvent = this.removeEvent.bind(this);
-        this.onSubmitConstructor = this.onSubmitConstructor.bind(this);
         this.constructorPreview = this.constructorPreview.bind(this);
         this.saveConstructorAsTemplate = this.saveConstructorAsTemplate.bind(this);
     }
@@ -72,7 +71,7 @@ class Constructor extends Component {
 
     saveConstructorAsTemplate(e) {
         e.preventDefault();
-        
+
         // Тут треба формдату передавати на рест і зберігати, як шаблон
     }
 
