@@ -3,39 +3,8 @@ import { I18n } from 'react-i18next';
 import {RenderFilters, setRenderFilter} from "../../store/actions";
 import {connect} from 'react-redux';
 import classSet from 'react-classset';
-import * as $ from "jquery";
 
 class Header extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            userData: {}
-        }
-    }
-    componentDidMount() {
-        let token = document.cookie.replace("token=", ""),
-            herokuAppUrl = "https://cors-anywhere.herokuapp.com/",
-            apiUrl = "http://185.4.75.58:8181/verifier/api/v1/user/customer/0",
-            settings = {
-                async: true,
-                crossDomain: true,
-                method: "GET",
-                url: herokuAppUrl + apiUrl,
-                headers: {
-                    "Token": token
-                }
-            };
-
-        $.ajax(settings)
-            .then((response) => {
-                this.setState({
-                    userData: response.data
-                });
-            }, (error) => {
-                alert(error);
-            });
-    }
     render() {
         const downloadBtnStyle = classSet({
             'download-app': true,
@@ -80,10 +49,21 @@ class Header extends Component {
                                         window.location.pathname = "/cabinet";
                                     }}
                                         >
-                                        <span>{this.state.userData.firstName}</span>
-                                        <span>{this.state.userData.lastName}</span>
+                                        <span>{this.props.userData.firstName}</span>
+                                        <span>{this.props.userData.lastName}</span>
                                         <div className="profile-photo">
-                                            <img alt="profile photo" src={this.state.userData.photo}/>
+                                            <img
+                                                alt="profile photo"
+                                                src={
+                                                    this.props.userData.photo === undefined ?
+                                                        "img/user-login.svg" :
+                                                        (
+                                                            this.props.userData.photo.slice(this.props.userData.photo.length - 4) === "null" ?
+                                                                "img/user-login.svg" :
+                                                                this.props.userData.photo
+                                                        )
+                                                }
+                                            />
                                         </div>
                                     </div>
                                 </div>

@@ -129,12 +129,12 @@ export class RequiredFields extends Component {
                                 </div>
                                 <div className="field-set buttons">
                                     <button onClick={() => {
-                                        this.props.constructorPreview()
+                                        this.constructorPreview()
                                     }}>
                                         {t("newTask.taskRequiredFields.preview")}
                                     </button>
                                     <button onClick={() => {
-                                        this.props.saveConstructorAsTemplate()
+                                        this.saveConstructorAsTemplate()
                                     }}>
                                         {t("newTask.taskRequiredFields.save")}
                                     </button>

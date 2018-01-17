@@ -4,6 +4,7 @@ import Footer from './Footer';
 import {RequiredFields} from "./RequiredFields";
 import {connect} from 'react-redux';
 import CustomFieldset from "./inputTypes/CustomFieldSet";
+import * as $ from "jquery";
 
 class Constructor extends Component {
     constructor(props) {
@@ -29,13 +30,13 @@ class Constructor extends Component {
 
         this.setCustomFields = this.setCustomFields.bind(this);
         this.removeEvent = this.removeEvent.bind(this);
-        this.constructorPreview = this.constructorPreview.bind(this);
-        this.saveConstructorAsTemplate = this.saveConstructorAsTemplate.bind(this);
+        Constructor.constructorPreview = Constructor.constructorPreview.bind(this);
+        Constructor.saveConstructorAsTemplate = Constructor.saveConstructorAsTemplate.bind(this);
     }
 
     removeEvent(id) {
         let newFieldSet = this.state.customFields;
-        newFieldSet.splice(id - 1, 1);
+        newFieldSet.splice(id - 2, 1);
         this.setCustomFields(newFieldSet);
     }
 
@@ -44,39 +45,111 @@ class Constructor extends Component {
             customFields: fields
         });
     }
+    sendRequest(apiUrl, data) {
+        let token = document.cookie.replace("token=", ""),
+            herokuAppUrl = "https://cors-anywhere.herokuapp.com/",
+            settings = {
+                url: herokuAppUrl + apiUrl,
+                method: "POST",
+                crossDomain: true,
+                async: true,
+                processData: false,
+                data: data,
+                headers: {
+                    "Content-Type": "application/json",
+                    "Token": token
+                }
+            };
 
-    static onSubmitConstructor() {
-        let form = document.forms[0];
+        $.ajax(settings).done(() => {
+            window.location.pathname = "/dashboard";
+        })
+    }
+    onSubmitConstructor() {
+        let val = (id) => {
+            return document.getElementById(id).value;
+        },
+            verifTimeFrom = new Date(
+                val("date") +
+                "T" +
+                val("from")
+            ).getTime() / 1000 | 0,
+            verifTimeTo = new Date(
+                val("date") +
+                "T" +
+                val("to")
+            ).getTime() / 1000 | 0,
+            orderFields = [],
+            fields = this.state.customFields;
+        for (let i = 0; i < fields.length; i++) {
+            let id = fields[i].id;
+            switch (fields[i].type) {
+                case "TEXT_TYPE":
+                    orderFields.push({
+                        fieldType: "txt",
+                        fieldName: val("text-name-" + id),
+                        fieldDescription: val("text-desc-" + id),
+                        fieldData: "",
+                        fieldMinCount: ""
+                    });
+                    break;
+                case "IMAGE_TYPE":
+                    orderFields.push({
+                        fieldType: "image",
+                        fieldName: val("image-name-" + id),
+                        fieldDescription: val("image-desc-" + id),
+                        fieldData: "",
+                        fieldMinCount: val("image-files-" + id)
+                    });
+                    break;
+                case "VIDEO_TYPE":
+                    orderFields.push({
+                        fieldType: "video",
+                        fieldName: val("video-name-" + id),
+                        fieldDescription: val("video-desc-" + id),
+                        fieldData: "",
+                        fieldMinCount: ""
+                    });
+                    break;
+                default:
+                    orderFields.push({
+                        fieldType: "",
+                        fieldName: "",
+                        fieldDescription: "",
+                        fieldData: "",
+                        fieldMinCount: ""
+                    });
 
-        for (let i = 0; i < form.length; i++) {
-            let name = form[i].name,
-                id = form[i].id,
-                type = form[i].type,
-                value = form[i].value,
-                s = ";\r\n";
-
-            if (name.length > 0) {
-                alert("Id: " + id + s + "Type: " + type + s + "Value: " + value);
             }
         }
 
-        // Тут треба форм дату красиво складати і передавати на рест
+        this.sendRequest(
+            "http://185.4.75.58:8181/verifier/api/v1/order/add",
+            JSON.stringify({
+                orderName: val("task-name"),
+                orderRate: val("price"),
+                orderComment: val("comment"),
+                verifAddr: val("address"),
+                verifTimeFrom: verifTimeFrom,
+                verifTimeTo: verifTimeTo,
+                orderFields: orderFields
+            })
+        );
     }
 
-    constructorPreview(e) {
+    static constructorPreview(e) {
         e.preventDefault();
 
         // Тут треба викликати попап із Settings по формдаті
     }
 
-    saveConstructorAsTemplate(e) {
+    static saveConstructorAsTemplate(e) {
         e.preventDefault();
 
         // Тут треба формдату передавати на рест і зберігати, як шаблон
     }
 
     render() {
-        console.log(this.state.customFields);
         return (
             <I18n>
                 {
@@ -132,8 +205,8 @@ class Constructor extends Component {
                                     />
                                 </section>
                                 <RequiredFields
-                                    constructorPreview={(e) => this.constructorPreview(e)}
-                                    saveConstructorAsTemplate={(e) => this.saveConstructorAsTemplate(e)}
+                                    constructorPreview={(e) => Constructor.constructorPreview(e)}
+                                    saveConstructorAsTemplate={(e) => Constructor.saveConstructorAsTemplate(e)}
                                 />
                             </form>
                         </main>
@@ -146,8 +219,7 @@ class Constructor extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        renderAppFilter: state.renderAppReducer,
-        inputsList: state.addInput
+        renderAppFilter: state.renderAppReducer
     }
 };
 

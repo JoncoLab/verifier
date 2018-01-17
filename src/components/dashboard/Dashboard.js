@@ -1,12 +1,37 @@
 import React, {Component} from 'react';
 import {I18n} from 'react-i18next';
-import VerificationType from "../stateLess/VerificationType";
+import Order from "../stateLess/Order";
 import {setRenderFilter, RenderFilters} from "../../store/actions";
 import {connect} from 'react-redux';
+import * as $ from "jquery";
 
 class Dashboard extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            orders: []
+        }
+    }
     componentDidMount() {
-        // Here AJAX is supposed to be
+        let token = document.cookie.replace("token=", ""),
+            herokuAppUrl = "https://cors-anywhere.herokuapp.com/",
+            apiUrl = "http://185.4.75.58:8181/verifier/api/v1/order/customer/list/0/200",
+            settings = {
+                async: true,
+                crossDomain: true,
+                method: "GET",
+                url: herokuAppUrl + apiUrl,
+                headers: {
+                    "Token": token
+                }
+            };
+
+        $.ajax(settings).done((response) => {
+            this.setState({
+                orders:response.data
+            });
+        });
     }
     popUp() {
         // popUp function to display order
@@ -28,30 +53,20 @@ class Dashboard extends Component {
                                     {t("main.newTaskBtn")}
                                 </button>
                                 <div className="main-container">
-                                    <VerificationType
-                                        name={t("main.verificationTypes.selfie")}
-                                        active={t("main.verificationState")}
-                                        desc={t("main.verificationDesc.selfie")}
-                                        city="Москва"
-                                    />
-                                    <VerificationType
-                                        name={t("main.verificationTypes.business")}
-                                        active={t("main.verificationState")}
-                                        desc={t("main.verificationDesc.business")}
-                                        city="Москва"
-                                    />
-                                    <VerificationType
-                                        name={t("main.verificationTypes.yourself")}
-                                        active={t("main.verificationState")}
-                                        desc={t("main.verificationDesc.yourself")}
-                                        city="Москва"
-                                    />
-                                    <VerificationType
-                                        name={t("main.verificationTypes.event")}
-                                        active={t("main.verificationState")}
-                                        desc={t("main.verificationDesc.event")}
-                                        city="Москва"
-                                    />
+                                    {
+                                        this.state.orders.map((order) => (
+                                            <Order
+                                                orderName={order.orderName}
+                                                status={order.status}
+                                                orderComment={order.orderComment}
+                                                orderAddr={order.orderAddr}
+                                                orderId={order.orderId}
+                                                orderRate={order.orderRate}
+                                                orderRating={order.orderRating}
+                                                orderCreatedAt={order.orderCreatedAt}
+                                            />
+                                        ))
+                                    }
                                 </div>
                             </section>
                         </main>

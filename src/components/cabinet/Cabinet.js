@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {I18n} from 'react-i18next';
 import classSet from 'react-classset';
 import TaskInfo from "../stateLess/TaskInfo";
-import {RenderFilters, setRenderFilter} from "../../store/actions";
 import {connect} from 'react-redux';
 import * as $ from "jquery";
 
@@ -14,59 +13,62 @@ class Cabinet extends Component {
             changePassActive: false
         };
 
+        this.userData = this.props.userData;
         this.changePassActive = this.changePassActive.bind(this);
-    }
-    static getUserData(token) {
-        $.ajax({
-            url: "http://185.4.75.58:8181/verifier/api/v1/user/customer/0",
-            method: "GET",
-            async: true,
-            crossDomain: true,
-            contentType: false,
-            headers: {
-                "Token": token
-            }
-        })
-            .then(
-                (response) => {
-                    alert(response);
-                }, (response) => {
-                    alert(JSON.stringify(response));
-                });
+        this.userDataChange = this.userDataChange.bind(this);
+        this.changeName = this.changeName.bind(this);
+        this.changePass = this.changePass.bind(this);
     }
     changePassActive() {
         this.setState({
             changePassActive: !this.state.changePassActive
         })
     }
-    changePassword(event) {
+    userDataChange(formData) {
+        let token = document.cookie.replace("token=", ""),
+            herokuAppUrl = "https://cors-anywhere.herokuapp.com/",
+            apiUrl = "http://185.4.75.58:8181/verifier/api/v1/user/customer/update",
+            settings = {
+                url: herokuAppUrl + apiUrl,
+                method: "POST",
+                crossDomain: true,
+                async: true,
+                processData: false,
+                contentType: false,
+                mimeType: "multipart/form-data",
+                data: formData,
+                headers: {
+                    "Token": token
+                }
+            };
+
+        $.ajax(settings)
+            .then(() => {
+                alert("YEA!");
+            }, () => {
+                alert("Nooo!");
+            });
+    }
+    changeName() {
+        let form = new FormData();
+
+        form.append("first-name", document.getElementById("profile-first-name").value);
+        form.append("first-name", document.getElementById("profile-last-name").value);
+
+        this.userDataChange(form);
+    }
+    changePass(event) {
         event.preventDefault();
         let form = new FormData();
-        let newPass = form.append("password", document.getElementById("change-pass-input").value);
-        $.ajax({
-            url: "http://185.4.75.58:8181/verifier/api/v1/user/customer/update",
-            method: "POST",
-            crossDomain: true,
-            async: true,
-            processData: false,
-            contentType: false,
-            mimeType: "multipart/form-data",
-            data: form,
-            headers: {
-                "Token": document.cookie.replace("token=", "")
-            }
-        }).then(() => {
-            alert("YEA!");
-        }, () => {
-            alert("Nooo!");
-        });
+
+        form.append("password", document.getElementById("change-pass-input").value);
+        this.userDataChange(form);
     }
     render() {
         let changePass = classSet({
             'change-password': true,
             'active': this.state.changePassActive
         });
-
         return (
             <I18n>
                 {
@@ -75,19 +77,39 @@ class Cabinet extends Component {
                             <section className="profile">
                                 <div className="profile-top">
                                     <div className="user-info">
-                                        <img alt="User photo" src="../../img/user-login.svg" className="profile-photo"/>
+                                        <img
+                                            alt="User photo"
+                                            src={
+                                                this.props.userData.photo === undefined ?
+                                                    "img/user-login.svg" :
+                                                    (
+                                                        this.props.userData.photo.slice(this.props.userData.photo.length - 4) === "null" ?
+                                                            "img/user-login.svg" :
+                                                            this.props.userData.photo
+                                                    )
+                                            }
+                                            className="profile-photo"
+                                        />
                                         <div className="user-data">
                                             <input
                                                 type="text"
-                                                id="profile-name"
-                                                placeholder="Vasya Lol"
-                                                value={this.props.value}/>
+                                                id="profile-first-name"
+                                                name="profile-name"
+                                                placeholder={this.props.userData.firstName}
+                                                value={this.props.value}
+                                                defaultValue={this.props.userData.lastName}
+                                                onBlur={this.changeName}
+                                            />
                                             <input
                                                 type="text"
-                                                id="profile-id"
-                                                value="ID: 0123456789"
-                                                readOnly={true}
-                                                disabled={true}/>
+                                                name="profile-last-name"
+                                                id="profile-last-name"
+                                                placeholder={this.props.userData.lastName}
+                                                value={this.props.value}
+                                                defaultValue={this.props.userData.lastName}
+                                                onBlur={this.changeName}
+                                            />
+                                            <span id="profile-id">{"Email: " + this.props.userData.email}</span>
                                         </div>
                                     </div>
                                     <button
@@ -108,7 +130,7 @@ class Cabinet extends Component {
                                         }}>{t("profile.exitProfile")}</button>
                                     </div>
                                 </div>
-                                <form className={changePass} onSubmit={(e) => this.changePassword(e)}>
+                                <form className={changePass} onSubmit={(e) => this.changePass(e)}>
                                     <label htmlFor="change-pass-input">{t("profile.newPassLabel")}</label>
                                     <input type="password" name="change-password" id="change-pass-input" required={true}/>
                                     <button type="submit" id="change-pass-submit">{t("profile.newPassSubmit")}</button>
@@ -142,16 +164,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        fromCabinetToDashboard: () => {
-            dispatch(setRenderFilter(RenderFilters.RENDER_DASHBOARD))
-        },
-
-        exitCabinetEvent: () => {
-          dispatch(setRenderFilter(RenderFilters.RENDER_SIGN))
-        }
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Cabinet);
+export default connect(mapStateToProps)(Cabinet);

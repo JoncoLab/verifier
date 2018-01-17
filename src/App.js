@@ -15,7 +15,8 @@ class App extends Component {
         super(props);
 
         this.state = {
-            active: document.cookie.replace("token=", "") !== "0" && document.cookie.replace("token=", "") !== ""
+            active: document.cookie.replace("token=", "") !== "0" && document.cookie.replace("token=", "") !== "",
+            userData: {}
         };
 
         this.renderApp = this.renderApp.bind(this);
@@ -56,6 +57,29 @@ class App extends Component {
             this.props.renderTargetPage("RENDER_SIGN");
         }
     }
+    componentDidMount() {
+        let token = document.cookie.replace("token=", ""),
+            herokuAppUrl = "https://cors-anywhere.herokuapp.com/",
+            apiUrl = "http://185.4.75.58:8181/verifier/api/v1/user/customer/0",
+            settings = {
+                async: true,
+                crossDomain: true,
+                method: "GET",
+                url: herokuAppUrl + apiUrl,
+                headers: {
+                    "Token": token
+                }
+            };
+
+        $.ajax(settings)
+            .then((response) => {
+                this.setState({
+                    userData: response.data
+                });
+            }, (error) => {
+                alert(JSON.stringify(error));
+            });
+    }
     renderApp(state = this.props.renderAppFilter) {
         let targetComponent;
         switch (state) {
@@ -67,7 +91,7 @@ class App extends Component {
                 targetComponent = <Dashboard/>;
                 break;
             case 'RENDER_CABINET':
-                targetComponent = <Cabinet/>;
+                targetComponent = <Cabinet userData={this.state.userData}/>;
                 break;
             case 'RENDER_CONSTRUCTOR':
                 targetComponent = <Constructor/>;
@@ -85,7 +109,7 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <Header/>
+                <Header userData={this.state.userData}/>
                 {this.renderApp()}
             </div>
         );

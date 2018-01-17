@@ -39,7 +39,9 @@
         justify-content: space-between;
         padding: 0 $line * 1.5;
 
-        #profile-id, #profile-name {
+        #profile-id,
+        #profile-first-name,
+        #profile-last-name {
           box-sizing: border-box;
           background: {
             color: transparent;
@@ -49,7 +51,8 @@
           width: 100%;
         }
 
-        #profile-name {
+        #profile-first-name,
+        #profile-last-name {
           font: {
             family: $stratosBlack;
             size: $line * 3.5;
