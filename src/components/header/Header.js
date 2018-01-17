@@ -12,7 +12,7 @@ class Header extends Component {
         });
         const navbarRightStyle = classSet({
             'navbar-right': true,
-            'hide': this.props.renderAppFilter === 'RENDER_SIGN'
+            'hidden': this.props.renderAppFilter === 'RENDER_SIGN'
         });
         return (
                 <I18n ns="translations">
@@ -49,8 +49,13 @@ class Header extends Component {
                                         window.location.pathname = "/cabinet";
                                     }}
                                         >
-                                        <span>{this.props.userData.firstName}</span>
-                                        <span>{this.props.userData.lastName}</span>
+                                        <span>{this.props.renderAppFilter === 'RENDER_SIGN'?
+                                            "IIIIIIIIIIIII" :
+                                            this.props.userData.firstName
+                                        }</span>
+                                        <span>{this.props.renderAppFilter === 'RENDER_SIGN' ?
+                                            "IIIIIIIIIIIII" :
+                                            this.props.userData.lastName}</span>
                                         <div className="profile-photo">
                                             <img
                                                 alt="profile photo"

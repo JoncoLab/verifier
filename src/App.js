@@ -71,14 +71,11 @@ class App extends Component {
                 }
             };
 
-        $.ajax(settings)
-            .then((response) => {
-                this.setState({
-                    userData: response.data
-                });
-            }, (error) => {
-                alert(JSON.stringify(error));
+        $.ajax(settings).done((response) => {
+            this.setState({
+                userData: response.data
             });
+        });
     }
     renderApp(state = this.props.renderAppFilter) {
         let targetComponent;
