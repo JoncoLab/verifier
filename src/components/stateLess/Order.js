@@ -1,22 +1,36 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import PopUp from "../dashboard/popUp";
 
-const Order = (props) => {
-    return (
-        <section className="verification-type">
-            <h2 className="verification-name">{props.orderName}</h2>
-            <span className="verification-state">{props.status}</span>
-            <p className="verification-desc">{props.orderComment}</p>
-            <span className="verification-city"><span>☻</span> {props.verifAddr}</span>
-            <section className="verification-details">
-                <h2 className="details-name">{props.orderName}</h2>
-                <span className="details-state">{props.status}</span>
-                <p className="details-desc">{props.orderComment}</p>
-                <span className="details-city"><span>☻</span> {props.verifAddr}</span>
+class Order extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            popUp: false
+        };
+    }
+
+    render() {
+        return (
+            <section className="verification-type" onClick={() => {this.setState({popUp: !this.state.popUp})}}>
+                <h2 className="verification-name">{this.props.orderName}</h2>
+                <span className="verification-state">{this.props.status}</span>
+                <p className="verification-desc">{this.props.orderComment}</p>
+                <span className="verification-city"><span>☻</span> {this.props.verifAddr}</span>
+                <PopUp
+                    popUp={this.state.popUp}
+                    userData={this.props.userData}
+                    orderName={this.props.orderName}
+                    orderComment={this.props.orderComment}
+                    status={this.props.status}
+                    verifAddr={this.props.verifAddr}
+                    orderId={this.props.orderId}
+                />
             </section>
-        </section>
-    );
-};
+        )
+    }
+}
 
 Order.propTypes = {
     orderName: PropTypes.string.isRequired,

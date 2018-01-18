@@ -65,6 +65,7 @@ class Dashboard extends Component {
                                                 orderRating={order.orderRating}
                                                 orderCreatedAt={order.orderCreatedAt}
                                                 key={order.orderId}
+                                                userData={this.props.userData}
                                             />
                                         ))
                                     }

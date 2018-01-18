@@ -50,11 +50,11 @@ class Header extends Component {
                                     }}
                                         >
                                         <span>{this.props.renderAppFilter === 'RENDER_SIGN'?
-                                            "IIIIIIIIIIIII" :
+                                            "" :
                                             this.props.userData.firstName
                                         }</span>
                                         <span>{this.props.renderAppFilter === 'RENDER_SIGN' ?
-                                            "IIIIIIIIIIIII" :
+                                            "" :
                                             this.props.userData.lastName}</span>
                                         <div className="profile-photo">
                                             <img

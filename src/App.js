@@ -85,7 +85,7 @@ class App extends Component {
                     <Sign/>;
                 break;
             case 'RENDER_DASHBOARD':
-                targetComponent = <Dashboard/>;
+                targetComponent = <Dashboard userData={this.state.userData}/>;
                 break;
             case 'RENDER_CABINET':
                 targetComponent = <Cabinet userData={this.state.userData}/>;
