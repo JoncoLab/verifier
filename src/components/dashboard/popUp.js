@@ -9,12 +9,13 @@ class PopUp extends Component {
 
         this.state = {
             popUp: this.props.popUp,
-            orderList: [],
-            orderFields: []
+            orderList: []
         };
+
+        this.getValueArr = this.getValueArr.bind(this);
     }
 
-    componentDidMount() {
+    componentWillMount() {
         let token = document.cookie.replace("token=", ""),
             herokuAppUrl = "https://cors-anywhere.herokuapp.com/",
             apiUrl = "http://185.4.75.58:8181/verifier/api/v1/order/" + this.props.orderId,
@@ -30,10 +31,20 @@ class PopUp extends Component {
 
         $.ajax(settings).done((response) => {
             this.setState({
-                orderList: response.data,
-                orderFields: response.data.orderFields
+                orderList: response.data
+                //orderFields: response.data.orderFields
             });
         });
+    }
+
+    getValueArr() {
+        let fieldsArray = this.state.orderList.orderFields;
+
+        if(fieldsArray !== 'undefined') {
+            $.map(fieldsArray, function(type) {
+                return type.fieldName
+            })
+        }
     }
 
     render() {
@@ -41,7 +52,6 @@ class PopUp extends Component {
             'verification-details': true,
             'pop-up-active': this.props.popUp
         });
-        console.log(this.state.orderList);
         return (
             <I18n>
                 {
@@ -57,7 +67,18 @@ class PopUp extends Component {
                                         <span className="details-city"><span>☻</span> {this.props.verifAddr}</span>
                                     </div>
                                     <div className="user-info" onClick={() => {this.setState({popUp: !this.state.popUp})}}>
-                                        <span>{this.state.orderFields.fieldName}</span>
+                                        <div>
+                                            {
+                                                $.map(this.state.orderList.orderFields, function(type, index) {
+                                                    return (
+                                                        <div>
+                                                            <span>{type.fieldName}</span>
+                                                            <span>{type.fieldDescription}</span>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </div>

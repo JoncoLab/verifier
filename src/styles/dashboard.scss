@@ -249,16 +249,19 @@
 
             .user-info {
 
-              span:nth-of-type(odd) {
-                padding: $line * .1 0;
-              }
+              div {
 
-              span:nth-of-type(even) {
-                font: {
-                  family: $stratosBold;
-                  zise: $line * 1.4;
+                span:nth-of-type(odd) {
+                  padding: $line * .1 0;
                 }
-                color: black;
+
+                span:nth-of-type(even) {
+                  font: {
+                    family: $stratosBold;
+                    size: $line * 1.4;
+                  }
+                  color: black;
+                }
               }
             }
 
