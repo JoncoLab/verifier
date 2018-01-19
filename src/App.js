@@ -80,7 +80,7 @@ class App extends Component {
                 userData: response.data
             });
         }, (response) => {
-            if (response.status === 401)
+            if (response.status === 401 && token === 0)
                 window.location.href = "/signOut";
         });
     }

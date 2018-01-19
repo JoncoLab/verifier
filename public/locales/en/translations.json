@@ -31,7 +31,7 @@
     }
   },
   "main": {
-    "newTaskBtn": "CREATE NEW TASK WITH CONSTRUCTOR",
+    "newTaskBtn": "CREATE TASK",
     "verificationTypes": {
       "selfie": "Selfie",
       "business": "Verify business card",

@@ -7,9 +7,9 @@
   align-items: center;
   justify-content: space-around;
 
-  .from-temp-to-const {
+  .from-temp-to-const, .from-temp-to-dash {
     @include mainBlueBtn;
-    width: 100%;
+    width: 48.5%;
     padding: $line * 2 0;
   }
 

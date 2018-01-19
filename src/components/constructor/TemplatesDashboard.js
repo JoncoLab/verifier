@@ -52,6 +52,17 @@ class TemplatesDashboard extends Component {
                                 >
                                     {t("newTask.constCaption")}
                                 </button>
+                                <button
+                                    type="button"
+                                    className="from-temp-to-dash"
+                                    onClick={
+                                        () => {
+                                            window.location.pathname = "/dashboard";
+                                        }
+                                    }
+                                >
+                                    {t("newTask.constCaption")}
+                                </button>
                                 <div className="templates-container">
                                     {/*{*/}
                                         {/*this.state.templates.map((template) => (*/}

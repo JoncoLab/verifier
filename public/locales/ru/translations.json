@@ -31,7 +31,7 @@
     }
   },
   "main": {
-    "newTaskBtn": "СОЗДАТЬ ЗАЯВКУ С ПОМОЩЮ КОНСТРУКТОРА",
+    "newTaskBtn": "СОЗДАТЬ ЗАЯВКУ",
     "verificationTypes": {
       "selfie": "Селфи",
       "business": "Верифицировать визитку",
