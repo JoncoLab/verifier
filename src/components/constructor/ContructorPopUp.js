@@ -15,6 +15,11 @@ class ConstructorPopUp extends Component {
         delete localData.orderRate;
         delete localData.verifTimeTo;
         delete localData.verifTimeFrom;
+        for (let field in localData.orderFields) {
+            delete field.fieldType;
+            delete field.fieldMinCount;
+            delete field.fieldData;
+        }
         this.setState({
             data: localData
         })

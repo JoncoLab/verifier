@@ -232,7 +232,27 @@ class Constructor extends Component {
                                     saveConstructorAsTemplate={(e) => this.saveConstructorAsTemplate(e)}
                                 />
                                 <ConstructorPopUp
-                                    getOrderData={this.getConstructorData}
+                                    getOrderData={
+                                        this.state.constPopUp ?
+                                            this.getConstructorData :
+                                            () => {
+                                                return {
+                                                    orderName: "",
+                                                    orderRate: "",
+                                                    orderComment: "",
+                                                    verifAddr: "",
+                                                    verifTimeFrom: "",
+                                                    verifTimeTo: "",
+                                                    orderFields: [{
+                                                        fieldType: "",
+                                                        fieldName: "",
+                                                        fieldDescription: "",
+                                                        fieldData: "",
+                                                        fieldMinCount: ""
+                                                    }]
+                                                }
+                                            }
+                                    }
                                     constPopUp={this.state.constPopUp}
                                     onToggle={this.togglePopUp}
                                 />
