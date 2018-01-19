@@ -53,10 +53,14 @@ class TemplatesDashboard extends Component {
                                     {t("newTask.constCaption")}
                                 </button>
                                 <div className="templates-container">
-                                    <Template
-                                        templateName={'Template name'}
-                                        templateComment={'This is a template comment. Maybe. I am not sure. I hope this is.'}
-                                    />
+                                    {/*{*/}
+                                        {/*this.state.templates.map((template) => (*/}
+                                            {/*<Template*/}
+                                                {/*templateName={template.templateName}*/}
+                                                {/*templateComment={template.templateComment}*/}
+                                            {/*/>*/}
+                                        {/*))*/}
+                                    {/*}*/}
                                     <Template
                                         templateName={'Template name'}
                                         templateComment={'This is a template comment. Maybe. I am not sure. I hope this is.'}
