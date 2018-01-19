@@ -95,16 +95,7 @@ class Cabinet extends Component {
                                                 type="text"
                                                 id="profile-first-name"
                                                 name="profile-name"
-                                                placeholder={this.props.userData.firstName}
-                                                value={this.props.value}
-                                                defaultValue={this.props.userData.lastName}
-                                                onBlur={this.changeName}
-                                            />
-                                            <input
-                                                type="text"
-                                                name="profile-last-name"
-                                                id="profile-last-name"
-                                                placeholder={this.props.userData.lastName}
+                                                placeholder={this.props.userData.firstName + ' ' + this.props.userData.lastName}
                                                 value={this.props.value}
                                                 defaultValue={this.props.userData.lastName}
                                                 onBlur={this.changeName}
