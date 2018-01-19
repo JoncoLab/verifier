@@ -31,12 +31,13 @@ class Constructor extends Component {
         this.setCustomFields = this.setCustomFields.bind(this);
         this.removeEvent = this.removeEvent.bind(this);
         Constructor.constructorPreview = Constructor.constructorPreview.bind(this);
-        Constructor.saveConstructorAsTemplate = Constructor.saveConstructorAsTemplate.bind(this);
+        this.saveConstructorAsTemplate = this.saveConstructorAsTemplate.bind(this);
+        this.getConstructorData = this.getConstructorData.bind(this);
     }
 
-    removeEvent(id) {
+    removeEvent(targetId) {
         let newFieldSet = this.state.customFields;
-        newFieldSet.splice(id - 2, 1);
+        delete newFieldSet[targetId - 1];
         this.setCustomFields(newFieldSet);
     }
 
@@ -65,10 +66,10 @@ class Constructor extends Component {
             window.location.pathname = "/dashboard";
         })
     }
-    onSubmitConstructor() {
+    getConstructorData() {
         let val = (id) => {
-            return document.getElementById(id).value;
-        },
+                return document.getElementById(id).value;
+            },
             verifTimeFrom = new Date(
                 val("date") +
                 "T" +
@@ -80,7 +81,12 @@ class Constructor extends Component {
                 val("to")
             ).getTime() / 1000 | 0,
             orderFields = [],
-            fields = this.state.customFields;
+            fields = this.state.customFields,
+            orderName = val("task-name"),
+            orderRate = val("price"),
+            orderComment = val("comment"),
+            verifAddr = val("address");
+
         for (let i = 0; i < fields.length; i++) {
             let id = fields[i].id;
             switch (fields[i].type) {
@@ -123,30 +129,43 @@ class Constructor extends Component {
             }
         }
 
+        return {
+            orderName: orderName,
+            orderRate: orderRate,
+            orderComment: orderComment,
+            verifAddr: verifAddr,
+            verifTimeFrom: verifTimeFrom,
+            verifTimeTo: verifTimeTo,
+            orderFields: orderFields
+        }
+    }
+    onSubmitConstructor() {
         this.sendRequest(
             "http://185.4.75.58:8181/verifier/api/v1/order/add",
-            JSON.stringify({
-                orderName: val("task-name"),
-                orderRate: val("price"),
-                orderComment: val("comment"),
-                verifAddr: val("address"),
-                verifTimeFrom: verifTimeFrom,
-                verifTimeTo: verifTimeTo,
-                orderFields: orderFields
-            })
+            JSON.stringify(this.getConstructorData())
         );
     }
 
     static constructorPreview(e) {
         e.preventDefault();
-
-        // Тут треба викликати попап із Settings по формдаті
     }
 
-    static saveConstructorAsTemplate(e) {
-        e.preventDefault();
+    saveConstructorAsTemplate() {
+        let fields = this.getConstructorData(),
+            template = {
+                templateName: fields.orderName,
+                templateRate: fields.orderRate,
+                templateComment: fields.orderComment,
+                templateFields: fields.orderFields
+            };
 
-        // Тут треба формдату передавати на рест і зберігати, як шаблон
+        template.templateFields.forEach((field) => {
+            delete field.fieldData;
+        });
+        this.sendRequest(
+            "http://185.4.75.58:8181/verifier/api/v1/template/new",
+            JSON.stringify(template)
+        );
     }
 
     render() {
@@ -195,7 +214,8 @@ class Constructor extends Component {
                                             <CustomFieldset
                                                 remove={this.removeEvent}
                                                 key={field.id}
-                                                {...field}
+                                                id={field.id}
+                                                type={field.type}
                                             />
                                         ))}
                                     </div>
@@ -206,7 +226,7 @@ class Constructor extends Component {
                                 </section>
                                 <RequiredFields
                                     constructorPreview={(e) => Constructor.constructorPreview(e)}
-                                    saveConstructorAsTemplate={(e) => Constructor.saveConstructorAsTemplate(e)}
+                                    saveConstructorAsTemplate={(e) => this.saveConstructorAsTemplate(e)}
                                 />
                             </form>
                         </main>
