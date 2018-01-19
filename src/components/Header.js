@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { I18n } from 'react-i18next';
-import {RenderFilters, setRenderFilter} from "../../store/actions";
+import {RenderFilters, setRenderFilter} from "../store/actions";
 import {connect} from 'react-redux';
 import classSet from 'react-classset';
 
@@ -42,7 +42,7 @@ class Header extends Component {
                                                 }
                                             }}
                                         >
-                                            <img title={t("header.logoTitleText")} alt="logo" src="../../img/logo.png"/>
+                                            <img title={t("header.logoTitleText")} alt="logo" src="../img/logo.png"/>
                                         </a>
                                     </div>
                                     <div className={navbarRightStyle} onClick={() => {

@@ -4,6 +4,7 @@ import Footer from './Footer';
 import {RequiredFields} from "./RequiredFields";
 import {connect} from 'react-redux';
 import CustomFieldset from "./inputTypes/CustomFieldSet";
+import ConstructorPopUp from './ContructorPopUp';
 import * as $ from "jquery";
 
 class Constructor extends Component {
@@ -25,7 +26,8 @@ class Constructor extends Component {
                     id: 3,
                     type: "VIDEO_TYPE"
                 }
-            ]
+            ],
+            constPopUp: false
         };
 
         this.setCustomFields = this.setCustomFields.bind(this);
@@ -146,10 +148,6 @@ class Constructor extends Component {
         );
     }
 
-    static constructorPreview(e) {
-        e.preventDefault();
-    }
-
     saveConstructorAsTemplate() {
         let fields = this.getConstructorData(),
             template = {
@@ -225,8 +223,21 @@ class Constructor extends Component {
                                     />
                                 </section>
                                 <RequiredFields
-                                    constructorPreview={(e) => Constructor.constructorPreview(e)}
+                                    onToogle={() => {
+                                        this.setState({
+                                            constPopUp: !this.state.constPopUp
+                                        })
+                                    }}
                                     saveConstructorAsTemplate={(e) => this.saveConstructorAsTemplate(e)}
+                                />
+                                <ConstructorPopUp
+                                    customFields={this.state.customFields}
+                                    constPopUp={this.state.constPopUp}
+                                    onToogle={() => {
+                                        this.setState({
+                                            constPopUp: !this.state.constPopUp
+                                        })
+                                    }}
                                 />
                             </form>
                         </main>

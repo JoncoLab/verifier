@@ -100,5 +100,8 @@
       "save": "Save as template"
     },
     "submit": "Send"
+  },
+  "templates": {
+    "toTheConst": "To the constructor"
   }
 }

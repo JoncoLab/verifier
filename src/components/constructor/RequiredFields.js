@@ -135,10 +135,8 @@ export class RequiredFields extends Component {
                                     </button>
                                     <button
                                         type="button"
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            this.props.saveConstructorAsTemplate();
-                                    }}>
+                                        onClick={this.prop.onToogle}
+                                    >
                                         {t("newTask.taskRequiredFields.save")}
                                     </button>
                                 </div>

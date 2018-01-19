@@ -1,6 +1,7 @@
 @import "./variables.scss";
 
 .constructor {
+  position: relative;
   width: 100%;
   height: auto;
   display: flex;
@@ -539,6 +540,144 @@
         padding: $line * 2 $line * 4;
         box-sizing: border-box;
       }
+    }
+  }
+
+  .constructor-preview {
+    position: fixed;
+    content: '';
+    top: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: {
+      color: transparentize(black, 0.9);
+    }
+    align-items: center;
+    justify-content: center;
+    z-index: -1;
+
+    .details-box {
+      width: 75%;
+      min-height: $line * 40;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      align-content: space-between;
+      position: absolute;
+      background: {
+        color: white;
+      }
+      margin: auto;
+      padding: $line * 3;
+      border-radius: $line;
+      cursor: default;
+
+      .details-name {
+        flex-basis: 70%;
+        margin: 0;
+        padding: 0;
+        color: $fontMain;
+        font: {
+          size: $line * 2.4;
+          family: $stratosMedium;
+        }
+        white-space: nowrap;
+      }
+
+      .details-state {
+        align-self: center;
+        color: $white;
+        background: $grey;
+        text-transform: uppercase;
+        font: {
+          family: $stratosBold;
+          size: $line * 1.1;
+        }
+        padding: 3px 10px 2px;
+        border-radius: 4px;
+      }
+
+      .details-desc, .details-required {
+        flex-basis: 100%;
+        text-overflow: ellipsis;
+        margin: $line 0;
+        font: {
+          family: $stratosRegular;
+          size: $line * 1.6;
+        }
+        color: $fontMain;
+      }
+
+      .details-required {
+        margin-bottom: $line * 2;
+
+        span {
+          margin: 0 0 0 $line * 2;
+          color: $blue;
+          font: {
+            weight: bold;
+          }
+        }
+      }
+
+      .details-user-info {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+
+        .user-info {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          font: {
+            family: $stratosBold;
+            size: $line * 1.6;
+          }
+          color: $fontMain;
+
+          div {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+
+
+            span:nth-of-type(odd) {
+              padding: $line * .2 0;
+            }
+
+            span:nth-of-type(even) {
+              color: black;
+            }
+          }
+
+          &:last-of-type {
+            padding: $line * .4 0;
+            font: {
+              family: $ico, $stratosBold;
+            }
+          }
+        }
+
+        &:not(.verification-details:first-of-type) {
+          display: none;
+        }
+      }
+
+      &::before {
+
+      }
+    }
+
+    &.pop-up-active {
+      display: flex;
+      z-index: 100;
     }
   }
 }

@@ -214,53 +214,37 @@
             flex-wrap: wrap;
             justify-content: flex-start;
 
-            .user-photo, .user-info {
+            .user-info {
               display: flex;
               flex-direction: column;
               justify-content: flex-start;
               align-items: flex-start;
-            }
-
-            .user-photo {
-              margin: 0 $line * 4 0 0;
-
-              img {
-                width: $line * 15;
-                border-radius: $line * .8;
+              font: {
+                family: $stratosBold;
+                size: $line * 1.6;
               }
-
-              .details-city {
-                margin: $line * 2 0 0 0;
-                font: {
-                  family: $stratosRegular;
-                  size: $line * 1.4;
-                }
-                color: #BDC0CF;
-
-                span {
-                  font: {
-                    family: $ico;
-                    size: $line * 1.6;
-                    weight: bold;
-                  }
-                }
-              }
-            }
-
-            .user-info {
+              color: $fontMain;
 
               div {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: flex-start;
+
 
                 span:nth-of-type(odd) {
-                  padding: $line * .1 0;
+                  padding: $line * .2 0;
                 }
 
                 span:nth-of-type(even) {
-                  font: {
-                    family: $stratosBold;
-                    size: $line * 1.4;
-                  }
                   color: black;
+                }
+              }
+
+              &:last-of-type {
+                padding: $line * .4 0;
+                font: {
+                  family: $ico, $stratosBold;
                 }
               }
             }
