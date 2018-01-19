@@ -75,10 +75,13 @@ class App extends Component {
                 }
             };
 
-        $.ajax(settings).done((response) => {
+        $.ajax(settings).then((response) => {
             this.setState({
                 userData: response.data
             });
+        }, (response) => {
+            if (response.status === 401)
+                window.location.href = "/signOut";
         });
     }
     renderApp(state = this.props.renderAppFilter) {
