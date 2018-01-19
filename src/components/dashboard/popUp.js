@@ -65,7 +65,7 @@ class PopUp extends Component {
                                     </div>
                                     <div className="user-info" onClick={() => {this.setState({popUp: !this.state.popUp})}}>
                                         {
-                                            $.map(this.state.orderList.orderFields, function(type) {
+                                            $.map(this.state.orderList.orderFields, (type) => {
                                                 return (
                                                     <div>
                                                         <span>{type.fieldName + ": "}</span>

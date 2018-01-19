@@ -128,15 +128,20 @@ export class RequiredFields extends Component {
                                     </textarea>
                                 </div>
                                 <div className="field-set buttons">
-                                    <button onClick={() => {
-                                        this.constructorPreview()
-                                    }}>
+                                    <button
+                                        type="button"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            this.props.onToggle();
+                                        }}>
                                         {t("newTask.taskRequiredFields.preview")}
                                     </button>
                                     <button
                                         type="button"
-                                        onClick={this.prop.onToogle}
-                                    >
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            this.props.saveConstructorAsTemplate();
+                                        }}>
                                         {t("newTask.taskRequiredFields.save")}
                                     </button>
                                 </div>

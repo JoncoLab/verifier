@@ -32,9 +32,9 @@ class Constructor extends Component {
 
         this.setCustomFields = this.setCustomFields.bind(this);
         this.removeEvent = this.removeEvent.bind(this);
-        Constructor.constructorPreview = Constructor.constructorPreview.bind(this);
         this.saveConstructorAsTemplate = this.saveConstructorAsTemplate.bind(this);
         this.getConstructorData = this.getConstructorData.bind(this);
+        this.togglePopUp = this.togglePopUp.bind(this);
     }
 
     removeEvent(targetId) {
@@ -166,6 +166,12 @@ class Constructor extends Component {
         );
     }
 
+    togglePopUp() {
+        this.setState({
+            constPopUp: !this.state.constPopUp
+        });
+    }
+
     render() {
         return (
             <I18n>
@@ -212,8 +218,7 @@ class Constructor extends Component {
                                             <CustomFieldset
                                                 remove={this.removeEvent}
                                                 key={field.id}
-                                                id={field.id}
-                                                type={field.type}
+                                                {...field}
                                             />
                                         ))}
                                     </div>
@@ -223,21 +228,13 @@ class Constructor extends Component {
                                     />
                                 </section>
                                 <RequiredFields
-                                    onToogle={() => {
-                                        this.setState({
-                                            constPopUp: !this.state.constPopUp
-                                        })
-                                    }}
+                                    onToggle={this.togglePopUp}
                                     saveConstructorAsTemplate={(e) => this.saveConstructorAsTemplate(e)}
                                 />
                                 <ConstructorPopUp
-                                    customFields={this.state.customFields}
+                                    getOrderData={this.getConstructorData}
                                     constPopUp={this.state.constPopUp}
-                                    onToogle={() => {
-                                        this.setState({
-                                            constPopUp: !this.state.constPopUp
-                                        })
-                                    }}
+                                    onToggle={this.togglePopUp}
                                 />
                             </form>
                         </main>
