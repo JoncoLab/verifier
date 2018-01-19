@@ -75,9 +75,9 @@
       "typeVideo": "video",
       "removeField": "Remove field",
       "descPlaceholder": "Description",
-      "fioPlaceholder": "Your name",
-      "filePlaceholder": "Files",
-      "visitPlaceholder": "Visit card photo"
+      "fioPlaceholder": "Field name",
+      "filePlaceholder": "Files count",
+      "visitPlaceholder": "Description"
     },
     "taskFooter": {
       "type": "Select field type: ",

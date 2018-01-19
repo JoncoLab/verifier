@@ -117,6 +117,7 @@ class CustomFieldSet extends Component {
                             required={true}
                         />
                         <input
+                            min={1}
                             type="number"
                             name={"image-files-" + this.props.id}
                             id={"image-files-" + this.props.id}

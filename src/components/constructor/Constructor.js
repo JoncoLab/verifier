@@ -101,7 +101,7 @@ class Constructor extends Component {
                     break;
                 case "IMAGE_TYPE":
                     orderFields.push({
-                        fieldType: "image",
+                        fieldType: "photo",
                         fieldName: val("image-name-" + id),
                         fieldDescription: val("image-desc-" + id),
                         fieldData: "",

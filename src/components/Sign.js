@@ -271,10 +271,12 @@ class Sign extends Component {
                 email: Sign.getVal("sign-in-email"),
                 password: Sign.getVal("sign-in-password")
             }),
+            apiUrl = "http://185.4.75.58:8181/verifier/api/v1/user/customer/login",
+            herokuAppUrl = "https://cors-anywhere.herokuapp.com/",
             settings = {
                 async: true,
                 crossDomain: true,
-                url: "http://185.4.75.58:8181/verifier/api/v1/user/customer/login",
+                url: herokuAppUrl + apiUrl,
                 method: "POST",
                 processData: false,
                 data: fields,
@@ -307,7 +309,8 @@ class Sign extends Component {
                     D = strDate.substr(-2, 2);
                 return parseInt(D + M + Y, 10);
             },
-            url = "http://185.4.75.58:8181/verifier/api/v1/user/customer/registration",
+            herokuAppUrl = "https://cors-anywhere.herokuapp.com/",
+            apiUrl = "http://185.4.75.58:8181/verifier/api/v1/user/customer/registration",
             fields = new FormData();
 
         fields.append("photo", Sign.getVal("photo"));
@@ -321,7 +324,7 @@ class Sign extends Component {
         fields.append("companyName", Sign.getVal("company-name"));
 
         let settings = {
-            url: url,
+            url: herokuAppUrl + apiUrl,
             data: fields,
             processData: false,
             method: "POST",

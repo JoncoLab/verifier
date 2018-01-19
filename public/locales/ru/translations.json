@@ -75,9 +75,9 @@
       "typeVideo": "видео",
       "removeField": "Удалить поле",
       "descPlaceholder": "Описание",
-      "fioPlaceholder": "ФИО",
-      "filePlaceholder": "Файлы",
-      "visitPlaceholder": "Фото визитки"
+      "fioPlaceholder": "Наименование поля",
+      "filePlaceholder": "Количество файлов",
+      "visitPlaceholder": "Описание"
     },
     "taskFooter": {
       "type": "Выберите тип поля: ",
