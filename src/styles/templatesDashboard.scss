@@ -7,10 +7,55 @@
   align-items: center;
   justify-content: space-around;
 
-  .from-temp-to-const, .from-temp-to-dash {
-    @include mainBlueBtn;
-    width: 48.5%;
-    padding: $line * 2 0;
+  .template-buttons {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+    align-items: center;
+
+    h1 {
+      @include blackCaption;
+      flex-grow: 1;
+    }
+
+    .from-temp-to-dash {
+      @include greyBtn;
+    }
+
+    .from-temp-to-const {
+      padding: $line * 5 0;
+      margin: $line * 2 0 0 0;
+      min-height: $line * 15;
+      width: 100%;
+      border: none;
+      outline: none;
+      border-radius: $line;
+      background: {
+        color: $white;
+        image: url("../img/card_decor_gr.svg");
+        repeat: no-repeat;
+        size: 35%;
+        position-x: 105%;
+      }
+      box-shadow: 0 $line $line * 3 0 rgba(156,162,188,0.55);
+      color: $fontBlack;
+      font: {
+        size: $line * 2.4;
+        family: $stratosMedium;
+      }
+      white-space: nowrap;
+      cursor: pointer;
+      transition: {
+        duration: $time;
+        timing-function: linear;
+      }
+
+      &:hover {
+        box-shadow: 0 5px 20px 0 rgba(156,162,188,0.35);
+      }
+    }
   }
 
   .templates-container {
@@ -92,6 +137,12 @@
   @media screen and (max-width: 470px) {
     .templates-container {
       flex-direction: column;
+
+      .template-buttons {
+        button {
+          width: 100%;
+        }
+      }
 
       .template {
         width: 100%;

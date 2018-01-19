@@ -41,28 +41,31 @@ class TemplatesDashboard extends Component {
                     (t) => (
                         <main>
                             <section className="templates-dashboard">
-                                <button
-                                    type="button"
-                                    className="from-temp-to-const"
-                                    onClick={
-                                        () => {
-                                            window.location.pathname = "/constructor";
+                                <div className="template-buttons">
+                                    <h1>{t("templates.caption")}</h1>
+                                    <button
+                                        type="button"
+                                        className="from-temp-to-dash"
+                                        onClick={
+                                            () => {
+                                                window.location.pathname = "/dashboard";
+                                            }
                                         }
-                                    }
-                                >
-                                    {t("newTask.constCaption")}
-                                </button>
-                                <button
-                                    type="button"
-                                    className="from-temp-to-dash"
-                                    onClick={
-                                        () => {
-                                            window.location.pathname = "/dashboard";
+                                    >
+                                        {t("profile.backToMain")}
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className="from-temp-to-const"
+                                        onClick={
+                                            () => {
+                                                window.location.pathname = "/constructor";
+                                            }
                                         }
-                                    }
-                                >
-                                    {t("newTask.constCaption")}
-                                </button>
+                                    >
+                                        {t("newTask.constCaption")}
+                                    </button>
+                                </div>
                                 <div className="templates-container">
                                     {/*{*/}
                                         {/*this.state.templates.map((template) => (*/}

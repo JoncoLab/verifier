@@ -62,7 +62,7 @@
     "backToMain": "< TO MY TASKS"
   },
   "newTask": {
-    "constCaption": "CREATE TASK FROM THE CONSTRUCTOR",
+    "constCaption": "CREATE TASK WITH THE CONSTRUCTOR",
     "taskName": "TASK NAME",
     "backToMain": "< TO MY TASKS",
     "namePlaceholder": "Field name",
@@ -102,6 +102,7 @@
     "submit": "Send"
   },
   "templates": {
-    "toTheConst": "CREATE NEW TASK WITH TEMPLATE"
+    "toTheConst": "CREATE TASK WITH TEMPLATE",
+    "caption": "CREATE TASK WITH TEMPLATE"
   }
 }
