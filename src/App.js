@@ -6,6 +6,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import Cabinet from "./components/cabinet/Cabinet";
 import Constructor from "./components/constructor/Constructor";
 import DownloadApp from "./components/DownloadApp";
+import TemplatesDashboard from "./components/constructor/TemplatesDashboard";
 import {connect} from 'react-redux';
 import {RenderFilters, setRenderFilter} from "./store/actions";
 import * as $ from "jquery";
@@ -48,6 +49,9 @@ class App extends Component {
                 case "/signOut":
                     document.cookie = "token=0;";
                     targetPage = "RENDER_SIGN";
+                    break;
+                case "/templates":
+                    targetPage = "RENDER_TEMPLATES";
                     break;
                 default:
                     targetPage = "RENDER_SIGN";
@@ -96,6 +100,9 @@ class App extends Component {
             case 'RENDER_DOWNLOAD_LINKS':
                 targetComponent = <DownloadApp/>;
                 break;
+            case 'RENDER_TEMPLATES':
+                targetComponent = <TemplatesDashboard/>;
+                break;
             default:
                 document.cookie.replace("token=" + this.state.token + ";", "");
                 targetComponent =
@@ -138,6 +145,9 @@ const mapDispatchToProps = (dispatch) => {
                     break;
                 case "RENDER_DOWNLOAD_LINKS":
                     targetPage = RenderFilters.RENDER_DOWNLOAD_LINKS;
+                    break;
+                case "RENDER_TEMPLATES":
+                    targetPage = RenderFilters.RENDER_TEMPLATES;
                     break;
                 default:
                     targetPage = RenderFilters.RENDER_SIGN;

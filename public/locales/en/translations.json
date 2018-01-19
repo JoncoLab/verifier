@@ -31,7 +31,7 @@
     }
   },
   "main": {
-    "newTaskBtn": "CREATE NEW TASK",
+    "newTaskBtn": "CREATE NEW TASK WITH CONSTRUCTOR",
     "verificationTypes": {
       "selfie": "Selfie",
       "business": "Verify business card",
@@ -102,6 +102,6 @@
     "submit": "Send"
   },
   "templates": {
-    "toTheConst": "To the constructor"
+    "toTheConst": "CREATE NEW TASK WITH TEMPLATE"
   }
 }
