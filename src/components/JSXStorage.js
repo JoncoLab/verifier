@@ -202,6 +202,3 @@ const getInputType = (dataType) => {
     }
     return inputType;
 };
-
-,
-constPopUp: false

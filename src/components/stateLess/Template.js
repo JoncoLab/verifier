@@ -9,9 +9,9 @@ class Template extends Component {
                 {
                     (t) => (
                         <section className="template">
-                            <h2 className="verification-name">{this.props.templateName}</h2>
-                            <span className="verification-state">{t("templates.toTheConst")}</span>
-                            <p className="verification-desc">{this.props.templateComment}</p>
+                            <h2 className="template-name">{this.props.templateName}</h2>
+                            <span className="template-link">{t("templates.toTheConst")}</span>
+                            <p className="template-desc">{this.props.templateComment}</p>
                         </section>
                     )
                 }

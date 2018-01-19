@@ -33,9 +33,7 @@ class Dashboard extends Component {
             });
         });
     }
-    popUp() {
-        // popUp function to display order
-    }
+
     render() {
         return (
             <I18n>
@@ -46,11 +44,11 @@ class Dashboard extends Component {
                                 <button className="new-task"
                                         onClick={
                                             () => {
-                                                window.location.pathname = "/constructor";
+                                                window.location.pathname = "/templates";
                                             }
                                         }
                                 >
-                                    {t("main.newTaskBtn")}
+                                    {t("templates.toTheConst")}
                                 </button>
                                 <div className="main-container">
                                     {
