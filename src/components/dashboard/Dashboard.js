@@ -29,7 +29,7 @@ class Dashboard extends Component {
 
         $.ajax(settings).done((response) => {
             this.setState({
-                orders:response.data
+                orders: response.data
             });
         });
     }

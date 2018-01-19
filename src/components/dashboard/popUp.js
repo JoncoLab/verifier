@@ -32,7 +32,6 @@ class PopUp extends Component {
         $.ajax(settings).done((response) => {
             this.setState({
                 orderList: response.data
-                //orderFields: response.data.orderFields
             });
         });
     }
@@ -40,7 +39,7 @@ class PopUp extends Component {
     getValueArr() {
         let fieldsArray = this.state.orderList.orderFields;
 
-        if(fieldsArray !== 'undefined') {
+        if (fieldsArray !== 'undefined') {
             $.map(fieldsArray, function(type) {
                 return type.fieldName
             })
@@ -63,16 +62,29 @@ class PopUp extends Component {
                                 <p className="details-desc">{this.props.orderComment}</p>
                                 <div className="details-user-info">
                                     <div className="user-photo">
-                                        <img src={this.props.imgSrc} alt="User photo"/>
+                                        <img
+                                            src={
+                                                this.props.imgSrc
+                                            }
+                                            src={
+                                                this.props.imgSrc === undefined ?
+                                                    "img/user-login.svg" :
+                                                    (
+                                                        this.props.userData.photo.slice(this.props.imgSrc.length - 4) === "null" ?
+                                                            "img/user-login.svg" :
+                                                            this.props.imgSrc
+                                                    )
+                                            }
+                                            alt="User photo"/>
                                         <span className="details-city"><span>☻</span> {this.props.verifAddr}</span>
                                     </div>
                                     <div className="user-info" onClick={() => {this.setState({popUp: !this.state.popUp})}}>
                                         <div>
                                             {
-                                                $.map(this.state.orderList.orderFields, function(type, index) {
+                                                $.map(this.state.orderList.orderFields, function(type) {
                                                     return (
                                                         <div>
-                                                            <span>{type.fieldName}</span>
+                                                            <span>{type.fieldName + ": "}</span>
                                                             <span>{type.fieldDescription}</span>
                                                         </div>
                                                     )
@@ -90,4 +102,4 @@ class PopUp extends Component {
     }
 }
 
-export default PopUp
+export default PopUp;
