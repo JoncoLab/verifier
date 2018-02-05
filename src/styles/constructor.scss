@@ -570,17 +570,47 @@
       align-content: space-between;
       position: absolute;
       background: {
-        color: transparentize(white, 0.3);
-        image: url("../img/news_0.jpg");
+        color: #F4F5FF;
+        image: url("../img/hike.png");
         size: cover;
-        position: center;
         repeat: no-repeat;
-        blend-mode: overlay;
+        position: right;
       }
       margin: auto;
       padding: $line * 3;
       border-radius: $line;
       cursor: default;
+      overflow: hidden;
+
+      * {
+        z-index: 10;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: $line * 200;
+        background: rgba(244, 245, 255, 0.76);
+        z-index: 1;
+        transform-origin: top left;
+        transform: translate(20%, -10%) rotate(45deg) scaleX(2);
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: $line * 200;
+        background: #F4F5FF;
+        z-index: 1;
+        transform-origin: top left;
+        transform: translate(10%, -10%) rotate(50deg) scaleX(2);
+      }
 
       .details-name {
         flex-basis: 70%;

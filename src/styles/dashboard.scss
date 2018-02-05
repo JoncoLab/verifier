@@ -155,10 +155,10 @@
           position: absolute;
           background: {
             color: #F4F5FF;
-            image: url("../img/bg_appstore.jpg");
-            size: 100% $line * 30;
+            image: url("../img/hike.png");
+            size: cover;
             repeat: no-repeat;
-            position-x: 100%;
+            position: right;
           }
           margin: auto;
           padding: $line * 3;
@@ -264,24 +264,26 @@
             content: '';
             position: absolute;
             top: 0;
-            left: $line * -15;
+            left: 0;
             width: 100%;
-            height: $line * 70;
+            height: $line * 200;
             background: rgba(244, 245, 255, 0.76);
             z-index: 1;
-            transform: rotate(45deg);
+            transform-origin: top left;
+            transform: translate(20%, -10%) rotate(45deg) scaleX(2);
           }
 
           &::after {
             content: '';
             position: absolute;
             top: 0;
-            left: $line * -30;
+            left: 0;
             width: 100%;
-            height: $line * 90;
+            height: $line * 200;
             background: #F4F5FF;
             z-index: 1;
-            transform: rotate(45deg);
+            transform-origin: top left;
+            transform: translate(10%, -10%) rotate(50deg) scaleX(2);
           }
         }
 

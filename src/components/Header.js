@@ -42,7 +42,14 @@ class Header extends Component {
                                                 }
                                             }}
                                         >
-                                            <img title={t("header.logoTitleText")} alt="logo" src="../img/logo.png"/>
+                                            <img
+                                                title={t("header.logoTitleText")}
+                                                alt="logo"
+                                                src="../img/logo.png"
+                                                style={{
+                                                    cursor: "pointer"
+                                                }}
+                                            />
                                         </a>
                                     </div>
                                     <div className={navbarRightStyle} onClick={() => {

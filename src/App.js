@@ -78,8 +78,8 @@ class App extends Component {
             this.setState({
                 userData: response.data
             });
-        }, (response) => {
-            if (response.status === "401" && token !== 0 && token !== '')
+        }, () => {
+            if (token !== "0" && token !== '')
                 window.location.pathname = "/signOut";
         });
     }
