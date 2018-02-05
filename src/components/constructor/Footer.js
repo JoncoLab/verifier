@@ -8,18 +8,20 @@ class Footer extends Component {
     constructor(props) {
         super(props);
 
-        this.components = props.components;
-
         this.state = {
-            id: this.components.length + 1
+            id: props.components.length + 1
         };
+
+        this.appendField = this.appendField.bind(this);
     }
     appendField(id) {
-        this.components.push({
+        let newFields = this.props.components;
+        newFields.push({
             id: id,
             type: this.props.inputProps
         });
-        this.props.setCustomFields(this.components);
+        console.log(newFields);
+        this.props.setCustomFields(newFields);
     }
     render() {
         const textSelectClass = classSet({

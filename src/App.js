@@ -63,13 +63,12 @@ class App extends Component {
     }
     componentDidMount() {
         let token = document.cookie.replace("token=", ""),
-            herokuAppUrl = "https://cors-anywhere.herokuapp.com/",
             apiUrl = "http://185.4.75.58:8181/verifier/api/v1/user/customer/0",
             settings = {
                 async: true,
                 crossDomain: true,
                 method: "GET",
-                url: herokuAppUrl + apiUrl,
+                url: apiUrl,
                 headers: {
                     "Token": token
                 }
@@ -80,8 +79,8 @@ class App extends Component {
                 userData: response.data
             });
         }, (response) => {
-            if (response.status === 401 && token !== 0 && token !== '')
-                window.location.href = "/signOut";
+            if (response.status === "401" && token !== 0 && token !== '')
+                window.location.pathname = "/signOut";
         });
     }
     renderApp(state = this.props.renderAppFilter) {

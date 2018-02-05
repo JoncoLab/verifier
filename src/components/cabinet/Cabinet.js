@@ -26,10 +26,9 @@ class Cabinet extends Component {
     }
     userDataChange(formData) {
         let token = document.cookie.replace("token=", ""),
-            herokuAppUrl = "https://cors-anywhere.herokuapp.com/",
             apiUrl = "http://185.4.75.58:8181/verifier/api/v1/user/customer/update",
             settings = {
-                url: herokuAppUrl + apiUrl,
+                url: apiUrl,
                 method: "POST",
                 crossDomain: true,
                 async: true,

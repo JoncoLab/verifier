@@ -17,13 +17,12 @@ class PopUp extends Component {
 
     componentWillMount() {
         let token = document.cookie.replace("token=", ""),
-            herokuAppUrl = "https://cors-anywhere.herokuapp.com/",
             apiUrl = "http://185.4.75.58:8181/verifier/api/v1/order/" + this.props.orderId,
             settings = {
                 async: true,
                 crossDomain: true,
                 method: "GET",
-                url: herokuAppUrl + apiUrl,
+                url: apiUrl,
                 headers: {
                     "Token": token
                 }

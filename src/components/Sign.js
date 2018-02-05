@@ -244,9 +244,10 @@ class Sign extends Component {
                 /**
                  * @property token Token returned by server
                  */
-                Sign.proceedToDashboard(this.state.type === 2 ?
-                    JSON.parse(response).data.token :
-                    response.data.token
+                Sign.proceedToDashboard(
+                    this.state.type === 2 ?
+                        JSON.parse(response).data.token :
+                        response.data.token
                 );
             }, (response) => {
                 alert(
@@ -272,11 +273,10 @@ class Sign extends Component {
                 password: Sign.getVal("sign-in-password")
             }),
             apiUrl = "http://185.4.75.58:8181/verifier/api/v1/user/customer/login",
-            herokuAppUrl = "https://cors-anywhere.herokuapp.com/",
             settings = {
                 async: true,
                 crossDomain: true,
-                url: herokuAppUrl + apiUrl,
+                url: apiUrl,
                 method: "POST",
                 processData: false,
                 data: fields,
@@ -309,7 +309,6 @@ class Sign extends Component {
                     D = strDate.substr(-2, 2);
                 return parseInt(D + M + Y, 10);
             },
-            herokuAppUrl = "https://cors-anywhere.herokuapp.com/",
             apiUrl = "http://185.4.75.58:8181/verifier/api/v1/user/customer/registration",
             fields = new FormData();
 
@@ -324,7 +323,7 @@ class Sign extends Component {
         fields.append("companyName", Sign.getVal("company-name"));
 
         let settings = {
-            url: herokuAppUrl + apiUrl,
+            url: apiUrl,
             data: fields,
             processData: false,
             method: "POST",

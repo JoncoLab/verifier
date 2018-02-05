@@ -36,13 +36,11 @@ class Constructor extends Component {
         this.getConstructorData = this.getConstructorData.bind(this);
         this.togglePopUp = this.togglePopUp.bind(this);
     }
-
     removeEvent(targetId) {
         let newFieldSet = this.state.customFields;
-        delete newFieldSet[targetId - 1];
+        newFieldSet = newFieldSet.filter(item => item !== null && item.id !== targetId);
         this.setCustomFields(newFieldSet);
     }
-
     setCustomFields(fields) {
         this.setState({
             customFields: fields
@@ -50,9 +48,8 @@ class Constructor extends Component {
     }
     sendRequest(apiUrl, data) {
         let token = document.cookie.replace("token=", ""),
-            herokuAppUrl = "https://cors-anywhere.herokuapp.com/",
             settings = {
-                url: herokuAppUrl + apiUrl,
+                url: apiUrl,
                 method: "POST",
                 crossDomain: true,
                 async: true,
@@ -90,44 +87,53 @@ class Constructor extends Component {
             verifAddr = val("address");
 
         for (let i = 0; i < fields.length; i++) {
-            let id = fields[i].id;
-            switch (fields[i].type) {
-                case "TEXT_TYPE":
-                    orderFields.push({
-                        fieldType: "txt",
-                        fieldName: val("text-name-" + id),
-                        fieldDescription: val("text-desc-" + id),
-                        fieldData: "",
-                        fieldMinCount: ""
-                    });
-                    break;
-                case "IMAGE_TYPE":
-                    orderFields.push({
-                        fieldType: "photo",
-                        fieldName: val("image-name-" + id),
-                        fieldDescription: val("image-desc-" + id),
-                        fieldData: "",
-                        fieldMinCount: val("image-files-" + id)
-                    });
-                    break;
-                case "VIDEO_TYPE":
-                    orderFields.push({
-                        fieldType: "video",
-                        fieldName: val("video-name-" + id),
-                        fieldDescription: val("video-desc-" + id),
-                        fieldData: "",
-                        fieldMinCount: ""
-                    });
-                    break;
-                default:
-                    orderFields.push({
-                        fieldType: "",
-                        fieldName: "",
-                        fieldDescription: "",
-                        fieldData: "",
-                        fieldMinCount: ""
-                    });
-
+            if (fields[i] !== null && fields[i] !== undefined) {
+                let id = fields[i].id;
+                switch (fields[i].type) {
+                    case "TEXT_TYPE":
+                        orderFields.push({
+                            fieldType: "txt",
+                            fieldName: val("text-name-" + id),
+                            fieldDescription: val("text-desc-" + id),
+                            fieldData: "",
+                            fieldMinCount: ""
+                        });
+                        break;
+                    case "IMAGE_TYPE":
+                        orderFields.push({
+                            fieldType: "photo",
+                            fieldName: val("image-name-" + id),
+                            fieldDescription: val("image-desc-" + id),
+                            fieldData: "",
+                            fieldMinCount: val("image-files-" + id)
+                        });
+                        break;
+                    case "VIDEO_TYPE":
+                        orderFields.push({
+                            fieldType: "video",
+                            fieldName: val("video-name-" + id),
+                            fieldDescription: val("video-desc-" + id),
+                            fieldData: "",
+                            fieldMinCount: ""
+                        });
+                        break;
+                    default:
+                        orderFields.push({
+                            fieldType: "",
+                            fieldName: "",
+                            fieldDescription: "",
+                            fieldData: "",
+                            fieldMinCount: ""
+                        });
+                }
+            } else {
+                orderFields.push({
+                    fieldType: "",
+                    fieldName: "",
+                    fieldDescription: "",
+                    fieldData: "",
+                    fieldMinCount: ""
+                });
             }
         }
 
@@ -147,7 +153,6 @@ class Constructor extends Component {
             JSON.stringify(this.getConstructorData())
         );
     }
-
     saveConstructorAsTemplate() {
         let fields = this.getConstructorData(),
             template = {
@@ -165,13 +170,11 @@ class Constructor extends Component {
             JSON.stringify(template)
         );
     }
-
     togglePopUp() {
         this.setState({
             constPopUp: !this.state.constPopUp
         });
     }
-
     render() {
         return (
             <I18n>
@@ -232,27 +235,7 @@ class Constructor extends Component {
                                     saveConstructorAsTemplate={(e) => this.saveConstructorAsTemplate(e)}
                                 />
                                 <ConstructorPopUp
-                                    getOrderData={
-                                        this.state.constPopUp ?
-                                            this.getConstructorData :
-                                            () => {
-                                                return {
-                                                    orderName: "",
-                                                    orderRate: "",
-                                                    orderComment: "",
-                                                    verifAddr: "",
-                                                    verifTimeFrom: "",
-                                                    verifTimeTo: "",
-                                                    orderFields: [{
-                                                        fieldType: "",
-                                                        fieldName: "",
-                                                        fieldDescription: "",
-                                                        fieldData: "",
-                                                        fieldMinCount: ""
-                                                    }]
-                                                }
-                                            }
-                                    }
+                                    getOrderData={() => this.getConstructorData()}
                                     constPopUp={this.state.constPopUp}
                                     onToggle={this.togglePopUp}
                                 />

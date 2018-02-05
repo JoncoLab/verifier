@@ -11,18 +11,27 @@ class ConstructorPopUp extends Component {
         }
     }
     componentWillReceiveProps() {
-        let localData = this.props.getOrderData();
-        delete localData.orderRate;
-        delete localData.verifTimeTo;
-        delete localData.verifTimeFrom;
-        for (let field in localData.orderFields) {
-            delete field.fieldType;
-            delete field.fieldMinCount;
-            delete field.fieldData;
+        let localData = [];
+        try {
+            localData = this.props.getOrderData();
+            delete localData.orderRate;
+            delete localData.verifTimeTo;
+            delete localData.verifTimeFrom;
+            for (let i = 0; i < localData.orderFields.length; i++) {
+                let field = localData.orderFields[i];
+                if (field.fieldType !== "") {
+                    delete field.fieldType;
+                    delete field.fieldMinCount;
+                    delete field.fieldData;
+                } else {
+                    delete localData.orderFields[i];
+                }
+            }
+        } finally {
+            this.setState({
+                data: localData
+            })
         }
-        this.setState({
-            data: localData
-        })
     }
     render() {
         const detailsToggle = classSet({
@@ -43,14 +52,12 @@ class ConstructorPopUp extends Component {
                         </div>
                         <div className="user-info">
                             {
-                                $.map(this.state.data.orderFields, (type) => {
-                                    return (
-                                        <div>
-                                            <span>{type.fieldName + ": "}</span>
-                                            <span>{type.fieldDescription}</span>
-                                        </div>
-                                    )
-                                })
+                                $.map(this.state.data.orderFields, (field, i) => (
+                                    <div key={i}>
+                                        <span>{field.fieldName + ": "}</span>
+                                        <span>{field.fieldDescription}</span>
+                                    </div>
+                                ))
                             }
                             <span className="details-city"><span>☻</span>{this.state.data.verifAddr}</span>
                         </div>
