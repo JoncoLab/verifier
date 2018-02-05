@@ -226,10 +226,9 @@
 
             .user-info {
               display: flex;
-              flex-wrap: wrap;
-              justify-content: flex-start;
-              align-items: center;
-              align-content: flex-start;
+              flex-direction: column;
+              justify-items: flex-start;
+              align-items: flex-start;
               font: {
                 family: $stratosBold;
                 size: $line * 1.6;
@@ -238,8 +237,8 @@
 
               div {
                 display: flex;
-                justify-content: space-between;
-                align-items: center;
+                flex-direction: column;
+                align-items: flex-start;
 
 
                 span:nth-of-type(odd) {
