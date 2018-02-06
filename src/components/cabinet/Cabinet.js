@@ -4,6 +4,7 @@ import classSet from 'react-classset';
 import TaskInfo from "../stateLess/TaskInfo";
 import {connect} from 'react-redux';
 import * as $ from "jquery";
+import {apiHost} from "../../App";
 
 class Cabinet extends Component {
     constructor(props) {
@@ -26,7 +27,7 @@ class Cabinet extends Component {
     }
     userDataChange(formData) {
         let token = document.cookie.replace("token=", ""),
-            apiUrl = "/verifier/verifier/api/v1/user/customer/update",
+            apiUrl = apiHost + "verifier/api/v1/user/customer/update",
             settings = {
                 url: apiUrl,
                 method: "POST",
@@ -79,13 +80,12 @@ class Cabinet extends Component {
                                         <img
                                             alt="User photo"
                                             src={
-                                                this.props.userData.photo === undefined ?
-                                                    "img/user-login.svg" :
+                                                this.props.userData !== undefined ?
                                                     (
                                                         this.props.userData.photo.slice(this.props.userData.photo.length - 4) === "null" ?
                                                             "img/user-login.svg" :
                                                             this.props.userData.photo
-                                                    )
+                                                    ) : "img/user-login.svg"
                                             }
                                             className="profile-photo"
                                         />

@@ -10,10 +10,16 @@ class Order extends Component {
             popUp: false
         };
     }
-
     render() {
         return (
-            <section className="verification-type" onClick={() => {this.setState({popUp: !this.state.popUp})}}>
+            <section
+                className="verification-type"
+                onClick={() => {
+                    this.setState({
+                        popUp: !this.state.popUp
+                    })}
+                }
+            >
                 <h2 className="verification-name">{this.props.orderName}</h2>
                 <span className="verification-state">{this.props.status}</span>
                 <p className="verification-desc">{this.props.orderComment}</p>

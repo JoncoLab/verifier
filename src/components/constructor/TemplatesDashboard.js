@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import * as $ from 'jquery';
 import {I18n} from 'react-i18next';
 import Template from '../stateLess/Template';
+import {apiHost} from "../../App";
 
 
 class TemplatesDashboard extends Component {
@@ -15,7 +16,7 @@ class TemplatesDashboard extends Component {
 
     componentDidMount() {
         let token = document.cookie.replace("token=", ""),
-            apiUrl = "/verifier/verifier/api/v1/template/list",
+            apiUrl = apiHost + "verifier/api/v1/template/list",
             settings = {
                 async: true,
                 crossDomain: true,

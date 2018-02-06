@@ -3,6 +3,7 @@ import {I18n} from "react-i18next";
 import * as $ from "jquery";
 import {RenderFilters, setRenderFilter} from "../store/actions";
 import {connect} from 'react-redux';
+import {apiHost} from "../App";
 
 
 class Sign extends Component {
@@ -272,7 +273,7 @@ class Sign extends Component {
                 email: Sign.getVal("sign-in-email"),
                 password: Sign.getVal("sign-in-password")
             }),
-            apiUrl = "/verifier/verifier/api/v1/user/customer/login",
+            apiUrl = apiHost + "verifier/api/v1/user/customer/login",
             settings = {
                 async: true,
                 crossDomain: true,
@@ -309,7 +310,7 @@ class Sign extends Component {
                     D = strDate.substr(-2, 2);
                 return parseInt(D + M + Y, 10);
             },
-            apiUrl = "/verifier/verifier/api/v1/user/customer/registration",
+            apiUrl = apiHost + "verifier/api/v1/user/customer/registration",
             fields = new FormData();
 
         fields.append("photo", Sign.getVal("photo"));

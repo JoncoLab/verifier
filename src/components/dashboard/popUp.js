@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {I18n} from 'react-i18next';
 import classSet from "react-classset";
 import * as $ from 'jquery';
+import {apiHost} from "../../App";
 
 class PopUp extends Component {
     constructor(props) {
@@ -17,7 +18,7 @@ class PopUp extends Component {
 
     componentWillMount() {
         let token = document.cookie.replace("token=", ""),
-            apiUrl = "/verifier/verifier/api/v1/order/" + this.props.orderId,
+            apiUrl = apiHost + "verifier/api/v1/order/" + this.props.orderId,
             settings = {
                 async: true,
                 crossDomain: true,
@@ -64,9 +65,9 @@ class PopUp extends Component {
                                     </div>
                                     <div className="user-info" onClick={() => {this.setState({popUp: !this.state.popUp})}}>
                                         {
-                                            $.map(this.state.orderList.orderFields, (type) => {
+                                            $.map(this.state.orderList.orderFields, (type, key) => {
                                                 return (
-                                                    <div>
+                                                    <div key={key}>
                                                         <span>{type.fieldName + ": "}</span>
                                                         <span>{type.fieldDescription}</span>
                                                     </div>

@@ -62,26 +62,29 @@ class App extends Component {
         }
     }
     componentDidMount() {
-        let token = document.cookie.replace("token=", ""),
-            apiUrl = "/verifier/verifier/api/v1/user/customer/0",
-            settings = {
-                async: true,
-                crossDomain: true,
-                method: "GET",
-                url: apiUrl,
-                headers: {
-                    "Token": token
-                }
-            };
+        let token = document.cookie.includes("token") ?
+            document.cookie.replace("token=", "") :
+            "";
+        if (token === "0" || token !== "") {
+            let apiUrl = apiHost + "verifier/api/v1/user/customer/0",
+                settings = {
+                    async: true,
+                    crossDomain: true,
+                    method: "GET",
+                    url: apiUrl,
+                    headers: {
+                        "Token": token
+                    }
+                };
 
-        $.ajax(settings).then((response) => {
-            this.setState({
-                userData: response.data
+            $.ajax(settings).done((response) => {
+                this.setState({
+                    userData: response.data
+                });
             });
-        }, () => {
-            if (token !== "0" && token !== '')
-                window.location.pathname = "/signOut";
-        });
+        } else {
+            window.location.pathname = "/signOut";
+        }
     }
     renderApp(state = this.props.renderAppFilter) {
         let targetComponent;
@@ -158,6 +161,8 @@ const mapDispatchToProps = (dispatch) => {
         }
     })
 };
+
+export const apiHost = "/verifier/";
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
 

@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import CustomFieldset from "./inputTypes/CustomFieldSet";
 import ConstructorPopUp from './ContructorPopUp';
 import * as $ from "jquery";
+import {apiHost} from "../../App";
 
 class Constructor extends Component {
     constructor(props) {
@@ -149,7 +150,7 @@ class Constructor extends Component {
     }
     onSubmitConstructor() {
         this.sendRequest(
-            "/verifier/verifier/api/v1/order/add",
+            apiHost + "verifier/api/v1/order/add",
             JSON.stringify(this.getConstructorData())
         );
     }
@@ -166,7 +167,7 @@ class Constructor extends Component {
             delete field.fieldData;
         });
         this.sendRequest(
-            "/verifier/verifier/api/v1/template/new",
+            apiHost + "verifier/api/v1/template/new",
             JSON.stringify(template)
         );
     }
