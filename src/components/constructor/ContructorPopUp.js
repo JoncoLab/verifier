@@ -27,6 +27,8 @@ class ConstructorPopUp extends Component {
                     delete localData.orderFields[i];
                 }
             }
+        } catch (e) {
+            localData = [];
         } finally {
             this.setState({
                 data: localData
