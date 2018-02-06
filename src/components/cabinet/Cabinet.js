@@ -26,7 +26,7 @@ class Cabinet extends Component {
     }
     userDataChange(formData) {
         let token = document.cookie.replace("token=", ""),
-            apiUrl = "http://185.4.75.58:8181/verifier/api/v1/user/customer/update",
+            apiUrl = "/verifier/api/v1/user/customer/update",
             settings = {
                 url: apiUrl,
                 method: "POST",

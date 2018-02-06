@@ -259,7 +259,7 @@ class Sign extends Component {
                         ) :
                         response
                 );
-            });
+            })
     }
     switcher() {
         this.setState({
@@ -272,7 +272,7 @@ class Sign extends Component {
                 email: Sign.getVal("sign-in-email"),
                 password: Sign.getVal("sign-in-password")
             }),
-            apiUrl = "http://185.4.75.58:8181/verifier/api/v1/user/customer/login",
+            apiUrl = "/verifier/api/v1/user/customer/login",
             settings = {
                 async: true,
                 crossDomain: true,
@@ -309,7 +309,7 @@ class Sign extends Component {
                     D = strDate.substr(-2, 2);
                 return parseInt(D + M + Y, 10);
             },
-            apiUrl = "http://185.4.75.58:8181/verifier/api/v1/user/customer/registration",
+            apiUrl = "/verifier/api/v1/user/customer/registration",
             fields = new FormData();
 
         fields.append("photo", Sign.getVal("photo"));

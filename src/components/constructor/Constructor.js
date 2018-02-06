@@ -149,7 +149,7 @@ class Constructor extends Component {
     }
     onSubmitConstructor() {
         this.sendRequest(
-            "http://185.4.75.58:8181/verifier/api/v1/order/add",
+            "/verifier/api/v1/order/add",
             JSON.stringify(this.getConstructorData())
         );
     }
@@ -166,7 +166,7 @@ class Constructor extends Component {
             delete field.fieldData;
         });
         this.sendRequest(
-            "http://185.4.75.58:8181/verifier/api/v1/template/new",
+            "/verifier/api/v1/template/new",
             JSON.stringify(template)
         );
     }
