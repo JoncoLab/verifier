@@ -15,7 +15,7 @@ class Dashboard extends Component {
     }
     componentDidMount() {
         let token = document.cookie.replace("token=", ""),
-            apiUrl = "/verifier/api/v1/order/customer/list/0/200",
+            apiUrl = "/verifier/verifier/api/v1/order/customer/list/0/200",
             settings = {
                 async: true,
                 crossDomain: true,

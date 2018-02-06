@@ -17,7 +17,7 @@ class PopUp extends Component {
 
     componentWillMount() {
         let token = document.cookie.replace("token=", ""),
-            apiUrl = "/verifier/api/v1/order/" + this.props.orderId,
+            apiUrl = "/verifier/verifier/api/v1/order/" + this.props.orderId,
             settings = {
                 async: true,
                 crossDomain: true,

@@ -15,7 +15,7 @@ class TemplatesDashboard extends Component {
 
     componentDidMount() {
         let token = document.cookie.replace("token=", ""),
-            apiUrl = "/verifier/api/v1/template/list",
+            apiUrl = "/verifier/verifier/api/v1/template/list",
             settings = {
                 async: true,
                 crossDomain: true,
