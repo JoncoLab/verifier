@@ -73,11 +73,13 @@ class Header extends Component {
                                                 alt="profile photo"
                                                 src={
                                                     this.props.userData ?
-                                                        (
-                                                            this.props.userData.photo.slice(this.props.userData.photo.length - 4) === "null" ?
-                                                                "img/user-login.svg" :
-                                                                this.props.userData.photo
-                                                        ) : "img/user-login.svg"
+                                                        this.props.userData.photo ?
+                                                            (
+                                                                this.props.userData.photo.slice(this.props.userData.photo.length - 4) === "null" ?
+                                                                    "img/user-login.svg" :
+                                                                    this.props.userData.photo
+                                                            ) : "img/user-login.svg" :
+                                                        "img/user-login.svg"
                                                 }
                                             />
                                         </div>
