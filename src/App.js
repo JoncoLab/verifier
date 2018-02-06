@@ -65,7 +65,7 @@ class App extends Component {
         let token = document.cookie.includes("token") ?
             document.cookie.replace("token=", "") :
             "";
-        if (token === "0" || token !== "") {
+        if (token === "0" || token === "") {
             let apiUrl = apiHost + "verifier/api/v1/user/customer/0",
                 settings = {
                     async: true,

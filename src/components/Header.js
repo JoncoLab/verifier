@@ -58,16 +58,21 @@ class Header extends Component {
                                         >
                                         <span>{this.props.renderAppFilter === 'RENDER_SIGN'?
                                             "" :
-                                            this.props.userData.firstName
+                                            this.props.userData ?
+                                                this.props.userData.firstName :
+                                                ""
                                         }</span>
                                         <span>{this.props.renderAppFilter === 'RENDER_SIGN' ?
                                             "" :
-                                            this.props.userData.lastName}</span>
+                                            this.props.userData ?
+                                                this.props.userData.lastName :
+                                                ""
+                                        }</span>
                                         <div className="profile-photo">
                                             <img
                                                 alt="profile photo"
                                                 src={
-                                                    this.props.userData.photo ?
+                                                    this.props.userData ?
                                                         (
                                                             this.props.userData.photo.slice(this.props.userData.photo.length - 4) === "null" ?
                                                                 "img/user-login.svg" :
