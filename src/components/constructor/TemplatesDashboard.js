@@ -13,8 +13,7 @@ class TemplatesDashboard extends Component {
             templates: []
         };
     }
-
-    componentDidMount() {
+    componentWillMount() {
         let token = document.cookie.replace("token=", ""),
             apiUrl = apiHost + "verifier/api/v1/template/list",
             settings = {
@@ -67,30 +66,14 @@ class TemplatesDashboard extends Component {
                                     </button>
                                 </div>
                                 <div className="templates-container">
-                                    {/*{*/}
-                                        {/*this.state.templates.map((template) => (*/}
-                                            {/*<Template*/}
-                                                {/*templateName={template.templateName}*/}
-                                                {/*templateComment={template.templateComment}*/}
-                                            {/*/>*/}
-                                        {/*))*/}
-                                    {/*}*/}
-                                    <Template
-                                        templateName={'Template name'}
-                                        templateComment={'This is a template comment. Maybe. I am not sure. I hope this is.'}
-                                    />
-                                    <Template
-                                        templateName={'Template name'}
-                                        templateComment={'This is a template comment. Maybe. I am not sure. I hope this is.'}
-                                    />
-                                    <Template
-                                        templateName={'Template name'}
-                                        templateComment={'This is a template comment. Maybe. I am not sure. I hope this is.'}
-                                    />
-                                    <Template
-                                        templateName={'Template name'}
-                                        templateComment={'This is a template comment. Maybe. I am not sure. I hope this is.'}
-                                    />
+                                    {
+                                        this.state.templates.map((template) => (
+                                            <Template
+                                                templateName={template.templateName}
+                                                templateComment={template.templateComment}
+                                            />
+                                        ))
+                                    }
                                 </div>
                             </section>
                         </main>

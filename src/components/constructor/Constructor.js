@@ -57,7 +57,6 @@ class Constructor extends Component {
                 processData: false,
                 data: data,
                 headers: {
-                    "Content-Type": "application/json",
                     "Token": token
                 }
             };
@@ -167,7 +166,7 @@ class Constructor extends Component {
             delete field.fieldData;
         });
         this.sendRequest(
-            apiHost + "verifier/api/v1/template/new",
+            apiHost + "verifier/api/v1/template/add",
             JSON.stringify(template)
         );
     }

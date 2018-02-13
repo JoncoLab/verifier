@@ -25,7 +25,7 @@ class Cabinet extends Component {
             changePassActive: !this.state.changePassActive
         })
     }
-    userDataChange(formData) {
+    userDataChange(data) {
         let token = document.cookie.replace("token=", ""),
             apiUrl = apiHost + "verifier/api/v1/user/customer/update",
             settings = {
@@ -35,8 +35,8 @@ class Cabinet extends Component {
                 async: true,
                 processData: false,
                 contentType: false,
+                data: data,
                 mimeType: "multipart/form-data",
-                data: formData,
                 headers: {
                     "Token": token
                 }
@@ -44,25 +44,39 @@ class Cabinet extends Component {
 
         $.ajax(settings)
             .then(() => {
-                alert("YEA!");
-            }, () => {
-                alert("Nooo!");
+                window.location.reload();
+            }, (response) => {
+                console.log(response);
             });
     }
     changeName() {
-        let form = new FormData();
+        let data = new FormData(),
+            name = document.getElementById("profile-first-name").value.split(" "),
+            firstName, lastName = "";
 
-        form.append("first-name", document.getElementById("profile-first-name").value);
-        form.append("first-name", document.getElementById("profile-last-name").value);
+        for (let i = 0; i < name.length; i++) {
+            if (i === 0) {
+                firstName = name[i];
+            } else if (i !== name.length - 1) {
+                lastName += name[i] + " ";
+            } else {
+                lastName += name[i];
+            }
+        }
 
-        this.userDataChange(form);
+        data.append("firstName", firstName);
+        data.append("lastName", lastName);
+
+        this.userDataChange(data);
     }
     changePass(event) {
         event.preventDefault();
-        let form = new FormData();
 
-        form.append("password", document.getElementById("change-pass-input").value);
-        this.userDataChange(form);
+        let data = new FormData();
+
+        data.append("password", document.getElementById("change-pass-input").value);
+
+        this.userDataChange(data);
     }
     render() {
         let changePass = classSet({
