@@ -22,7 +22,7 @@ class Constructor extends Component {
             isTemplate: pathname.includes(leftOver) ?
                 pathname.replace(leftOver, "") :
                 false,
-            templateData: {}
+            templateData: {},
         };
 
         this.setCustomFields = this.setCustomFields.bind(this);
@@ -31,6 +31,10 @@ class Constructor extends Component {
         this.getTemplateData = this.getTemplateData.bind(this);
         this.togglePopUp = this.togglePopUp.bind(this);
         this.mountInput = this.mountInput.bind(this);
+        this.getDefaultsForCustomTemplateInputs = this.getDefaultsForCustomTemplateInputs.bind(this);
+        this.appendField = this.appendField.bind(this);
+        this.changeCustomInputType = this.changeCustomInputType.bind(this);
+        this.handleCustomFieldId = this.handleCustomFieldId.bind(this);
     }
     async getTemplateData() {
         if (this.state.isTemplate) {
@@ -108,6 +112,7 @@ class Constructor extends Component {
             const getTargetDefaultValue = (id) => {
                 let data = this.state.templateData,
                     target;
+
                 switch (id) {
                     case "task-name":
                         target = data.templateName;
@@ -122,6 +127,7 @@ class Constructor extends Component {
                     default:
                         target = "";
                 }
+
                 return {
                     defaultValue: target
                 };
@@ -144,6 +150,30 @@ class Constructor extends Component {
         this.setState({
             customFields: fields
         });
+    }
+    handleCustomFieldId() {
+        let customFields = this.state.customFields,
+            idS = [],
+            targetId = this.state.isTemplate ? 100 : 0;
+        for (let field of customFields) {
+            idS.push(field.id);
+        }
+        while (idS.includes(targetId)) {
+            targetId++;
+        }
+        return targetId;
+    }
+    appendField(type) {
+        let targetCustomFields = this.state.customFields,
+            id = targetCustomFields.length,
+            newField = {
+                id: this.handleCustomFieldId(),
+                type: type
+            };
+
+        targetCustomFields.push(newField);
+
+        this.setCustomFields(targetCustomFields);
     }
     sendRequest(apiUrl, data) {
         let token = document.cookie.replace("token=", ""),
@@ -282,6 +312,51 @@ class Constructor extends Component {
             setTemplate()
         );
     }
+    getDefaultsForCustomTemplateInputs(index) {
+        let fieldSet =
+                this.state.isTemplate ?
+                    this.state.templateData.templateFields ?
+                        this.state.templateData.templateFields :
+                        false :
+                    false,
+            targetField =
+                this.state.isTemplate &&
+                fieldSet ?
+                    fieldSet[index] ?
+                        fieldSet[index] :
+                        {fieldType: null} :
+                    {fieldType: null},
+            type = targetField.fieldType,
+            Defaults = {
+                name: "",
+                description: ""
+            };
+
+        if (type) {
+            Defaults = {
+                name: targetField.fieldName,
+                description: targetField.fieldDescription
+            };
+            if (type === "photo") {
+                Object.assign(Defaults, {
+                    count: targetField.fieldMinCount
+                });
+            }
+        }
+
+        return Defaults;
+    }
+    changeCustomInputType(id, type) {
+        try {
+            let index = id - 1,
+                fieldSet = this.state.customFields;
+
+            fieldSet[index].type = type;
+            console.log(fieldSet);
+        } catch (e) {
+            console.log(e);
+        }
+    }
     togglePopUp() {
         this.setState({
             constPopUp: !this.state.constPopUp
@@ -331,21 +406,21 @@ class Constructor extends Component {
                                         }
                                     </div>
                                     <div className="custom-fields">
-                                        {this.state.customFields.length ?
-                                            this.state.customFields.map((field) => (
-                                                <CustomFieldset
-                                                    mount={this.mountInput}
-                                                    remove={this.removeEvent}
-                                                    key={field.id.toString()}
-                                                    {...field}
-                                                />
-                                            )) : ""
+                                        {this.state.isTemplate &&
+                                            this.state.templateData.templateFields ?
+                                                    this.state.customFields.map((field) => (
+                                                        <CustomFieldset
+                                                            mount={this.mountInput}
+                                                            remove={this.removeEvent}
+                                                            getDefaults={() => this.getDefaultsForCustomTemplateInputs(parseInt(field.id) - 1)}
+                                                            changeType={this.changeCustomInputType}
+                                                            key={field.id.toString()}
+                                                            {...field}
+                                                        />
+                                                    )) : ""
                                         }
                                     </div>
-                                    <Footer
-                                        components={this.state.customFields}
-                                        setCustomFields={this.setCustomFields}
-                                    />
+                                    <Footer appendField={this.appendField}/>
                                 </section>
                                 <RequiredFields
                                     mount={this.mountInput}

@@ -7,26 +7,10 @@ import {connect} from 'react-redux';
 class Footer extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            id: props.components.length + 1
-        };
-
         this.appendField = this.appendField.bind(this);
     }
-    componentDidMount() {
-        this.setState({
-            id: this.props.id
-        });
-    }
-    appendField(id) {
-        let newFields = this.props.components;
-        newFields.push({
-            id: id,
-            type: this.props.inputProps
-        });
-        console.log(newFields);
-        this.props.setCustomFields(newFields);
+    appendField() {
+        this.props.appendField(this.props.inputProps);
     }
     render() {
         const textSelectClass = classSet({
@@ -47,8 +31,11 @@ class Footer extends Component {
                     (t) => (
                         <div className="footer">
                             <div className="footer-text">
-                                <h2>ДОБАВИТЬ ПОЛЕ</h2>
-                                <span className="current-type">{t("newTask.taskFooter.type")}<span>photo</span></span>
+                                <h2>{t("newTask.taskFooter.caption")}</h2>
+                                <span className="current-type">
+                                    {t("newTask.taskFooter.type")}
+                                    <span>{t("newTask.taskFooter.types." + this.props.inputProps)}</span>
+                                </span>
                             </div>
                             <div className="available-types">
                                 <TypeSelect
@@ -74,12 +61,7 @@ class Footer extends Component {
                                 form="none"
                                 type="button"
                                 className="add-input"
-                                onClick={() => {
-                                    this.setState({
-                                        id: this.state.id + 1
-                                    });
-                                    this.appendField(this.state.id);
-                                }}
+                                onClick={this.appendField}
                             >{t("newTask.taskFooter.addInput")}</button>
                         </div>
                     )

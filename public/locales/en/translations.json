@@ -80,8 +80,14 @@
       "visitPlaceholder": "Description"
     },
     "taskFooter": {
+      "caption": "ADD FIELD",
       "type": "Select field type: ",
-      "addInput": "+ ADD"
+      "addInput": "+ ADD",
+      "types": {
+        "IMAGE_TYPE": "photo",
+        "VIDEO_TYPE": "video",
+        "TEXT_TYPE": "text"
+      }
     },
     "taskRequiredFields": {
       "caption": "Required fields",

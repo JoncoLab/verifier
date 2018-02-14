@@ -80,8 +80,14 @@
       "visitPlaceholder": "Описание"
     },
     "taskFooter": {
+      "caption": "ДОБАВИТЬ ПОЛЕ",
       "type": "Выберите тип поля: ",
-      "addInput": "+ ДОБАВИТЬ"
+      "addInput": "+ ДОБАВИТЬ",
+      "types": {
+        "IMAGE_TYPE": "фото",
+        "VIDEO_TYPE": "видео",
+        "TEXT_TYPE": "текст"
+      }
     },
     "taskRequiredFields": {
       "caption": "Обязательные поля",

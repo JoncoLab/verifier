@@ -52,6 +52,7 @@ class CustomFieldSet extends Component {
                             id={"text-name-" + this.props.id}
                             placeholder={t("newTask.namePlaceholder")}
                             required={true}
+                            defaultValue={this.state.defaults.description}
                         />
                         <input
                             type="text"
@@ -59,6 +60,7 @@ class CustomFieldSet extends Component {
                             id={"text-desc-" + this.props.id}
                             placeholder={t("newTask.newInput.descPlaceholder")}
                             required={true}
+                            defaultValue={this.state.defaults.description}
                         />
                     </div>
                 </div>
@@ -114,6 +116,7 @@ class CustomFieldSet extends Component {
                                 id={"image-name-" + this.props.id}
                                 placeholder={t("newTask.newInput.fioPlaceholder")}
                                 required={true}
+                                defaultValue={this.state.defaults.name}
                             />
                             <input
                                 type="text"
@@ -121,6 +124,7 @@ class CustomFieldSet extends Component {
                                 id={"image-desc-" + this.props.id}
                                 placeholder={t("newTask.newInput.visitPlaceholder")}
                                 required={true}
+                                defaultValue={this.state.defaults.description}
                             />
                             <input
                                 min={1}
@@ -129,6 +133,7 @@ class CustomFieldSet extends Component {
                                 id={"image-files-" + this.props.id}
                                 placeholder={t("newTask.newInput.filePlaceholder")}
                                 required={true}
+                                defaultValue={this.state.defaults.count}
                             />
                         </div>
                     </div>
@@ -184,6 +189,7 @@ class CustomFieldSet extends Component {
                             id={"video-name-" + this.props.id}
                             placeholder={t("newTask.namePlaceholder")}
                             required={true}
+                            defaultValue={this.state.defaults.name}
                         />
                         <input
                             type="text"
@@ -191,6 +197,7 @@ class CustomFieldSet extends Component {
                             id={"video-desc-" + this.props.id}
                             placeholder={t("newTask.newInput.descPlaceholder")}
                             required={true}
+                            defaultValue={this.state.defaults.description}
                         />
                     </div>
                 </div>
@@ -201,7 +208,8 @@ class CustomFieldSet extends Component {
         super(props);
 
         this.state = {
-            type: props.type
+            type: props.type,
+            defaults: props.getDefaults()
         };
 
         this.changeType = this.changeType.bind(this);
@@ -209,10 +217,12 @@ class CustomFieldSet extends Component {
     }
     componentWillMount() {
         this.setState({
-            type: this.props.type
+            type: this.props.type,
+            defaults: this.props.getDefaults()
         })
     }
     changeType(type) {
+        this.props.changeType(this.props.id, type);
         this.setState({
             type: type
         });
