@@ -12,30 +12,128 @@ class Constructor extends Component {
     constructor(props) {
         super(props);
 
+        let pathname = window.location.pathname,
+            leftOver = "/constructor%3FtemplateId=";
+
         this.state = {
             inputVal: '',
-            customFields: [
-                {
-                    id: 1,
-                    type: "IMAGE_TYPE"
-                },
-                {
-                    id: 2,
-                    type: "TEXT_TYPE"
-                },
-                {
-                    id: 3,
-                    type: "VIDEO_TYPE"
-                }
-            ],
-            constPopUp: false
+            customFields: [],
+            constPopUp: false,
+            isTemplate: pathname.includes(leftOver) ?
+                pathname.replace(leftOver, "") :
+                false,
+            templateData: {}
         };
 
         this.setCustomFields = this.setCustomFields.bind(this);
         this.removeEvent = this.removeEvent.bind(this);
         this.saveConstructorAsTemplate = this.saveConstructorAsTemplate.bind(this);
-        this.getConstructorData = this.getConstructorData.bind(this);
+        this.getTemplateData = this.getTemplateData.bind(this);
         this.togglePopUp = this.togglePopUp.bind(this);
+        this.mountInput = this.mountInput.bind(this);
+    }
+    async getTemplateData() {
+        if (this.state.isTemplate) {
+            let templateId = this.state.isTemplate;
+            if (templateId) {
+                let apiUrl = apiHost + "verifier/api/v1/template/details/" + templateId,
+                    token = document.cookie.replace("token=", ""),
+                    settings = {
+                        async: true,
+                        crossDomain: true,
+                        method: "GET",
+                        url: apiUrl,
+                        headers: {
+                            "Token": token
+                        },
+                    };
+
+                return $.ajax(settings)
+            }
+        }
+    }
+    async componentWillMount() {
+        if (this.state.isTemplate) {
+            try {
+                let Template = await this.getTemplateData(),
+                    data = Template.data;
+                this.setState({
+                    templateData: data,
+                });
+                this.parseTemplateFields(data.templateFields);
+            } catch (e) {
+                console.log(e);
+            }
+        }
+    }
+    parseTemplateFields(fields) {
+        if (this.state.isTemplate && fields.length) {
+            let targetCustomFields = [],
+                getTargetType = (inType) => {
+                    let targetType;
+                    switch (inType) {
+                        case "txt":
+                            targetType = "TEXT_TYPE";
+                            break;
+                        case "photo":
+                            targetType = "IMAGE_TYPE";
+                            break;
+                        case "video":
+                            targetType = "VIDEO_TYPE";
+                            break;
+                        default:
+                            targetType = "";
+                    }
+                    return targetType;
+                };
+
+            fields.forEach((field, index) => {
+                let targetCustomTemplateField = {
+                    id: index + 1,
+                    type: getTargetType(field.fieldType)
+                };
+                targetCustomFields.push(targetCustomTemplateField);
+            });
+
+            this.setCustomFields(targetCustomFields);
+        }
+    }
+    componentDidUpdate() {
+        console.log(this.state);
+    }
+    mountInput(props) {
+        let inputShouldMount = Object.entries(this.state.templateData).length || !this.state.isTemplate,
+            JSXElement = null, textArea = false;
+        if (inputShouldMount) {
+            const getTargetDefaultValue = (id) => {
+                let data = this.state.templateData,
+                    target;
+                switch (id) {
+                    case "task-name":
+                        target = data.templateName;
+                        break;
+                    case "price":
+                        target = data.templateRate;
+                        break;
+                    case "comment":
+                        target = data.templateComment;
+                        textArea = true;
+                        break;
+                    default:
+                        target = "";
+                }
+                return {
+                    defaultValue: target
+                };
+            };
+
+            let newProps = Object.assign(props, getTargetDefaultValue(props.id));
+
+            JSXElement = textArea ?
+                <textarea {...newProps}/> :
+                <input {...newProps}/>;
+        }
+        return JSXElement;
     }
     removeEvent(targetId) {
         let newFieldSet = this.state.customFields;
@@ -57,7 +155,8 @@ class Constructor extends Component {
                 processData: false,
                 data: data,
                 headers: {
-                    "Token": token
+                    "Token": token,
+                    "Content-Type": "application/json"
                 }
             };
 
@@ -154,20 +253,33 @@ class Constructor extends Component {
         );
     }
     saveConstructorAsTemplate() {
-        let fields = this.getConstructorData(),
-            template = {
-                templateName: fields.orderName,
-                templateRate: fields.orderRate,
-                templateComment: fields.orderComment,
-                templateFields: fields.orderFields
-            };
+        const setTemplate = () => {
+            let fields = this.getConstructorData(),
+                template = {
+                    templateName: fields.orderName,
+                    templateRate: fields.orderRate,
+                    templateComment: fields.orderComment,
+                    templateFields: []
+                },
+                customTemplateFields = fields.orderFields;
 
-        template.templateFields.forEach((field) => {
-            delete field.fieldData;
-        });
+            for (let field of customTemplateFields) {
+                let targetField;
+                if (field.hasOwnProperty("fieldData")) {
+                    let {fieldData, ...cleanField} = field;
+                    targetField = cleanField;
+                } else {
+                    targetField = field
+                }
+                template.templateFields.push(targetField);
+            }
+
+            return JSON.stringify(template);
+        };
+
         this.sendRequest(
             apiHost + "verifier/api/v1/template/add",
-            JSON.stringify(template)
+            setTemplate()
         );
     }
     togglePopUp() {
@@ -202,25 +314,28 @@ class Constructor extends Component {
                                     >{t("newTask.backToMain")}</button>
                                 </div>
                                 <section className="constructor-form">
-                                    <div className="task-caption">
+                                    <div className="task-caption" id="context-task-caption">
                                         <h3>{t("newTask.taskName")}</h3>
                                         <button
                                             form="none"
                                             type="button"
                                             className="task-title"
                                         >♥</button>
-                                        <input
-                                            type="text"
-                                            id="task-name"
-                                            name="task-name"
-                                            placeholder={t("newTask.namePlaceholder")}
-                                        />
+                                        {
+                                            this.mountInput({
+                                                type: "text",
+                                                id: "task-name",
+                                                name: "task-name",
+                                                placeholder: t("newTask.namePlaceholder")
+                                            })
+                                        }
                                     </div>
                                     <div className="custom-fields">
                                         {this.state.customFields.map((field) => (
                                             <CustomFieldset
+                                                mount={this.mountInput}
                                                 remove={this.removeEvent}
-                                                key={field.id}
+                                                key={field.id.toString()}
                                                 {...field}
                                             />
                                         ))}
@@ -231,6 +346,7 @@ class Constructor extends Component {
                                     />
                                 </section>
                                 <RequiredFields
+                                    mount={this.mountInput}
                                     onToggle={this.togglePopUp}
                                     saveConstructorAsTemplate={(e) => this.saveConstructorAsTemplate(e)}
                                 />

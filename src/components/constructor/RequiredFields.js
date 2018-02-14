@@ -7,9 +7,28 @@ export class RequiredFields extends Component {
         super(props);
 
         this.state = {
-            price: 50,
+            price: 0,
             f: true
+        };
+
+        this.displayRateChange = this.displayRateChange.bind(this);
+    }
+    displayRateChange() {
+        let value;
+        try {
+            value = document.getElementById("price").value;
+        } catch (e) {
+            value = 0;
+        } finally {
+            if (value !== this.state.price) {
+                this.setState({
+                    price: value
+                });
+            }
         }
+    }
+    componentDidUpdate() {
+        this.displayRateChange();
     }
     render() {
         return (
@@ -99,33 +118,30 @@ export class RequiredFields extends Component {
                                         {t("newTask.taskRequiredFields.price")}
                                         <span className="value">{this.state.price + "$"}</span>
                                     </label>
-                                    <input
-                                        type="range"
-                                        name="price"
-                                        id="price"
-                                        required={true}
-                                        placeholder="pricePlaceholder"
-                                        min="10"
-                                        max="1000"
-                                        step="1"
-                                        defaultValue={50}
-                                        onChange={() => {
-                                            let value = document.getElementById("price").value;
-                                            this.setState({
-                                                price: value
-                                            });
-                                        }}
-                                    />
+                                    {
+                                        this.props.mount({
+                                            type: "range",
+                                            name: "price",
+                                            id: "price",
+                                            required: true,
+                                            placeholder: "pricePlaceholder",
+                                            min: "10",
+                                            max: "1000",
+                                            step: "1",
+                                            onChange: this.displayRateChange
+                                        })
+                                    }
                                 </div>
                                 <div className="field-set comment">
-                                    <textarea
-                                        name="comment"
-                                        id="comment"
-                                        required={true}
-                                        rows="5"
-                                        placeholder={t("newTask.taskRequiredFields.comment")}
-                                    >
-                                    </textarea>
+                                    {
+                                        this.props.mount({
+                                            name: "comment",
+                                            id: "comment",
+                                            required: true,
+                                            rows: "5",
+                                            placeholder: t("newTask.taskRequiredFields.comment")
+                                        })
+                                    }
                                 </div>
                                 <div className="field-set buttons">
                                     <button

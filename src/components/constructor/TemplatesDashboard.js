@@ -69,8 +69,9 @@ class TemplatesDashboard extends Component {
                                     {
                                         this.state.templates.map((template) => (
                                             <Template
+                                                key={template.templateId}
+                                                templateId={template.templateId}
                                                 templateName={template.templateName}
-                                                templateComment={template.templateComment}
                                             />
                                         ))
                                     }

@@ -3,10 +3,13 @@ import {I18n} from 'react-i18next';
 import TypeSelect from '../TypeSelect';
 
 class CustomFieldSet extends Component {
-    textField = <I18n>
+    textField = (<I18n key={this.props.id}>
         {
             (t) => (
-                <div id={"custom-field-" + this.props.id} className="text-input">
+                <div
+                    id={"custom-field-" + this.props.id}
+                    className="text-input"
+                >
                     <div className="input-caption">
                         <div className="input-info">
                             <h2>{t("newTask.newInput.taskName")}</h2>
@@ -61,78 +64,84 @@ class CustomFieldSet extends Component {
                 </div>
             )
         }
-    </I18n>;
-    imageField = <I18n>
-        {
-            (t) => (
-                <div id={"custom-field-" + this.props.id} className="image-input">
-                    <div className="input-caption">
-                        <div className="input-info">
-                            <h2>{t("newTask.newInput.taskName")}</h2>
-                            <button
-                                form="none"
-                                type="button"
-                                className="remove-btn"
-                                onClick={this.remove}
-                            >♠ {t("newTask.newInput.removeField")}</button>
-                        </div>
-                        <div className="input-types">
-                            <span className="type">{t("newTask.newInput.fieldType")} <span>{t("newTask.newInput.typePhoto")}</span></span>
-                            <button type="button" form="none" className="task-title">♥</button>
-                            <div className="available-types">
-                                <TypeSelect
-                                    btnClass="input-type"
-                                    text="•"
-                                    local={true}
-                                    onClick={() => this.changeType("TEXT_TYPE")}
-                                />
-                                <TypeSelect
-                                    btnClass="input-type active"
-                                    text="♦"
-                                    local={true}
-                                    onClick={() => this.changeType("IMAGE_TYPE")}
-                                />
-                                <TypeSelect
-                                    btnClass="input-type"
-                                    text="♣"
-                                    local={true}
-                                    onClick={() => this.changeType("VIDEO_TYPE")}
-                                />
+    </I18n>);
+    imageField = (<I18n key={this.props.id}>
+            {
+                (t) => (
+                    <div
+                        id={"custom-field-" + this.props.id}
+                        className="image-input"
+                    >
+                        <div className="input-caption">
+                            <div className="input-info">
+                                <h2>{t("newTask.newInput.taskName")}</h2>
+                                <button
+                                    form="none"
+                                    type="button"
+                                    className="remove-btn"
+                                    onClick={this.remove}
+                                >♠ {t("newTask.newInput.removeField")}</button>
+                            </div>
+                            <div className="input-types">
+                                <span className="type">{t("newTask.newInput.fieldType")} <span>{t("newTask.newInput.typePhoto")}</span></span>
+                                <button type="button" form="none" className="task-title">♥</button>
+                                <div className="available-types">
+                                    <TypeSelect
+                                        btnClass="input-type"
+                                        text="•"
+                                        local={true}
+                                        onClick={() => this.changeType("TEXT_TYPE")}
+                                    />
+                                    <TypeSelect
+                                        btnClass="input-type active"
+                                        text="♦"
+                                        local={true}
+                                        onClick={() => this.changeType("IMAGE_TYPE")}
+                                    />
+                                    <TypeSelect
+                                        btnClass="input-type"
+                                        text="♣"
+                                        local={true}
+                                        onClick={() => this.changeType("VIDEO_TYPE")}
+                                    />
+                                </div>
                             </div>
                         </div>
+                        <div className="input-fields">
+                            <input
+                                type="text"
+                                name={"image-name-" + this.props.id}
+                                id={"image-name-" + this.props.id}
+                                placeholder={t("newTask.newInput.fioPlaceholder")}
+                                required={true}
+                            />
+                            <input
+                                type="text"
+                                name={"image-desc-" + this.props.id}
+                                id={"image-desc-" + this.props.id}
+                                placeholder={t("newTask.newInput.visitPlaceholder")}
+                                required={true}
+                            />
+                            <input
+                                min={1}
+                                type="number"
+                                name={"image-files-" + this.props.id}
+                                id={"image-files-" + this.props.id}
+                                placeholder={t("newTask.newInput.filePlaceholder")}
+                                required={true}
+                            />
+                        </div>
                     </div>
-                    <div className="input-fields">
-                        <input
-                            type="text"
-                            name={"image-name-" + this.props.id}
-                            id={"image-name-" + this.props.id}
-                            placeholder={t("newTask.newInput.fioPlaceholder")}
-                            required={true}
-                        />
-                        <input
-                            type="text"
-                            name={"image-desc-" + this.props.id}
-                            id={"image-desc-" + this.props.id}
-                            placeholder={t("newTask.newInput.visitPlaceholder")}
-                            required={true}
-                        />
-                        <input
-                            min={1}
-                            type="number"
-                            name={"image-files-" + this.props.id}
-                            id={"image-files-" + this.props.id}
-                            placeholder={t("newTask.newInput.filePlaceholder")}
-                            required={true}
-                        />
-                    </div>
-                </div>
-            )
-        }
-    </I18n>;
-    videoField = <I18n>
+                )
+            }
+        </I18n>);
+    videoField = (<I18n key={this.props.id}>
         {
             (t) => (
-                <div id={"custom-field-" + this.props.id} className="video-input">
+                <div
+                    id={"custom-field-" + this.props.id}
+                    className="video-input"
+                >
                     <div className="input-caption">
                         <div className="input-info">
                             <h2>{t("newTask.newInput.taskName")}</h2>
@@ -187,7 +196,7 @@ class CustomFieldSet extends Component {
                 </div>
             )
         }
-    </I18n>;
+    </I18n>);
     constructor(props) {
         super(props);
 
@@ -197,6 +206,11 @@ class CustomFieldSet extends Component {
 
         this.changeType = this.changeType.bind(this);
         this.remove = this.remove.bind(this);
+    }
+    componentWillMount() {
+        this.setState({
+            type: this.props.type
+        })
     }
     changeType(type) {
         this.setState({

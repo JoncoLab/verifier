@@ -54,7 +54,11 @@ class App extends Component {
                     targetPage = "RENDER_TEMPLATES";
                     break;
                 default:
-                    targetPage = "RENDER_SIGN";
+                    if (window.location.pathname.includes("/constructor%3FtemplateId=")) {
+                        targetPage = "RENDER_CONSTRUCTOR";
+                    } else {
+                        targetPage = "RENDER_DASHBOARD";
+                    }
             }
             this.props.renderTargetPage(targetPage);
         } else {
