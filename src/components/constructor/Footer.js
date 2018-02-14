@@ -14,6 +14,11 @@ class Footer extends Component {
 
         this.appendField = this.appendField.bind(this);
     }
+    componentDidMount() {
+        this.setState({
+            id: this.props.id
+        });
+    }
     appendField(id) {
         let newFields = this.props.components;
         newFields.push({

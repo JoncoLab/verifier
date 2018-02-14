@@ -331,14 +331,16 @@ class Constructor extends Component {
                                         }
                                     </div>
                                     <div className="custom-fields">
-                                        {this.state.customFields.map((field) => (
-                                            <CustomFieldset
-                                                mount={this.mountInput}
-                                                remove={this.removeEvent}
-                                                key={field.id.toString()}
-                                                {...field}
-                                            />
-                                        ))}
+                                        {this.state.customFields.length ?
+                                            this.state.customFields.map((field) => (
+                                                <CustomFieldset
+                                                    mount={this.mountInput}
+                                                    remove={this.removeEvent}
+                                                    key={field.id.toString()}
+                                                    {...field}
+                                                />
+                                            )) : ""
+                                        }
                                     </div>
                                     <Footer
                                         components={this.state.customFields}
