@@ -154,7 +154,7 @@ class Constructor extends Component {
     handleCustomFieldId() {
         let customFields = this.state.customFields,
             idS = [],
-            targetId = this.state.isTemplate ? 100 : 0;
+            targetId = 0;
         for (let field of customFields) {
             idS.push(field.id);
         }
@@ -165,7 +165,6 @@ class Constructor extends Component {
     }
     appendField(type) {
         let targetCustomFields = this.state.customFields,
-            id = targetCustomFields.length,
             newField = {
                 id: this.handleCustomFieldId(),
                 type: type

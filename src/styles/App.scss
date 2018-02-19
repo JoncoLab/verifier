@@ -3,6 +3,10 @@
 .App {
   * {
     box-sizing: border-box;
+    transition: {
+      duration: $time;
+      timing-function: linear;
+    }
   }
 
   header {
