@@ -154,7 +154,7 @@ class Constructor extends Component {
     handleCustomFieldId() {
         let customFields = this.state.customFields,
             idS = [],
-            targetId = 0;
+            targetId = 1;
         for (let field of customFields) {
             idS.push(field.id);
         }
@@ -166,7 +166,9 @@ class Constructor extends Component {
     appendField(type) {
         let targetCustomFields = this.state.customFields,
             newField = {
-                id: this.handleCustomFieldId(),
+                id: targetCustomFields.length ?
+                    this.handleCustomFieldId() :
+                    1,
                 type: type
             };
 
@@ -347,10 +349,12 @@ class Constructor extends Component {
     }
     changeCustomInputType(id, type) {
         try {
-            let index = id - 1,
-                fieldSet = this.state.customFields;
+            let fieldSet = this.state.customFields;
 
-            fieldSet[index].type = type;
+            for (let field of fieldSet) {
+                if (field.id === id) field.type = type;
+            }
+
             console.log(fieldSet);
         } catch (e) {
             console.log(e);
@@ -405,7 +409,7 @@ class Constructor extends Component {
                                         }
                                     </div>
                                     <div className="custom-fields">
-                                        {this.state.isTemplate &&
+                                        {this.state.isTemplate ?
                                             this.state.templateData.templateFields ?
                                                     this.state.customFields.map((field) => (
                                                         <CustomFieldset
@@ -416,7 +420,17 @@ class Constructor extends Component {
                                                             key={field.id.toString()}
                                                             {...field}
                                                         />
-                                                    )) : ""
+                                                    )) : "" :
+                                            this.state.customFields.map((field) => (
+                                                <CustomFieldset
+                                                    mount={this.mountInput}
+                                                    remove={this.removeEvent}
+                                                    getDefaults={() => this.getDefaultsForCustomTemplateInputs(parseInt(field.id) - 1)}
+                                                    changeType={this.changeCustomInputType}
+                                                    key={field.id.toString()}
+                                                    {...field}
+                                                />
+                                            ))
                                         }
                                     </div>
                                     <Footer appendField={this.appendField}/>
