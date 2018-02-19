@@ -8,6 +8,8 @@ import ConstructorPopUp from './ContructorPopUp';
 import * as $ from "jquery";
 import {apiHost} from "../../App";
 
+console.log(window.google);
+
 class Constructor extends Component {
     constructor(props) {
         super(props);
@@ -364,6 +366,15 @@ class Constructor extends Component {
         this.setState({
             constPopUp: !this.state.constPopUp
         });
+    }
+    static initMapAndAddressAutoComplete() {
+
+        var input = /** @type {!HTMLInputElement} */(
+            document.getElementById('pac-input'));
+        //
+        //
+        //
+        //
     }
     render() {
         return (

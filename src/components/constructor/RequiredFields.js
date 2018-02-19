@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {I18n} from 'react-i18next';
+import AutoCompleteMap from "./Map";
 
 
 export class RequiredFields extends Component {
@@ -112,6 +113,7 @@ export class RequiredFields extends Component {
                                         required={true}
                                         placeholder={t("newTask.taskRequiredFields.addressPlaceholder")}
                                     />
+                                    <AutoCompleteMap/>
                                 </div>
                                 <div className="field-set price">
                                     <label htmlFor="price">

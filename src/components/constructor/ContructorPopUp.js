@@ -54,12 +54,13 @@ class ConstructorPopUp extends Component {
                         </div>
                         <div className="user-info">
                             {
-                                $.map(this.state.data.orderFields, (field, i) => (
-                                    <div key={i}>
-                                        <span>{field.fieldName + ": "}</span>
-                                        <span>{field.fieldDescription}</span>
-                                    </div>
-                                ))
+                                    $.map(this.state.data.orderFields, (field, i) => (
+                                        field ?
+                                            <div key={i}>
+                                                <span>{field.fieldName + ": "}</span>
+                                                <span>{field.fieldDescription}</span>
+                                            </div> : ""
+                                    ))
                             }
                             <span className="details-city"><span>☻</span>{this.state.data.verifAddr}</span>
                         </div>
