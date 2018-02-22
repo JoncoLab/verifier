@@ -258,6 +258,11 @@
                 }
               }
             }
+
+            .approval-button {
+              @include greyBtn;
+              margin: $line * 2 0 0;
+            }
           }
 
           &::before {

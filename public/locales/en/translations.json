@@ -109,6 +109,7 @@
   },
   "templates": {
     "toTheConst": "CREATE TASK WITH TEMPLATE",
+    "approvalButton": "APPROVE",
     "caption": "CREATE TASK WITH TEMPLATE"
   }
 }

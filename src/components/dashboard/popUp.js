@@ -14,8 +14,8 @@ class PopUp extends Component {
         };
 
         this.getValueArr = this.getValueArr.bind(this);
+        this.handleApproval = this.handleApproval.bind(this);
     }
-
     componentWillMount() {
         let token = document.cookie.replace("token=", ""),
             apiUrl = apiHost + "verifier/api/v1/order/" + this.props.orderId,
@@ -35,7 +35,6 @@ class PopUp extends Component {
             });
         });
     }
-
     getValueArr() {
         let fieldsArray = this.state.orderList.orderFields;
 
@@ -45,7 +44,31 @@ class PopUp extends Component {
             })
         }
     }
+    handleApproval() {
+        let id = this.props.orderId,
+            apiUrl = "verifier/api/v1/order/approval",
+            data = JSON.stringify({
+                orderId: id
+            }),
+            token = document.cookie.replace("token=", ""),
+            settings = {
+                url: apiHost + apiUrl,
+                method: "post",
+                async: true,
+                processData: false,
+                crossDomain: true,
+                data: data,
+                headers: {
+                    "Content-Type": "application/json",
+                    "Token": token
+                }
+            };
 
+        $.ajax(settings)
+            .catch((error) => {
+                console.log(error);
+            });
+    }
     render() {
         const detailsToggle = classSet({
             'verification-details': true,
@@ -75,6 +98,14 @@ class PopUp extends Component {
                                             })
                                         }
                                         <span className="details-city"><span>☻</span> {this.props.verifAddr}</span>
+                                        <button
+                                            className={"approval-button"}
+                                            onClick={this.handleApproval}
+                                        >
+                                            {
+                                                t("templates.approvalButton")
+                                            }
+                                        </button>
                                     </div>
                                 </div>
                             </div>
