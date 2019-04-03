@@ -18,7 +18,7 @@
     "react-redux": "^5.0.7",
     "react-scripts": "^1.1.1",
     "redux": "^3.7.2",
-    "redux-devtools": "^3.4.1"
+    "redux-devtools": "^3.5.0"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",
@@ -36,5 +36,6 @@
     "react-prop-types": "^0.4.0"
   },
   "author": "JoncoLab",
-  "license": "ISC"
+  "license": "ISC",
+  "homepage": "https://joncolab.github.io/verifier"
 }
