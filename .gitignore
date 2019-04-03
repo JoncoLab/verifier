@@ -24,3 +24,4 @@ yarn-error.log*
 !index.css
 .idea/workspace.xml
 *.xml
+package-lock.json
